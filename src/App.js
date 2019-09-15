@@ -11,6 +11,7 @@ import { initialState, rootReducer } from "./rootReducer";
 import "./styles/index.css";
 
 import { Home } from "./routes/home/index";
+import { Signup } from "./routes/signup/index"
 import { About } from "./routes/about/index";
 import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
@@ -32,6 +33,7 @@ const App = () => {
                 <RouteContainer key={location.pathname}>
                   <Switch location={location}>
                     <Route exact={true} path="/" render={() => <Home />} />
+                    <Route exact={true} path="/signup" render={() => <Signup />} />
                     <Route
                       exact={true}
                       path="/about"

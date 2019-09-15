@@ -5,8 +5,6 @@ import { useStateValue } from "../../lib/state";
 
 import { PageLayout } from "../../modules/pageLayout/index";
 
-import { PlaidLink } from "../../modules/plaidLink/index";
-
 const posedDivConfig = {
   preLoad: {
     x: "-100%"
@@ -18,30 +16,26 @@ const posedDivConfig = {
 
 const ParentDiv = posed.div(posedDivConfig);
 
-const Home = () => {
+const Signup = () => {
   const [{ globalState }, dispatchGlobalStateAction] = useStateValue();
+  const [{ homeState }, dispatchHomeStateAction] = useStateValue();
+  const [{ signupState }, dispatchSignupStateAction] = useStateValue();
   const [localStateValue, setLocalStateValue] = useState("");
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    setLocalStateValue(globalState.globalValue);
-
-    dispatchGlobalStateAction({
-      type: "GLOBAL_UPDATE",
-      payload:
-        "This is an updated global state value - updated inside the come container"
-    });
-
-    setIsloading(false);
+    console.log(globalState)
+    console.log(homeState)
+    console.log(signupState)
   }, []);
-
+   
   return (
     <PageLayout>
         <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
-          <PlaidLink></PlaidLink>
+          <div>TEST</div>
         </ParentDiv>
     </PageLayout>
   );
 };
 
-export default Home;
+export default Signup;
