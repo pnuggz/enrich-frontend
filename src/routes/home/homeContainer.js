@@ -5,6 +5,8 @@ import { useStateValue } from "../../lib/state";
 
 import { PageLayout } from "../../modules/pageLayout/index";
 
+import { PlaidLink } from "../../modules/plaidLink/index";
+
 const posedDivConfig = {
   preLoad: {
     x: "-100%"
@@ -37,10 +39,7 @@ const Home = () => {
     <PageLayout>
       <div>
         <ValueDiv pose={isLoading ? "preLoad" : "loaded"}>
-          {localStateValue}
-        </ValueDiv>
-        <ValueDiv pose={isLoading ? "preLoad" : "loaded"}>
-          {globalState.globalValue}
+          <PlaidLink></PlaidLink>
         </ValueDiv>
       </div>
     </PageLayout>
