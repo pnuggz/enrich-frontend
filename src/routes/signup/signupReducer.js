@@ -1,7 +1,33 @@
 import { combineReducers } from "../../lib/combineReducers";
 
 const initialState = {
-  signupValue: "This is an initial value from the global state"
+  signupValue: "This is an initial value from the global state",
+  formData: {
+    username: {
+      value: "",
+      error: {
+        untouched: true,
+        text: "",
+        border: ""
+      }
+    },
+    email: {
+      value: "",
+      error: {
+        untouched: true,
+        text: "",
+        border: ""
+      }
+    },
+    password: {
+      value: "",
+      error: {
+        untouched: true,
+        text: "",
+        border: ""
+      }
+    }
+  }
 };
 
 const signupReducer = (state, action) => {

@@ -4,6 +4,7 @@ import posed from "react-pose";
 import { useStateValue } from "../../lib/state";
 
 import { PageLayout } from "../../modules/pageLayout/index";
+import { SignupForm } from "../../modules/signupForm/index"
 
 const posedDivConfig = {
   preLoad: {
@@ -17,22 +18,29 @@ const posedDivConfig = {
 const ParentDiv = posed.div(posedDivConfig);
 
 const Signup = () => {
-  const [{ globalState }, dispatchGlobalStateAction] = useStateValue();
-  const [{ homeState }, dispatchHomeStateAction] = useStateValue();
   const [{ signupState }, dispatchSignupStateAction] = useStateValue();
-  const [localStateValue, setLocalStateValue] = useState("");
+  const [formData, setFormData] = useState(signupState.formData);
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    console.log(globalState)
-    console.log(homeState)
-    console.log(signupState)
+    setIsloading(false)
   }, []);
+
+  const handleChange = e => {
+    const id = e.target.id
+    const val = e.target.value
+
+    console.log(formData)
+  }
    
   return (
     <PageLayout>
         <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
-          <div>TEST</div>
+          <div className="grid has-centered is-vertical">
+            <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths panel has-bg-white has-text-black has-link-inherit">
+              <SignupForm data={formData} handleChange={handleChange} />
+            </div>
+          </div>
         </ParentDiv>
     </PageLayout>
   );
