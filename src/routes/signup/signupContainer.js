@@ -33,7 +33,7 @@ const Signup = () => {
   //   console.log(formData);
   // };
 
-  function onSubmitForm(state) {
+  const onSubmitForm = (state) => {
     alert(JSON.stringify(state, null, 2));
   }
 

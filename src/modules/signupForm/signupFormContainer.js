@@ -7,7 +7,7 @@ const SignupForm = props => {
   const validationStateSchema = props.validationStateSchema;
   const onSubmitForm = props.onSubmitForm;
 
-  const { state, handleOnChange, handleOnSubmit, disable } = useForm(
+  const { state, handleOnChange, handleOnSubmit, handlePasswordShow, disable } = useForm(
     stateSchema,
     validationStateSchema,
     onSubmitForm
@@ -20,7 +20,7 @@ const SignupForm = props => {
 
   return (
     <React.Fragment>
-      <form onSubmit={onSubmitForm}>
+      <form onSubmit={event => onSubmitForm(event)}>
         <div>
           <label htmlFor="username">
             Username
@@ -47,20 +47,23 @@ const SignupForm = props => {
           </label>
           {state.email.error && <p style={errorStyle}>{state.email.error}</p>}
         </div>
+        
         <div>
-          <label htmlFor="password">
-            Password
+          <label htmlFor="password">Password</label>
+          <div className="is-input-group">
             <input
               type="password"
               name="password"
               value={state.password.value}
               onChange={handleOnChange}
             />
-          </label>
+            <span onClick={handlePasswordShow}>show</span>
+          </div>
           {state.password.error && (
             <p style={errorStyle}>{state.password.error}</p>
           )}
         </div>
+
         <input type="submit" name="submit" disabled={disable} />
       </form>
     </React.Fragment>

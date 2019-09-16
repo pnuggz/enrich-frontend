@@ -69,6 +69,9 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
   const handleOnSubmit = useCallback(
     event => {
       event.preventDefault();
+      event.stopPropagation()
+      event.stopImmediatePropagation()
+      event.nativeEvent.stopImmediatePropagation()
 
       // Make sure that validateState returns false
       // Before calling the submit callback function
@@ -79,7 +82,26 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
     [state]
   );
 
-  return { state, disable, handleOnChange, handleOnSubmit };
+  const handlePasswordShow = useCallback(
+    event => {
+      const name = event.target.previousSibling.name;
+      const type = event.target.previousSibling.type;
+      
+      if(name !== "password") {
+        return
+      }
+
+      if(type === "password") {
+        event.target.previousSibling.type = "text"
+        return
+      }
+
+      event.target.previousSibling.type = "password"
+    },
+    [state]
+  )
+
+  return { state, handleOnChange, handleOnSubmit, handlePasswordShow, disable };
 };
 
 export default useForm;
