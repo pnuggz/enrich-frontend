@@ -1,41 +1,69 @@
 import React from "react";
 
-const SignupForm = props => {
-  const data = props.data
-  const handleChange = props.handleChange
-  const handleBlur = props.handleBlur
+import { useForm } from "../useForm/index";
 
-  const unmaskPassword = e => {
-    const type = e.target.previousSibling.type
-    
-    if(type === "password") {
-      e.target.previousSibling.type = "text"
-      return
-    }
-    e.target.previousSibling.type = "password"
-  }
+const SignupForm = props => {
+  const stateSchema = props.stateSchema;
+  const validationStateSchema = props.validationStateSchema;
+  const onSubmitForm = props.onSubmitForm;
+
+  const { state, handleOnChange, handleOnSubmit, disable } = useForm(
+    stateSchema,
+    validationStateSchema,
+    onSubmitForm
+  );
+
+  const errorStyle = {
+    color: "red",
+    fontSize: "13px"
+  };
 
   return (
-    <div className="grid">
-      <div className="column is-full has-no-margin has-no-padding">
-        <label>Username</label>
-        <input id="username" style={{border: data.username.error.border}} type="text" value={data.username.value || ""} onChange={(e) => handleChange(e)} onBlur={(e) => handleBlur(e)}/>
-        <span>{data.username.error.text}</span>
-      </div>
-      <div className="column is-full has-no-margin has-no-padding">
-        <label>Email</label>
-        <input style={{border: data.email.error.border}} type="text" value={data.email.value || ""} onChange={(e) => handleChange(e)} onBlur={(e) => handleBlur(e)}/>
-        <span>{data.email.error.text}</span>
-      </div>
-      <div className="column is-full has-no-margin has-no-padding">
-        <label>Password</label>
-        <div className="is-input-group">
-          <input style={{border: data.password.error.border}} type="password" value={data.password.value || ""} onChange={(e) => handleChange(e)} onBlur={(e) => handleBlur(e)}/>
-          <span style={{cursor: "pointer"}} onClick={e => unmaskPassword(e)}>show</span>
+    <React.Fragment>
+      <form onSubmit={onSubmitForm}>
+        <div>
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              name="username"
+              value={state.username.value}
+              onChange={handleOnChange}
+            />
+          </label>
+          {state.username.error && (
+            <p style={errorStyle}>{state.username.error}</p>
+          )}
         </div>
-        <span>{data.password.error.text}</span>
-      </div>
-    </div>
+        <div>
+          <label htmlFor="email">
+            Email
+            <input
+              type="text"
+              name="email"
+              value={state.email.value}
+              onChange={handleOnChange}
+            />
+          </label>
+          {state.email.error && <p style={errorStyle}>{state.email.error}</p>}
+        </div>
+        <div>
+          <label htmlFor="password">
+            Password
+            <input
+              type="password"
+              name="password"
+              value={state.password.value}
+              onChange={handleOnChange}
+            />
+          </label>
+          {state.password.error && (
+            <p style={errorStyle}>{state.password.error}</p>
+          )}
+        </div>
+        <input type="submit" name="submit" disabled={disable} />
+      </form>
+    </React.Fragment>
   );
 };
 

@@ -4,7 +4,7 @@ import posed from "react-pose";
 import { useStateValue } from "../../lib/state";
 
 import { PageLayout } from "../../modules/pageLayout/index";
-import { SignupForm } from "../../modules/signupForm/index"
+import { SignupForm } from "../../modules/signupForm/index";
 
 const posedDivConfig = {
   preLoad: {
@@ -23,25 +23,33 @@ const Signup = () => {
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
-    setIsloading(false)
+    setIsloading(false);
   }, []);
 
-  const handleChange = e => {
-    const id = e.target.id
-    const val = e.target.value
+  // const handleChange = e => {
+  //   const id = e.target.id;
+  //   const val = e.target.value;
 
-    console.log(formData)
+  //   console.log(formData);
+  // };
+
+  function onSubmitForm(state) {
+    alert(JSON.stringify(state, null, 2));
   }
-   
+
   return (
     <PageLayout>
-        <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
-          <div className="grid has-centered is-vertical">
-            <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths panel has-bg-white has-text-black has-link-inherit">
-              <SignupForm data={formData} handleChange={handleChange} />
-            </div>
+      <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
+        <div className="grid has-centered is-vertical">
+          <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths panel has-bg-white has-text-black has-link-inherit">
+            <SignupForm
+              onSubmitForm={onSubmitForm}
+              stateSchema={signupState.stateSchema}
+              validationStateSchema={signupState.validationStateSchema}
+            />
           </div>
-        </ParentDiv>
+        </div>
+      </ParentDiv>
     </PageLayout>
   );
 };

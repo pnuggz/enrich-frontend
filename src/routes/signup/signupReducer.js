@@ -2,30 +2,25 @@ import { combineReducers } from "../../lib/combineReducers";
 
 const initialState = {
   signupValue: "This is an initial value from the global state",
-  formData: {
+  stateSchema: {
+    username: { value: "", error: "" },
+    email: { value: "", error: "" },
+    password: { value: "", error: "" }
+  },
+  validationStateSchema: {
     username: {
-      value: "",
-      error: {
-        untouched: true,
-        text: "",
-        border: ""
-      }
+      required: true
     },
     email: {
-      value: "",
-      error: {
-        untouched: true,
-        text: "",
-        border: ""
-      }
+      required: true,
+      regEx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      error: "Invalid email format."
     },
     password: {
-      value: "",
-      error: {
-        untouched: true,
-        text: "",
-        border: ""
-      }
+      required: true,
+      regEx: /^(?=.*[A-Za-z])(?=.*\d)[a-zA-Z0-9!@#$%^&*()~¥=_+}{":;'?/>.<,`\-\|\[\]]{6,50}$/,
+      error:
+        "Invalid password. Requires minimum 6 characters, and must contain 1 letter and 1 number."
     }
   }
 };
@@ -50,4 +45,4 @@ const signupReducerBundle = {
   signupReducer: signupReducerCombined
 };
 
-export default signupReducerBundle
+export default signupReducerBundle;
