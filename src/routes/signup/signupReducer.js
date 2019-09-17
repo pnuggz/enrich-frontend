@@ -1,7 +1,6 @@
 import { combineReducers } from "../../lib/combineReducers";
 
 const initialState = {
-  signupValue: "This is an initial value from the global state",
   stateSchema: {
     username: { value: "", error: "" },
     email: { value: "", error: "" },
@@ -22,15 +21,17 @@ const initialState = {
       error:
         "Invalid password. Requires minimum 6 characters, and must contain 1 letter and 1 number."
     }
-  }
+  },
+  isSubmit: false
 };
 
 const signupReducer = (state, action) => {
   switch (action.type) {
-    case "GLOBAL_UPDATE":
+    case "SIGNUP_FORM_SUBMIT":
       return {
         ...state,
-        globalValue: action.payload
+        stateSchema: action.payload,
+        isSubmit: true
       };
 
     default:
