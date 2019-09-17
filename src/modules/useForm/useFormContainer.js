@@ -45,7 +45,7 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
       let error = "";
       if (validationSchema[name].required) {
         if (!value) {
-          error = "This is required field.";
+          error = `${name.substr(0,1).toUpperCase() + name.substr(1)} field is required.`;
         }
       }
 
@@ -69,9 +69,6 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
   const handleOnSubmit = useCallback(
     event => {
       event.preventDefault();
-      event.stopPropagation()
-      event.stopImmediatePropagation()
-      event.nativeEvent.stopImmediatePropagation()
 
       // Make sure that validateState returns false
       // Before calling the submit callback function
@@ -80,7 +77,7 @@ const useForm = (stateSchema, validationSchema = {}, callback) => {
       }
     },
     [state]
-  );
+  )
 
   const handlePasswordShow = useCallback(
     event => {

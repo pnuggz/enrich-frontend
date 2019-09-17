@@ -20,7 +20,7 @@ const SignupForm = props => {
 
   return (
     <React.Fragment>
-      <form onSubmit={event => onSubmitForm(event)}>
+      <form onSubmit={event => handleOnSubmit(event)}>
         <div>
           <label htmlFor="username">
             Username
