@@ -14,17 +14,15 @@ const Signup = () => {
     if (signupState.isSubmit) {
       const fetch = signupRequest(signupState.stateSchema);
 
-      // fetch
-      //   .then(res => res.json())
-      //   .then(res => {
-      //     if (res) {
-      //       console.log(res);
-      //       // sessionStorage.setItem("userInfo", JSON.stringify(res));
+      fetch.then(res => {
+        if (res) {
+          console.log(res);
+          // sessionStorage.setItem("userInfo", JSON.stringify(res));
 
-      //       //eslint-disable-next-line
-      //       // history.push("/landing");
-      //     }
-      //   });
+          //eslint-disable-next-line
+          // history.push("/landing");
+        }
+      });
     }
   }, [signupState]);
 

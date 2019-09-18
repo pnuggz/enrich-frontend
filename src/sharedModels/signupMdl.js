@@ -2,11 +2,11 @@ import bcrypt from "bcryptjs";
 
 import { signupApi } from "../sharedApis/signupApi";
 
-export const signupRequest = signupData => {
-  const parsedSignupData = hashPasswordData(signupData);
+export const signupRequest = async signupData => {
+  const parsedSignupData = await hashPasswordData(signupData);
 
   try {
-    const fetch = signupApi(parsedSignupData);
+    const fetch = await signupApi(parsedSignupData);
 
     return fetch;
   } catch (error) {

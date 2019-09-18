@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import posed, { PoseGroup } from "react-pose";
 
 import checkAuthorization from "./lib/check-auth";
@@ -11,10 +11,12 @@ import { initialState, rootReducer } from "./rootReducer";
 import "./styles/index.css";
 
 import { Home } from "./routes/home/index";
-import { Signup } from "./routes/signup/index"
+import { Signup } from "./routes/signup/index";
+import { Login } from "./routes/login/index";
 import { About } from "./routes/about/index";
 import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
+import { Dashboard } from "./routes/dashboard";
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -33,7 +35,27 @@ const App = () => {
                 <RouteContainer key={location.pathname}>
                   <Switch location={location}>
                     <Route exact={true} path="/" render={() => <Home />} />
-                    <Route exact={true} path="/signup" render={() => <Signup />} />
+                    <Route
+                      exact={true}
+                      path="/signup"
+                      render={() => <Signup />}
+                    />
+                    <Route
+                      exact={true}
+                      path="/login"
+                      render={() => <Login />}
+                    />
+                    <Route
+                      exact={true}
+                      path="/dashboard"
+                      render={() =>
+                        checkAuthorization() ? (
+                          <Dashboard />
+                        ) : (
+                          <Redirect to="/login" />
+                        )
+                      }
+                    />
                     <Route
                       exact={true}
                       path="/about"

@@ -1,20 +1,18 @@
-export default function checkAuthorization() {
-  const userInfo = sessionStorage.getItem("userInfo");
-  const jsonUserInfo = JSON.parse(userInfo);
+import { checkAuthorizationRequest } from "../sharedModels/checkAuthorizationMdl";
 
-  if (userInfo) {
-    const createdDate = new Date(jsonUserInfo.token_date);
-    const created = Math.round(createdDate.getTime() / 1000);
-    const ttl = 7200;
-    const expiry = created + ttl;
+const checkAuthorization = async () => {
+  const userData = sessionStorage.getItem("userData");
+  const jsonUserData = JSON.parse(userData);
 
-    const now = new Date();
-    const now_time = Math.round(now.getTime() / 1000);
+  if (userData) {
+    const authorizationResult = await checkAuthorizationRequest(jsonUserData);
 
-    if (expiry > now_time === true) return true;
+    console.log(authorizationResult);
 
-    return false;
+    return true;
   }
 
   return false;
-}
+};
+
+export default checkAuthorization;
