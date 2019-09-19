@@ -1,8 +1,8 @@
 import { checkAuthorizationApi } from "../sharedApis/checkAuthorizationApi";
 
-export const checkAuthorizationRequest = authData => {
+export const checkAuthorizationRequest = async authData => {
   try {
-    const fetch = checkAuthorizationApi(authData);
+    const fetch = await checkAuthorizationApi(authData);
 
     return fetch;
   } catch (error) {

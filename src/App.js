@@ -17,6 +17,7 @@ import { About } from "./routes/about/index";
 import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
 import { Dashboard } from "./routes/dashboard";
+import { PlaidLink } from "./routes/plaidLink";
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -51,6 +52,17 @@ const App = () => {
                       render={() =>
                         checkAuthorization() ? (
                           <Dashboard />
+                        ) : (
+                          <Redirect to="/login" />
+                        )
+                      }
+                    />
+                    <Route
+                      exact={true}
+                      path="/accounts/add"
+                      render={() =>
+                        checkAuthorization() ? (
+                          <PlaidLink />
                         ) : (
                           <Redirect to="/login" />
                         )

@@ -1,1 +1,1 @@
-export { default as PlaidLink } from "./plaidProvider";
+export { default as PlaidLinkModule } from "./plaidProvider";

@@ -10,8 +10,9 @@ export const checkAuthorizationApi = userData => {
   return fetch(url, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json"
     },
-    body: userData
+    body: JSON.stringify(userData)
   });
 };

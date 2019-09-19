@@ -4,9 +4,9 @@ const initialState = {
   test: "TEST"
 };
 
-const dashboardReducer = (state, action) => {
+const plaidReducer = (state, action) => {
   switch (action.type) {
-    case "LOGIN_FORM_SUBMIT":
+    case "PLAID_SAVE":
       return {
         ...state,
         stateSchema: action.payload,
@@ -18,11 +18,11 @@ const dashboardReducer = (state, action) => {
   }
 };
 
-const dashboardReducerCombined = combineReducers(dashboardReducer);
+const plaidReducerCombined = combineReducers(plaidReducer);
 
-const dashboardReducerBundle = {
+const plaidReducerBundle = {
   initialState: initialState,
-  dashboardReducer: dashboardReducerCombined
+  plaidReducer: plaidReducerCombined
 };
 
-export default dashboardReducerBundle;
+export default plaidReducerBundle;

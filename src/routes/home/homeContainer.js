@@ -5,7 +5,7 @@ import { useStateValue } from "../../lib/state";
 
 import { PageLayout } from "../../modules/pageLayout/index";
 
-import { PlaidLink } from "../../modules/plaidLink/index";
+import { PlaidLinkModule } from "../../modules/plaidLink/index";
 
 const posedDivConfig = {
   preLoad: {
@@ -37,9 +37,9 @@ const Home = () => {
 
   return (
     <PageLayout>
-        <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
-          <PlaidLink></PlaidLink>
-        </ParentDiv>
+      <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
+        <PlaidLinkModule></PlaidLinkModule>
+      </ParentDiv>
     </PageLayout>
   );
 };

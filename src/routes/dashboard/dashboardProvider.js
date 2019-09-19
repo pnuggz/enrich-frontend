@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 import { useStateValue } from "../../lib/state";
-import history from "../../lib/history";
 
 import { DashboardController } from "./dashboardController";
 

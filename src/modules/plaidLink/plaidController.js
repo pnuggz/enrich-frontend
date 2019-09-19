@@ -3,22 +3,18 @@ import React from "react";
 import PlaidContainer from "./plaidContainer";
 
 const PlaidController = props => {
-  const handleOnSuccess = (token, metadata) => {
-    console.log(token);
-    console.log(metadata);
-  };
-
-  const handleOnExit = () => {
-    console.log("EXITED");
-  };
+  const handlePlaidSuccess = props.handlePlaidSuccess;
+  const handlePlaidExit = props.handlePlaidExit;
+  const handlePlaidFail = props.handlePlaidFail;
+  const config = props.config;
 
   return (
     <React.Fragment>
       <PlaidContainer
-        props={props}
-        handleOnSuccess={handleOnSuccess}
-        handleOnExit={handleOnExit}
-        config={props.config}
+        handlePlaidSuccess={handlePlaidSuccess}
+        handlePlaidExit={handlePlaidExit}
+        handlePlaidFail={handlePlaidFail}
+        config={config}
       ></PlaidContainer>
     </React.Fragment>
   );

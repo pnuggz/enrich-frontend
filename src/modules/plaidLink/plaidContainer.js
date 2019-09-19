@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PlaidLink from "react-plaid-link";
 
 const PlaidContainer = props => {
-  const handleOnExit = props.handleOnExit;
-  const handleOnSuccess = props.handleOnSuccess;
+  const handlePlaidSuccess = props.handlePlaidSuccess;
+  const handlePlaidFail = props.handlePlaidFail;
+  const handlePlaidExit = props.handlePlaidExit;
   const { clientName, env, product, publicKey, countryCodes } = props.config;
 
   return (
@@ -13,8 +14,9 @@ const PlaidContainer = props => {
         env={env}
         publicKey={publicKey}
         product={product}
-        onExit={handleOnExit}
-        onSuccess={handleOnSuccess}
+        onExit={handlePlaidExit}
+        onSuccess={handlePlaidSuccess}
+        onEvent={handlePlaidFail}
         countryCodes={countryCodes}
       >
         Open Link and connect a bank account to Plaid

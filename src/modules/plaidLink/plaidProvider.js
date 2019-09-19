@@ -2,20 +2,25 @@ import React from "react";
 
 import PlaidController from "./plaidController";
 
-const PlaidLink = props => {
-  const config = {
-    clientName: "Your app name",
-    env: "development",
-    product: ["transactions"],
-    publicKey: "668bf16942e7199f0698533e8f5833",
-    countryCodes: ["US", "GB", "ES", "FR", "CAR", "AU"]
-  };
+import config from "../../config/index";
+
+const PlaidLinkModule = props => {
+  const handlePlaidSuccess = props.handlePlaidSuccess;
+  const handlePlaidExit = props.handlePlaidExit;
+  const handlePlaidFail = props.handlePlaidFail;
+
+  const plaidConfig = config.plaid;
 
   return (
     <React.Fragment>
-      <PlaidController props={props} config={config}></PlaidController>
+      <PlaidController
+        handlePlaidSuccess={handlePlaidSuccess}
+        handlePlaidExit={handlePlaidExit}
+        handlePlaidFail={handlePlaidFail}
+        config={plaidConfig}
+      ></PlaidController>
     </React.Fragment>
   );
 };
 
-export default PlaidLink;
+export default PlaidLinkModule;
