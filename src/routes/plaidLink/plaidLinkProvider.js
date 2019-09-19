@@ -7,6 +7,14 @@ import { PlaidLinkController } from "./plaidLinkController";
 
 const PlaidLink = () => {
   const [{ plaidState }, dispatchPlaidStateAction] = useStateValue();
+  const linkState = plaidState.linkState
+
+  useEffect(() => {
+    console.log(linkState)
+    if(linkState.publicToken !== null) {
+      console.log(linkState.publicToken)
+    }
+  }, [linkState])
 
   return (
     <React.Fragment>

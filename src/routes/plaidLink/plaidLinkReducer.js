@@ -1,16 +1,23 @@
 import { combineReducers } from "../../lib/combineReducers";
 
 const initialState = {
-  test: "TEST"
+  linkState: {
+    accessToken: null,
+    linkSessionId: null,
+    publicToken: null
+  }
 };
 
 const plaidReducer = (state, action) => {
   switch (action.type) {
-    case "PLAID_SAVE":
+    case "PLAID_SAVE_PUBLIC_TOKEN":
       return {
         ...state,
-        stateSchema: action.payload,
-        isSubmit: true
+        linkState: {
+          ...state.linkState,
+          publicToken: action.payload.publicToken,
+          linkSessionId: action.payload.linkSessionId
+        }
       };
 
     default:

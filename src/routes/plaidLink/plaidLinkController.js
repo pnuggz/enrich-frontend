@@ -11,9 +11,18 @@ export const PlaidLinkController = props => {
     setIsloading(false);
   }, []);
 
+  useEffect(() => {
+    console.log(plaidState)
+  }, [plaidState]);
+
   const handlePlaidSuccess = (public_token, metadata) => {
-    console.log(public_token);
-    console.log(metadata);
+    dispatchPlaidStateAction({
+      type: "PLAID_SAVE_PUBLIC_TOKEN",
+      payload: {
+        publicToken: public_token,
+        linkSessionId: metadata.link_session_id
+      }
+    })
   };
 
   const handlePlaidExit = (err, metadata) => {
