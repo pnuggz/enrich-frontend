@@ -59,7 +59,7 @@ const App = () => {
                     />
                     <Route
                       exact={true}
-                      path="/accounts/add"
+                      path="/account/add"
                       render={() =>
                         checkAuthorization() ? (
                           <PlaidLink />

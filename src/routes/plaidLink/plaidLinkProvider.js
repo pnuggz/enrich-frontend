@@ -5,14 +5,34 @@ import history from "../../lib/history";
 
 import { PlaidLinkController } from "./plaidLinkController";
 
+import { plaidTokenRequest } from "../../sharedModels/plaidMdl";
+
 const PlaidLink = () => {
   const [{ plaidState }, dispatchPlaidStateAction] = useStateValue();
   const linkState = plaidState.linkState
 
   useEffect(() => {
-    console.log(linkState)
     if(linkState.publicToken !== null) {
-      console.log(linkState.publicToken)
+      const userData = sessionStorage.getItem("userData");
+      const jsonUserInfo = JSON.parse(userData);
+    
+      if (!jsonUserInfo) {
+        history.push('/login')
+      }
+
+      jsonUserInfo.plaidPublicToken = linkState.publicToken
+
+      const fetch = plaidTokenRequest(jsonUserInfo);
+
+      fetch.then(res => {
+        if (res) {
+          console.log(res);
+          // sessionStorage.setItem("userInfo", JSON.stringify(res));
+
+          //eslint-disable-next-line
+          // history.push("/landing");
+        }
+      });
     }
   }, [linkState])
 
