@@ -16,11 +16,8 @@ const Signup = () => {
 
       fetch.then(res => {
         if (res) {
-          console.log(res);
-          // sessionStorage.setItem("userInfo", JSON.stringify(res));
-
           //eslint-disable-next-line
-          // history.push("/landing");
+          history.push("/login");
         }
       });
     }
