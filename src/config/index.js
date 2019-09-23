@@ -1,6 +1,6 @@
 const config = {
   enrichApi: {
-    baseUrl: "http://localhost:3005/api"
+    baseUrl: "http://localhost:3010/api"
   },
 
   plaid: {

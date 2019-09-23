@@ -24,15 +24,17 @@ const PlaidLink = () => {
 
       const fetch = plaidTokenRequest(jsonUserInfo);
 
-      fetch.then(res => {
-        if (res) {
-          console.log(res);
-          // sessionStorage.setItem("userInfo", JSON.stringify(res));
+      fetch
+        .then(res => res.json())
+        .then(res => {
+          if (res) {
+            console.log(res);
+            // sessionStorage.setItem("userInfo", JSON.stringify(res));
 
-          //eslint-disable-next-line
-          // history.push("/landing");
-        }
-      });
+            //eslint-disable-next-line
+            // history.push("/landing");
+          }
+        });
     }
   }, [linkState])
 
