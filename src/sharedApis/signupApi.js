@@ -4,7 +4,7 @@ const baseUrl = config.enrichApi.baseUrl;
 
 const url = baseUrl + "/signup/";
 
-export const signupApi = async signupData => {
+export const submit = async signupData => {
   return await fetch(url, {
     method: "POST",
     headers: {
@@ -13,3 +13,9 @@ export const signupApi = async signupData => {
     body: JSON.stringify(signupData)
   });
 };
+
+const signupApi = {
+  submit: submit
+}
+
+export default signupApi
