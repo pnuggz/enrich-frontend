@@ -5,22 +5,46 @@ import history from "../../lib/history";
 
 import { PlaidLinkController } from "./plaidLinkController";
 
+import { accountsDataRequest } from "../../sharedModels/accountsMdl";
 import { plaidTokenRequest } from "../../sharedModels/plaidMdl";
 
 const PlaidLink = () => {
+  const userData = sessionStorage.getItem("userData");
+  const jsonUserInfo = JSON.parse(userData);
+
   const [{ plaidState }, dispatchPlaidStateAction] = useStateValue();
-  const linkState = plaidState.linkState
+  const linkState = plaidState.linkState;
 
   useEffect(() => {
-    if(linkState.publicToken !== null) {
-      const userData = sessionStorage.getItem("userData");
-      const jsonUserInfo = JSON.parse(userData);
-    
+    const fetch = accountsDataRequest(jsonUserInfo);
+
+    fetch
+      .then(res => res.json())
+      .then(res => {
+        if (res) {
+          jsonUserInfo.token = res.token;
+          jsonUserInfo.tokenCreatedDate = res.tokenCreatedDate;
+          sessionStorage.setItem("userData", JSON.stringify(jsonUserInfo));
+
+          dispatchPlaidStateAction({
+            type: "PLAID_UPDATE_ACCOUNTS_DATA",
+            payload: res.data.accounts
+          });
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    if (linkState.publicToken !== null) {
       if (!jsonUserInfo) {
-        history.push('/login')
+        history.push("/login");
       }
 
-      jsonUserInfo.plaidPublicToken = linkState.publicToken
+      jsonUserInfo.data = {
+        ...jsonUserInfo.data,
+        plaidPublicToken: linkState.publicToken,
+        institution: linkState.institution
+      };
 
       const fetch = plaidTokenRequest(jsonUserInfo);
 
@@ -28,15 +52,23 @@ const PlaidLink = () => {
         .then(res => res.json())
         .then(res => {
           if (res) {
-            console.log(res);
-            // sessionStorage.setItem("userInfo", JSON.stringify(res));
+            const status = res.status;
+            jsonUserInfo.token = res.token;
+            jsonUserInfo.tokenCreatedDate = res.tokenCreatedDate;
+            sessionStorage.setItem("userData", JSON.stringify(jsonUserInfo));
 
-            //eslint-disable-next-line
-            // history.push("/landing");
+            if (status.code === 500) {
+              console.log(status.err);
+            }
+
+            dispatchPlaidStateAction({
+              type: "PLAID_UPDATE_ACCOUNTS_DATA",
+              payload: res.data.accounts
+            });
           }
         });
     }
-  }, [linkState])
+  }, [linkState]);
 
   return (
     <React.Fragment>

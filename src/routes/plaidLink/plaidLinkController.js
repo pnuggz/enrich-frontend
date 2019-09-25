@@ -12,7 +12,7 @@ export const PlaidLinkController = props => {
   }, []);
 
   useEffect(() => {
-    console.log(plaidState)
+    console.log(plaidState);
   }, [plaidState]);
 
   const handlePlaidSuccess = (public_token, metadata) => {
@@ -20,9 +20,10 @@ export const PlaidLinkController = props => {
       type: "PLAID_SAVE_PUBLIC_TOKEN",
       payload: {
         publicToken: public_token,
-        linkSessionId: metadata.link_session_id
+        linkSessionId: metadata.link_session_id,
+        institution: metadata.institution
       }
-    })
+    });
   };
 
   const handlePlaidExit = (err, metadata) => {

@@ -4,7 +4,7 @@ const baseUrl = config.enrichApi.baseUrl;
 
 const url = baseUrl + "/login/";
 
-export const loginApi = loginData => {
+const submit = loginData => {
   return fetch(url, {
     method: "POST",
     headers: {
@@ -13,3 +13,9 @@ export const loginApi = loginData => {
     body: JSON.stringify(loginData)
   });
 };
+
+const loginApi = {
+  submit: submit
+};
+
+export default loginApi;

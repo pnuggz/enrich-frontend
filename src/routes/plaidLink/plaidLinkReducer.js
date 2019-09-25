@@ -4,7 +4,12 @@ const initialState = {
   linkState: {
     accessToken: null,
     linkSessionId: null,
-    publicToken: null
+    publicToken: null,
+    institution: null
+  },
+  accountsData: {
+    accounts: [],
+    isLoading: true
   }
 };
 
@@ -16,10 +21,22 @@ const plaidReducer = (state, action) => {
         linkState: {
           ...state.linkState,
           publicToken: action.payload.publicToken,
-          linkSessionId: action.payload.linkSessionId
+          linkSessionId: action.payload.linkSessionId,
+          institution: action.payload.institution
+        },
+        accountsData: {
+          ...state.accountsData,
+          isLoading: true
         }
       };
-
+    case "PLAID_UPDATE_ACCOUNTS_DATA":
+      return {
+        ...state,
+        accountsData: {
+          accounts: state.accountsData.accounts.concat(action.payload),
+          isLoading: false
+        }
+      };
     default:
       return state;
   }
