@@ -2,15 +2,13 @@ import config from "../config";
 
 const baseUrl = config.enrichApi.baseUrl;
 
-const url = baseUrl + "/account/";
-
 const get = jsonUserInfo => {
-  const jwtToken = jsonUserInfo.token;
-  const userData = jsonUserInfo.data.user;
-  const userId = userData.id;
-  const jwtSub = userData.email;
+  const url = baseUrl + "/account";
 
-  return fetch(url + userId, {
+  const jwtToken = jsonUserInfo.token;
+  const jwtSub = jsonUserInfo.email;
+
+  return fetch(url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -20,8 +18,25 @@ const get = jsonUserInfo => {
   });
 };
 
+const getSelected = (jsonUserInfo, accountId) => {
+  const url = baseUrl + "/account/" + accountId;
+
+  const jwtToken = jsonUserInfo.token;
+  const jwtSub = jsonUserInfo.email;
+
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+      Subject: jwtSub
+    }
+  });
+}
+
 const accountsApi = {
-  get: get
+  get: get,
+  getSelected: getSelected
 };
 
 export default accountsApi;

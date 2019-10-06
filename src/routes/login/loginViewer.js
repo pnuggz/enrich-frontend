@@ -26,6 +26,7 @@ export const LoginViewer = props => {
         <div className="grid has-centered is-vertical">
           <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths panel has-bg-white has-text-black has-link-inherit">
             <LoginForm
+              loginState={loginState}
               onSubmitForm={onSubmitForm}
               stateSchema={loginState.stateSchema}
               validationStateSchema={loginState.validationStateSchema}

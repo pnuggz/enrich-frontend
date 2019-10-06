@@ -6,8 +6,7 @@ const url = baseUrl + "/account/token";
 
 export const plaidTokenApi = jsonUserInfo => {
   const jwtToken = jsonUserInfo.token;
-  const userData = jsonUserInfo.data.user;
-  const jwtSubj = userData.email;
+  const jwtSubj = jsonUserInfo.email;
 
   return fetch(url, {
     method: "POST",

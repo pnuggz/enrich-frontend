@@ -13,7 +13,9 @@ const initialState = {
       required: true
     }
   },
-  isSubmit: false
+  isSubmit: false,
+  isSuccess: false,
+  isFail: false,
 };
 
 const loginReducer = (state, action) => {
@@ -22,9 +24,24 @@ const loginReducer = (state, action) => {
       return {
         ...state,
         stateSchema: action.payload,
-        isSubmit: true
+        isSubmit: true,
+        isSuccess: false,
+        isFail: false
       };
-
+    case "LOGIN_SUCCESS":
+      return {
+        ...state,
+        isSubmit: false,
+        isSuccess: true,
+        isFail: false,
+      };
+    case "LOGIN_FAIL":
+      return {
+        ...state,
+        isSubmit: false,
+        isSuccess: true,
+        isFail: true,
+      };
     default:
       return state;
   }

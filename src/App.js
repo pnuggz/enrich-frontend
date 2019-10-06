@@ -18,6 +18,8 @@ import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
 import { Dashboard } from "./routes/dashboard";
 import { PlaidLink } from "./routes/plaidLink";
+import { Account } from "./routes/account"
+import { Manage as AccountManage } from "./routes/account/subroutes/manage"
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -53,8 +55,30 @@ const App = () => {
                         checkAuthorization() ? (
                           <Dashboard />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
+                      }
+                    />
+                    <Route
+                      exact={true}
+                      path="/account"
+                      render={() =>
+                        checkAuthorization() ? (
+                          <Account />
+                        ) : (
+                            <Redirect to="/login" />
+                          )
+                      }
+                    />
+                    <Route
+                      exact={true}
+                      path="/account/:id"
+                      render={(props) =>
+                        checkAuthorization() ? (
+                          <AccountManage router={props} />
+                        ) : (
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route
@@ -64,8 +88,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <PlaidLink />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route

@@ -12,23 +12,19 @@ const Login = () => {
 
   useEffect(() => {
     if (loginState.isSubmit) {
-      const fetch = loginRequest(loginState.stateSchema);
+      const submitLogin = async () => {
+        const response = await loginRequest(loginState.stateSchema);
+        if (response.status.code !== 200) {
+          dispatchLoginStateAction({ type: "LOGIN_FAIL" })
+          console.log(response.status);
+          return;
+        }
 
-      fetch
-        .then(res => res.json())
-        .then(res => {
-          if (res) {
-            if (res.status.code !== 200) {
-              console.log(res);
-              return;
-            }
-
-            sessionStorage.setItem("userData", JSON.stringify(res));
-
-            //eslint-disable-next-line
-            history.push("/dashboard");
-          }
-        });
+        dispatchLoginStateAction({ type: "LOGIN_SUCCESS" })
+        //eslint-disable-next-line
+        history.push("/dashboard");
+      }
+      submitLogin()
     }
   }, [loginState]);
 

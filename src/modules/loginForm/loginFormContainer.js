@@ -1,8 +1,10 @@
 import React from "react";
 
 import { useForm } from "../useForm/index";
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const LoginForm = props => {
+  const loginState = props.loginState;
   const stateSchema = props.stateSchema;
   const validationStateSchema = props.validationStateSchema;
   const onSubmitForm = props.onSubmitForm;
@@ -54,7 +56,13 @@ const LoginForm = props => {
         </div>
 
         <div className="column is-full">
-          <input type="submit" name="submit" disabled={disable} />
+          <button type="submit" name="submit" className="button is-primary" disabled={disable}>
+            {(loginState.isSubmit) ?
+              "SUBMITTING..."
+              :
+              "SUBMIT"
+            }
+          </button>
         </div>
       </form>
     </React.Fragment>
