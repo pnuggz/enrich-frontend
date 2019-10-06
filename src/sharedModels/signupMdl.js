@@ -1,9 +1,8 @@
-import bcrypt from "bcryptjs";
-
-import { signupApi } from "../sharedApis/signupApi";
+import signupApi from "../sharedApis/signupApi";
 
 export const signupRequest = async signupData => {
   try {
+<<<<<<< HEAD
     const password = signupData.password.value;
     const passwordSalt = await genPasswordSalt();
     const hashedPassword = await hashPassword(password, passwordSalt);
@@ -11,6 +10,9 @@ export const signupRequest = async signupData => {
     signupData.password_salt = {
       value: passwordSalt
     };
+=======
+    const fetch = await signupApi.submit(signupData);
+>>>>>>> f4aa67a2f769680f416cdf71973ce40f7653d17c
 
     const fetch = await signupApi(signupData);
     return fetch;
@@ -18,6 +20,7 @@ export const signupRequest = async signupData => {
     return error;
   }
 };
+<<<<<<< HEAD
 
 const genPasswordSalt = () => {
   return new Promise((res, rej) => {
@@ -66,3 +69,5 @@ const hashPasswordData = signupData => {
     return signupData;
   }
 };
+=======
+>>>>>>> f4aa67a2f769680f416cdf71973ce40f7653d17c
