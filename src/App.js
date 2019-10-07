@@ -17,9 +17,9 @@ import { About } from "./routes/about/index";
 import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
 import { Dashboard } from "./routes/dashboard";
-import { PlaidLink } from "./routes/plaidLink";
 import { Account } from "./routes/account"
 import { Manage as AccountManage } from "./routes/account/subroutes/manage"
+import { Add as AccountAdd } from "./routes/account/subroutes/add"
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -61,7 +61,7 @@ const App = () => {
                     />
                     <Route
                       exact={true}
-                      path="/account"
+                      path="/account/"
                       render={() =>
                         checkAuthorization() ? (
                           <Account />
@@ -72,10 +72,10 @@ const App = () => {
                     />
                     <Route
                       exact={true}
-                      path="/account/:id"
+                      path="/account/add/"
                       render={(props) =>
                         checkAuthorization() ? (
-                          <AccountManage router={props} />
+                          <AccountAdd router={props} />
                         ) : (
                             <Redirect to="/login" />
                           )
@@ -83,10 +83,10 @@ const App = () => {
                     />
                     <Route
                       exact={true}
-                      path="/account/add"
-                      render={() =>
+                      path="/account/:id/"
+                      render={(props) =>
                         checkAuthorization() ? (
-                          <PlaidLink />
+                          <AccountManage router={props} />
                         ) : (
                             <Redirect to="/login" />
                           )

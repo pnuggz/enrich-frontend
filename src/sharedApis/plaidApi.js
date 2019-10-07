@@ -2,19 +2,16 @@ import config from "../config";
 
 const baseUrl = config.enrichApi.baseUrl;
 
-const url = baseUrl + "/account/token";
-
-export const plaidTokenApi = jsonUserInfo => {
+export const plaidTokenApi = (jsonUserInfo, plaidLinkState) => {
+  const url = baseUrl + "/account/token";
   const jwtToken = jsonUserInfo.token;
-  const jwtSubj = jsonUserInfo.email;
 
   return fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${jwtToken}`,
-      Subject: jwtSubj
+      Authorization: `Bearer ${jwtToken}`
     },
-    body: JSON.stringify(jsonUserInfo)
+    body: JSON.stringify(plaidLinkState)
   });
 };

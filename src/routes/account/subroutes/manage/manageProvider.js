@@ -11,17 +11,17 @@ const Manage = props => {
   const [{ accountState }, dispatchAccountStateAction] = useStateValue()
 
   useEffect(() => {
-    const loadAccounts = async () => {
+    const loadAccount = async () => {
       const accountId = router.match.params.id
       const response = await accountSelectedRequest(accountId);
-      console.log(response)
+
       dispatchAccountStateAction({
         type: "ACCOUNT_LOADED",
         payload: response.data.account
       });
     }
 
-    loadAccounts()
+    loadAccount()
   }, [])
 
   return (

@@ -8,6 +8,11 @@ const initialState = {
   accountData: {
     account: null,
     isLoading: true
+  },
+  plaidLinkState: {
+    publicToken: null,
+    accessToken: null,
+    institution: null
   }
 };
 
@@ -26,7 +31,23 @@ const accountReducer = (state, action) => {
   }
 }
 
-const accountReducerCombined = combineReducers(accountReducer);
+const plaidLinkReducer = (state, action) => {
+  switch (action.type) {
+    case "PLAID_SAVE_PUBLIC_TOKEN": 
+      return {
+        ...state,
+        plaidLinkState: {
+          ...state.plaidLinkState,
+          publicToken: action.payload.publicToken,
+          institution: action.payload.institution
+        }
+      }
+    default:
+      return state;
+  }
+}
+
+const accountReducerCombined = combineReducers(accountReducer, plaidLinkReducer);
 
 const accountReducerBundle = {
   initialState: initialState,
