@@ -42,6 +42,14 @@ const plaidLinkReducer = (state, action) => {
           institution: action.payload.institution
         }
       }
+    case "PLAID_SAVE_ACCESS_TOKEN":
+      return {
+        ...state,
+        plaidLinkState: {
+          ...state.plaidLinkState,
+          accessToken: action.payload
+        }
+      }
     default:
       return state;
   }

@@ -10,10 +10,6 @@ const Modal = props => {
   const children = props.children
   const footer = props.footer
 
-  useEffect(() => {
-
-  }, [])
-
   return (
     <React.Fragment>
       <ModalController

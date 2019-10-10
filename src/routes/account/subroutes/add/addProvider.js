@@ -5,8 +5,8 @@ import history from "../../../../lib/history";
 
 import { AddController } from "./addController";
 
-import { accountsDataRequest } from "../../../../sharedModels/accountsMdl";
 import { plaidTokenRequest } from "../../../../sharedModels/plaidMdl";
+import { accountsDataRequest } from "../../../../sharedModels/accountsMdl";
 
 const Add = () => {
   const [{ accountState }, dispatchAccountStateAction] = useStateValue()
@@ -21,8 +21,13 @@ const Add = () => {
       const response = await plaidTokenRequest(plaidLinkState);
       console.log(response)
       dispatchAccountStateAction({
-        type: "PLAID_UPDATE_ACCOUNTS_DATA",
+        type: "ACCOUNT_LOADED",
         payload: response.data.accounts
+      });
+
+      dispatchAccountStateAction({
+        type: "PLAID_SAVE_ACCESS_TOKEN",
+        payload: response.data.accessToken
       });
     }
 

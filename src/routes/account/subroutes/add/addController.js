@@ -8,13 +8,20 @@ export const AddController = props => {
   const plaidLinkState = props.plaidLinkState
   const [isLoading, setIsloading] = useState(true);
 
+  // Modal state
+  const [isModalShowing, setIsModalShowing] = useState(false)
+  const [isModalLoading, setIsModalLoading] = useState(false)
+
   useEffect(() => {
     setIsloading(false);
   }, []);
 
+  // Display the modal if accounts are loaded
   useEffect(() => {
-    console.log(plaidLinkState);
-  }, [plaidLinkState]);
+    if(plaidLinkState.accessToken !== null) {
+      setIsModalShowing(true)
+    }
+  }, [plaidLinkState.accounts])
 
   const handlePlaidSuccess = (public_token, metadata) => {
     dispatchAccountStateAction({
@@ -26,6 +33,12 @@ export const AddController = props => {
     });
   };
 
+  // Modal events
+  const handleModalClose = () => {
+    setIsModalShowing(!isModalShowing)
+  }
+
+  // Plaid events
   const handlePlaidExit = (err, metadata) => {
     console.log(err);
     console.log(metadata);
@@ -45,6 +58,9 @@ export const AddController = props => {
         handlePlaidSuccess={handlePlaidSuccess}
         handlePlaidFail={handlePlaidFail}
         handlePlaidExit={handlePlaidExit}
+        isShowing={isModalShowing}
+        isLoading={isModalLoading}
+        handleModalClose={handleModalClose}
       />
     </React.Fragment>
   );
