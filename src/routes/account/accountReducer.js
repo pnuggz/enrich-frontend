@@ -13,6 +13,14 @@ const initialState = {
     publicToken: null,
     accessToken: null,
     institution: null
+  },
+  addAccountData: {
+    formSchema: {
+      selectedAccounts: []
+    },
+    isSubmit: false,
+    isSuccess: false,
+    isFail: false,
   }
 };
 
@@ -55,7 +63,43 @@ const plaidLinkReducer = (state, action) => {
   }
 }
 
-const accountReducerCombined = combineReducers(accountReducer, plaidLinkReducer);
+const addAccountReducer = (state, action) => {
+  switch (action.type) {
+    case "ACCOUNT_MODAL_SUBMIT":
+      return {
+        addAccountData: {
+          formSchema: action.payload,
+          isSubmit: false,
+          isSuccess: true,
+          isFail: false,
+        }
+      };
+    case "ACCOUNT_MODAL_SUCCESS":
+      return {
+        ...state,
+        addAccountData: {
+          ...state.addAccountData,
+          isSubmit: false,
+          isSuccess: true,
+          isFail: false,
+        }
+      };
+    case "ACCOUNT_MODAL_FAIL":
+      return {
+        ...state,
+        addAccountData: {
+          ...state.addAccountData,
+          isSubmit: false,
+          isSuccess: true,
+          isFail: false,
+        }
+      };
+    default:
+      return state;
+  }
+}
+
+const accountReducerCombined = combineReducers(accountReducer, plaidLinkReducer, addAccountReducer);
 
 const accountReducerBundle = {
   initialState: initialState,

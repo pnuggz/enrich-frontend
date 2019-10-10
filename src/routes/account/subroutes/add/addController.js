@@ -8,9 +8,7 @@ export const AddController = props => {
   const plaidLinkState = props.plaidLinkState
   const [isLoading, setIsloading] = useState(true);
 
-  // Modal state
   const [isModalShowing, setIsModalShowing] = useState(false)
-  const [isModalLoading, setIsModalLoading] = useState(false)
 
   useEffect(() => {
     setIsloading(false);
@@ -34,8 +32,12 @@ export const AddController = props => {
   };
 
   // Modal events
-  const handleModalClose = () => {
-    setIsModalShowing(!isModalShowing)
+  const handleModalSubmit = props => {
+
+  }
+
+  const handleModalClose = props => {
+
   }
 
   // Plaid events
@@ -58,9 +60,9 @@ export const AddController = props => {
         handlePlaidSuccess={handlePlaidSuccess}
         handlePlaidFail={handlePlaidFail}
         handlePlaidExit={handlePlaidExit}
-        isShowing={isModalShowing}
-        isLoading={isModalLoading}
+        handleModalSubmit={handleModalSubmit}
         handleModalClose={handleModalClose}
+        isModalShowing={isModalShowing}
       />
     </React.Fragment>
   );
