@@ -9,30 +9,36 @@ import { plaidTokenRequest } from "../../../../sharedModels/plaidMdl";
 import { accountsDataRequest } from "../../../../sharedModels/accountsMdl";
 
 const Add = () => {
-  const [{ accountState }, dispatchAccountStateAction] = useStateValue()
-  const plaidLinkState = accountState.plaidLinkState
+  const [{ accountState }, dispatchAccountStateAction] = useStateValue();
+  const accountsData = accountState.accountsData;
+  const plaidLinkState = accountState.plaidLinkState;
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   useEffect(() => {
     const exchangePlaidToken = async () => {
       const response = await plaidTokenRequest(plaidLinkState);
-      console.log(response)
+      console.log(response);
       dispatchAccountStateAction({
-        type: "ACCOUNT_LOADED",
-        payload: response.data.accounts
+        type: "ADD_ACCOUNT_LOADED",
+        payload: {
+          accounts: response.data.accounts,
+          existingAccounts: response.data.existingAccounts
+        }
       });
 
       dispatchAccountStateAction({
         type: "PLAID_SAVE_ACCESS_TOKEN",
-        payload: response.data.accessToken
+        payload: {
+          accessToken: response.data.accessToken,
+          accounts: response.data.accounts,
+          existingAccounts: response.data.existingAccounts
+        }
       });
-    }
+    };
 
-    if (plaidLinkState.publicToken !== null) {
-      exchangePlaidToken()
+    if (plaidLinkState.publicToken !== null && accountsData.isLoading) {
+      exchangePlaidToken();
     }
   }, [plaidLinkState]);
 

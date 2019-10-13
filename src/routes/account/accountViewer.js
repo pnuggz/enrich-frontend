@@ -16,14 +16,16 @@ const ParentDiv = posed.div(posedDivConfig);
 
 export const AccountViewer = props => {
   const accountState = props.accountState;
-  const accountsData = accountState.accountsData
+  const accountsData = accountState.accountsData;
   const isLoading = props.isLoading;
 
   const renderAccounts = () => {
     const isLoading = accountsData.isLoading;
     const accounts = accountsData.accounts;
-
-    if (isLoading) { return <div>IS LOADING...</div>; }
+    console.log(accounts);
+    if (isLoading) {
+      return <div>IS LOADING...</div>;
+    }
 
     return (
       <div className="grid">

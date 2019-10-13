@@ -7,7 +7,7 @@ export const plaidTokenRequest = async plaidLinkState => {
   const jsonUserInfo = JSON.parse(userData);
 
   try {
-    const fetch = plaidTokenApi(jsonUserInfo, plaidLinkState);
+    const fetch = await plaidTokenApi(jsonUserInfo, plaidLinkState);
     const response = await fetch.json()
 
     if (response.status.code === 200) {

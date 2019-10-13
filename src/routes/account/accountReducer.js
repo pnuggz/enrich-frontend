@@ -3,6 +3,7 @@ import { combineReducers } from "../../lib/combineReducers";
 const initialState = {
   accountsData: {
     accounts: [],
+    existingAccounts: [],
     isLoading: true
   },
   accountData: {
@@ -20,7 +21,7 @@ const initialState = {
     },
     isSubmit: false,
     isSuccess: false,
-    isFail: false,
+    isFail: false
   }
 };
 
@@ -30,18 +31,19 @@ const accountReducer = (state, action) => {
       return {
         ...state,
         accountsData: {
+          ...state.accountsData,
           accounts: action.payload,
           isLoading: false
         }
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 const plaidLinkReducer = (state, action) => {
   switch (action.type) {
-    case "PLAID_SAVE_PUBLIC_TOKEN": 
+    case "PLAID_SAVE_PUBLIC_TOKEN":
       return {
         ...state,
         plaidLinkState: {
@@ -49,7 +51,7 @@ const plaidLinkReducer = (state, action) => {
           publicToken: action.payload.publicToken,
           institution: action.payload.institution
         }
-      }
+      };
     case "PLAID_SAVE_ACCESS_TOKEN":
       return {
         ...state,
@@ -57,21 +59,30 @@ const plaidLinkReducer = (state, action) => {
           ...state.plaidLinkState,
           accessToken: action.payload
         }
-      }
+      };
     default:
       return state;
   }
-}
+};
 
 const addAccountReducer = (state, action) => {
   switch (action.type) {
+    case "ADD_ACCOUNT_LOADED":
+      return {
+        ...state,
+        accountsData: {
+          accounts: action.payload.accounts,
+          existingAccounts: action.payload.existingAccounts,
+          isLoading: false
+        }
+      };
     case "ACCOUNT_MODAL_SUBMIT":
       return {
         addAccountData: {
           formSchema: action.payload,
           isSubmit: false,
           isSuccess: true,
-          isFail: false,
+          isFail: false
         }
       };
     case "ACCOUNT_MODAL_SUCCESS":
@@ -81,7 +92,7 @@ const addAccountReducer = (state, action) => {
           ...state.addAccountData,
           isSubmit: false,
           isSuccess: true,
-          isFail: false,
+          isFail: false
         }
       };
     case "ACCOUNT_MODAL_FAIL":
@@ -91,15 +102,19 @@ const addAccountReducer = (state, action) => {
           ...state.addAccountData,
           isSubmit: false,
           isSuccess: true,
-          isFail: false,
+          isFail: false
         }
       };
     default:
       return state;
   }
-}
+};
 
-const accountReducerCombined = combineReducers(accountReducer, plaidLinkReducer, addAccountReducer);
+const accountReducerCombined = combineReducers(
+  accountReducer,
+  plaidLinkReducer,
+  addAccountReducer
+);
 
 const accountReducerBundle = {
   initialState: initialState,

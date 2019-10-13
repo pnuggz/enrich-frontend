@@ -20,7 +20,8 @@ const ParentDiv = posed.div(posedDivConfig);
 export const AddViewer = props => {
   const accountState = props.accountState
   const accounts = accountState.accountsData.accounts
-  const plaidLinkState = accountState.plaidLinkState
+  const existingAccounts = accountState.accountsData.existingAccounts
+
   const isLoading = props.isLoading;
   const handlePlaidSuccess = props.handlePlaidSuccess;
   const handlePlaidFail = props.handlePlaidFail;
@@ -29,26 +30,7 @@ export const AddViewer = props => {
   const handleModalSubmit = props.handleModalSubmit
   const handleModalClose = props.handleModalClose
   const isModalShowing = props.isModalShowing
-
-  const renderAccounts = () => {
-    if(plaidLinkState.accounts.length === 0) {
-      return (
-        <div className="column is-full">
-          You have added all of the accounts from this institution.
-        </div>
-      )
-    }
-
-    return (
-      <div className="column is-full grid">
-        {plaidLinkState.accounts.map((account) => {
-          return (
-            <div className="column is-full">{account.mask}</div>
-          )
-        })}
-      </div>
-    )
-  }
+  const setIsModalShowing = props.setIsModalShowing
 
   return (
     <PageLayout>
@@ -67,11 +49,12 @@ export const AddViewer = props => {
           </div>
         </div>
       </ParentDiv>
-
+      <button className="button" onClick={() => { setIsModalShowing(true) }} />
       <AddAccountModal
         onModalSubmit={handleModalSubmit}
         onModalClose={handleModalClose}
         accounts={accounts}
+        existingAccounts={existingAccounts}
         isModalShowing={isModalShowing}
       />
 

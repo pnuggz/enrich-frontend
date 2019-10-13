@@ -5,7 +5,8 @@ import { AddViewer } from "./addViewer";
 export const AddController = props => {
   const accountState = props.accountState;
   const dispatchAccountStateAction = props.dispatchAccountStateAction;
-  const plaidLinkState = props.plaidLinkState
+  const accountsData = accountState.accountsData
+  const plaidLinkState = accountState.plaidLinkState
   const [isLoading, setIsloading] = useState(true);
 
   const [isModalShowing, setIsModalShowing] = useState(false)
@@ -16,10 +17,10 @@ export const AddController = props => {
 
   // Display the modal if accounts are loaded
   useEffect(() => {
-    if(plaidLinkState.accessToken !== null) {
+    if (!accountsData.isLoading) {
       setIsModalShowing(true)
     }
-  }, [plaidLinkState.accounts])
+  }, [accountsData.accounts])
 
   const handlePlaidSuccess = (public_token, metadata) => {
     dispatchAccountStateAction({
@@ -36,8 +37,8 @@ export const AddController = props => {
 
   }
 
-  const handleModalClose = props => {
-
+  const handleModalClose = () => {
+    setIsModalShowing(false)
   }
 
   // Plaid events
@@ -62,6 +63,7 @@ export const AddController = props => {
         handlePlaidExit={handlePlaidExit}
         handleModalSubmit={handleModalSubmit}
         handleModalClose={handleModalClose}
+        setIsModalShowing={setIsModalShowing}
         isModalShowing={isModalShowing}
       />
     </React.Fragment>
