@@ -35,8 +35,6 @@ const Add = () => {
       });
     };
 
-    console.log(plaidLinkState.publicToken)
-    console.log(accountsData)
     if (plaidLinkState.publicToken !== null && accountsData.isLoading) {
       exchangePlaidToken();
     }
@@ -63,7 +61,6 @@ const Add = () => {
     if (addAccountData.isSubmit) {
       submitAccounts();
     }
-    console.log(addAccountData);
   }, [addAccountData]);
 
   return (

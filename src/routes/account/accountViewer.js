@@ -22,7 +22,7 @@ export const AccountViewer = props => {
   const renderAccounts = () => {
     const isLoading = accountsData.isLoading;
     const accounts = accountsData.accounts;
-    console.log(accounts);
+
     if (isLoading) {
       return <div>IS LOADING...</div>;
     }

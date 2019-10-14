@@ -10,10 +10,6 @@ export const AccountController = props => {
     setIsloading(false);
   }, []);
 
-  useEffect(() => {
-    console.log(accountState.accountsData);
-  }, [accountState]);
-
   return (
     <React.Fragment>
       <AccountViewer accountState={accountState} isLoading={isLoading} />
