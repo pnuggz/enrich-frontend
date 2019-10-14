@@ -18,10 +18,6 @@ const AddAccountModal = props => {
     }))
   }, [accounts, existingAccounts])
 
-  // useEffect(() => {
-  //   console.log(addAccounts)
-  // }, [addAccounts])
-
   return <AddAccountModalController onModalSubmit={onModalSubmit} onModalClose={onModalClose} addAccounts={addAccounts} isShowing={isShowing} />
 }
 

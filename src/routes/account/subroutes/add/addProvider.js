@@ -35,10 +35,12 @@ const Add = () => {
       });
     };
 
+    console.log(plaidLinkState.publicToken)
+    console.log(accountsData)
     if (plaidLinkState.publicToken !== null && accountsData.isLoading) {
       exchangePlaidToken();
     }
-  }, [plaidLinkState]);
+  }, [plaidLinkState, addAccountData]);
 
   useEffect(() => {
     const submitAccounts = async () => {

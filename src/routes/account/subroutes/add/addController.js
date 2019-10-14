@@ -18,12 +18,12 @@ export const AddController = props => {
   // Display the modal if accounts are loaded
   useEffect(() => {
     if (!accountsData.isLoading) {
-      console.log(plaidLinkState);
       setIsModalShowing(true);
     }
   }, [accountsData.accounts]);
 
   const handlePlaidSuccess = (public_token, metadata) => {
+    dispatchAccountStateAction({ type: "ACCOUNT_LOADING" });
     dispatchAccountStateAction({
       type: "PLAID_SAVE_PUBLIC_TOKEN",
       payload: {

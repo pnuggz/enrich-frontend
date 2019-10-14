@@ -8,7 +8,7 @@ const initialState = {
   },
   accountData: {
     account: null,
-    isLoading: true
+    isLoading: false
   },
   plaidLinkState: {
     publicToken: null,
@@ -28,6 +28,14 @@ const initialState = {
 
 const accountReducer = (state, action) => {
   switch (action.type) {
+    case "ACCOUNT_LOADING":
+      return {
+        ...state,
+        accountsData: {
+          ...state.accountsData,
+          isLoading: true
+        }
+      };
     case "ACCOUNT_LOADED":
       return {
         ...state,
