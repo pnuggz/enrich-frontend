@@ -35,6 +35,7 @@ const getSelected = (jsonUserInfo, accountId) => {
 };
 
 const submit = (jsonUserInfo, selectedAccountsData) => {
+  console.log(selectedAccountsData);
   const url = baseUrl + "/account/";
 
   const jwtToken = jsonUserInfo.token;
@@ -47,9 +48,7 @@ const submit = (jsonUserInfo, selectedAccountsData) => {
       Authorization: `Bearer ${jwtToken}`,
       Subject: jwtSub
     },
-    body: {
-      data: selectedAccountsData
-    }
+    body: JSON.stringify(selectedAccountsData)
   });
 };
 

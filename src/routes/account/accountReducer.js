@@ -18,8 +18,7 @@ const initialState = {
   },
   addAccountData: {
     formSchema: {
-      selectedAccounts: [],
-      institution: null
+      selectedAccounts: []
     },
     isSubmit: false,
     isSuccess: false,
@@ -84,9 +83,7 @@ const addAccountReducer = (state, action) => {
         ...state,
         addAccountData: {
           formSchema: {
-            selectedAccounts: action.payload.selectedAccounts,
-            institution: action.payload.institution,
-            accessToken: action.payload.accessToken
+            selectedAccounts: action.payload
           },
           isSubmit: true,
           isSuccess: false,

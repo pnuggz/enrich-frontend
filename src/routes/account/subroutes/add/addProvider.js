@@ -42,8 +42,11 @@ const Add = () => {
 
   useEffect(() => {
     const submitAccounts = async () => {
-      const response = await addAccountsRequest(addAccountData.stateSchema);
-      console.log(response);
+      const response = await addAccountsRequest({
+        selectedAccounts: addAccountData.formSchema.selectedAccounts,
+        plaidData: plaidLinkState
+      });
+
       if (response.status.code !== 200) {
         dispatchAccountStateAction({ type: "ACCOUNT_MODAL_FAIL" });
         console.log(response.status);

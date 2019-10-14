@@ -37,12 +37,7 @@ export const AddController = props => {
   const handleModalSubmit = selectedAccounts => {
     dispatchAccountStateAction({
       type: "ACCOUNT_MODAL_SUBMIT",
-      payload: {
-        selectedAccounts: selectedAccounts,
-        institution: plaidLinkState.institution,
-        accessToken: plaidLinkState.accessToken,
-        itemId: plaidLinkState.itemId
-      }
+      payload: selectedAccounts
     });
     setIsModalShowing(false);
   };
