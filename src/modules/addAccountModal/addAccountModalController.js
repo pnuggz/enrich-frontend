@@ -75,7 +75,7 @@ export const AddAccountModalController = props => {
       }
       if (setting === "include_dollar_" + account.account_id) {
         const val = event.target.checked === "on" ? 1 : 0;
-        account.settings.type = val;
+        account.settings.include_dollar = val;
       }
       return account;
     });

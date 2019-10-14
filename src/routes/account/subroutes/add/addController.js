@@ -5,11 +5,11 @@ import { AddViewer } from "./addViewer";
 export const AddController = props => {
   const accountState = props.accountState;
   const dispatchAccountStateAction = props.dispatchAccountStateAction;
-  const accountsData = accountState.accountsData
-  const plaidLinkState = accountState.plaidLinkState
+  const accountsData = accountState.accountsData;
+  const plaidLinkState = accountState.plaidLinkState;
   const [isLoading, setIsloading] = useState(true);
 
-  const [isModalShowing, setIsModalShowing] = useState(false)
+  const [isModalShowing, setIsModalShowing] = useState(false);
 
   useEffect(() => {
     setIsloading(false);
@@ -18,9 +18,10 @@ export const AddController = props => {
   // Display the modal if accounts are loaded
   useEffect(() => {
     if (!accountsData.isLoading) {
-      setIsModalShowing(true)
+      console.log(plaidLinkState);
+      setIsModalShowing(true);
     }
-  }, [accountsData.accounts])
+  }, [accountsData.accounts]);
 
   const handlePlaidSuccess = (public_token, metadata) => {
     dispatchAccountStateAction({
@@ -33,13 +34,22 @@ export const AddController = props => {
   };
 
   // Modal events
-  const handleModalSubmit = props => {
-
-  }
+  const handleModalSubmit = selectedAccounts => {
+    dispatchAccountStateAction({
+      type: "ACCOUNT_MODAL_SUBMIT",
+      payload: {
+        selectedAccounts: selectedAccounts,
+        institution: plaidLinkState.institution,
+        accessToken: plaidLinkState.accessToken,
+        itemId: plaidLinkState.itemId
+      }
+    });
+    setIsModalShowing(false);
+  };
 
   const handleModalClose = () => {
-    setIsModalShowing(false)
-  }
+    setIsModalShowing(false);
+  };
 
   // Plaid events
   const handlePlaidExit = (err, metadata) => {

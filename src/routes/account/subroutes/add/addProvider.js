@@ -6,19 +6,18 @@ import history from "../../../../lib/history";
 import { AddController } from "./addController";
 
 import { plaidTokenRequest } from "../../../../sharedModels/plaidMdl";
-import { accountsDataRequest } from "../../../../sharedModels/accountsMdl";
+import { addAccountsRequest } from "../../../../sharedModels/accountsMdl";
 
 const Add = () => {
   const [{ accountState }, dispatchAccountStateAction] = useStateValue();
   const accountsData = accountState.accountsData;
+  const addAccountData = accountState.addAccountData;
   const plaidLinkState = accountState.plaidLinkState;
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     const exchangePlaidToken = async () => {
       const response = await plaidTokenRequest(plaidLinkState);
-      console.log(response);
+
       dispatchAccountStateAction({
         type: "ADD_ACCOUNT_LOADED",
         payload: {
@@ -30,9 +29,8 @@ const Add = () => {
       dispatchAccountStateAction({
         type: "PLAID_SAVE_ACCESS_TOKEN",
         payload: {
-          accessToken: response.data.accessToken,
-          accounts: response.data.accounts,
-          existingAccounts: response.data.existingAccounts
+          accessToken: response.data.plaidData.accessToken,
+          itemId: response.data.plaidData.itemId
         }
       });
     };
@@ -41,6 +39,27 @@ const Add = () => {
       exchangePlaidToken();
     }
   }, [plaidLinkState]);
+
+  useEffect(() => {
+    const submitAccounts = async () => {
+      const response = await addAccountsRequest(addAccountData.stateSchema);
+      console.log(response);
+      if (response.status.code !== 200) {
+        dispatchAccountStateAction({ type: "ACCOUNT_MODAL_FAIL" });
+        console.log(response.status);
+        return;
+      }
+
+      dispatchAccountStateAction({ type: "ACCOUNT_MODAL_SUCCESS" });
+      //eslint-disable-next-line
+      history.push("/account");
+    };
+
+    if (addAccountData.isSubmit) {
+      submitAccounts();
+    }
+    console.log(addAccountData);
+  }, [addAccountData]);
 
   return (
     <React.Fragment>

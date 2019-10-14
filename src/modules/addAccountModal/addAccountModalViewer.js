@@ -112,11 +112,11 @@ export const AddAccountModalViewer = props => {
                           </div>
                         </div>
                         <div className="column is-full grid has-no-padding-sides">
-                          <div class="column is-shrink is-inline-label has-no-padding">
+                          <div className="column is-shrink is-inline-label has-no-padding">
                             <label>Tracking Type</label>
                           </div>
-                          <div class="column is-half">
-                            <div class="is-select">
+                          <div className="column is-half">
+                            <div className="is-select">
                               <select
                                 onChange={event => {
                                   handleSelectedAccountSettings(event);
@@ -124,6 +124,7 @@ export const AddAccountModalViewer = props => {
                                 name={"type_" + account.account_id}
                                 data-account-name={account.name}
                                 data-account-mask={account.mask}
+                                defaultValue={account.settings.type}
                               >
                                 <option value={1}>Donation</option>
                                 <option value={2}>Saving</option>
@@ -132,10 +133,10 @@ export const AddAccountModalViewer = props => {
                           </div>
                         </div>
                         <div className="column is-full grid has-no-padding-sides">
-                          <div class="column is-shrink is-inline-label has-no-padding">
+                          <div className="column is-shrink is-inline-label has-no-padding">
                             <label>Monthly Limit</label>
                           </div>
-                          <div class="column is-half">
+                          <div className="column is-half">
                             <input
                               type="text"
                               onInput={event => {
@@ -144,15 +145,16 @@ export const AddAccountModalViewer = props => {
                               name={"limit_" + account.account_id}
                               data-account-name={account.name}
                               data-account-mask={account.mask}
+                              defaultValue={account.settings.limit}
                             ></input>
                           </div>
                         </div>
                         <div className="column is-full grid has-no-padding-sides">
-                          <div class="column is-shrink is-inline-label has-no-padding">
+                          <div className="column is-shrink is-inline-label has-no-padding">
                             <label>Include 50c if no rounding?</label>
                           </div>
-                          <div class="column is-half">
-                            <div class="is-switch">
+                          <div className="column is-half">
+                            <div className="is-switch">
                               <input
                                 type="checkbox"
                                 id={"include_dollar_" + account.account_id}
@@ -162,6 +164,7 @@ export const AddAccountModalViewer = props => {
                                 onChange={event => {
                                   handleSelectedAccountSettings(event);
                                 }}
+                                defaultChecked={account.settings.include_dollar}
                               />
                               <label
                                 htmlFor={"include_dollar_" + account.account_id}
@@ -190,31 +193,44 @@ export const AddAccountModalViewer = props => {
     }
   };
 
-  const footerEl = (
-    <React.Fragment>
-      <button
-        className="button"
-        onClick={() => handleStepPrevious()}
-        disabled={step === 1}
-      >
-        Back
-      </button>
-      <button
-        className="button is-end"
-        onClick={() => handleStepNext()}
-        disabled={step === 2}
-      >
-        Next
-      </button>
-    </React.Fragment>
-  );
+  const footerEl = () => {
+    const nextButton = () => {
+      if (step === 2) {
+        return (
+          <button
+            className="button is-end"
+            onClick={() => onModalSubmit(selectedAccounts)}
+          >
+            Submit
+          </button>
+        );
+      }
+      return (
+        <button className="button is-end" onClick={() => handleStepNext()}>
+          Next
+        </button>
+      );
+    };
+    return (
+      <React.Fragment>
+        <button
+          className="button"
+          onClick={() => handleStepPrevious()}
+          disabled={step === 1}
+        >
+          Back
+        </button>
+        {nextButton()}
+      </React.Fragment>
+    );
+  };
 
   return (
     <ModalModule
       isShowing={isShowing}
       isLoading={isLoading}
       onModalCloseClick={onModalClose}
-      footer={footerEl}
+      footer={footerEl()}
     >
       {renderBody()}
     </ModalModule>

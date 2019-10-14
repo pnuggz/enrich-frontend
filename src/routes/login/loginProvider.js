@@ -11,20 +11,21 @@ const Login = () => {
   const [{ loginState }, dispatchLoginStateAction] = useStateValue();
 
   useEffect(() => {
-    if (loginState.isSubmit) {
-      const submitLogin = async () => {
-        const response = await loginRequest(loginState.stateSchema);
-        if (response.status.code !== 200) {
-          dispatchLoginStateAction({ type: "LOGIN_FAIL" })
-          console.log(response.status);
-          return;
-        }
-
-        dispatchLoginStateAction({ type: "LOGIN_SUCCESS" })
-        //eslint-disable-next-line
-        history.push("/dashboard");
+    const submitLogin = async () => {
+      const response = await loginRequest(loginState.stateSchema);
+      if (response.status.code !== 200) {
+        dispatchLoginStateAction({ type: "LOGIN_FAIL" });
+        console.log(response.status);
+        return;
       }
-      submitLogin()
+
+      dispatchLoginStateAction({ type: "LOGIN_SUCCESS" });
+      //eslint-disable-next-line
+      history.push("/dashboard");
+    };
+
+    if (loginState.isSubmit) {
+      submitLogin();
     }
   }, [loginState]);
 

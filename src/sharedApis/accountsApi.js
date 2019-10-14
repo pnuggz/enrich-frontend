@@ -32,11 +32,31 @@ const getSelected = (jsonUserInfo, accountId) => {
       Subject: jwtSub
     }
   });
-}
+};
+
+const submit = (jsonUserInfo, selectedAccountsData) => {
+  const url = baseUrl + "/account/";
+
+  const jwtToken = jsonUserInfo.token;
+  const jwtSub = jsonUserInfo.email;
+
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+      Subject: jwtSub
+    },
+    body: {
+      data: selectedAccountsData
+    }
+  });
+};
 
 const accountsApi = {
   get: get,
-  getSelected: getSelected
+  getSelected: getSelected,
+  submit: submit
 };
 
 export default accountsApi;

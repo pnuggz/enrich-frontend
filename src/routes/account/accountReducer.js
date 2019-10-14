@@ -13,11 +13,13 @@ const initialState = {
   plaidLinkState: {
     publicToken: null,
     accessToken: null,
-    institution: null
+    institution: null,
+    itemId: null
   },
   addAccountData: {
     formSchema: {
-      selectedAccounts: []
+      selectedAccounts: [],
+      institution: null
     },
     isSubmit: false,
     isSuccess: false,
@@ -57,7 +59,8 @@ const plaidLinkReducer = (state, action) => {
         ...state,
         plaidLinkState: {
           ...state.plaidLinkState,
-          accessToken: action.payload
+          accessToken: action.payload.accessToken,
+          itemId: action.payload.itemId
         }
       };
     default:
@@ -78,10 +81,15 @@ const addAccountReducer = (state, action) => {
       };
     case "ACCOUNT_MODAL_SUBMIT":
       return {
+        ...state,
         addAccountData: {
-          formSchema: action.payload,
-          isSubmit: false,
-          isSuccess: true,
+          formSchema: {
+            selectedAccounts: action.payload.selectedAccounts,
+            institution: action.payload.institution,
+            accessToken: action.payload.accessToken
+          },
+          isSubmit: true,
+          isSuccess: false,
           isFail: false
         }
       };
