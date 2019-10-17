@@ -5,7 +5,7 @@ const config = {
 
   plaid: {
     clientName: "Feed the Piggy",
-    env: "sandbox",
+    env: "development",
     product: ["transactions"],
     publicKey: "668bf16942e7199f0698533e8f5833",
     countryCodes: ["US", "GB", "ES", "FR", "CAR", "AU"]
