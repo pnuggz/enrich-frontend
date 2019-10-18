@@ -39,7 +39,6 @@ export const accountSelectedRequest = async accountId => {
 };
 
 export const addAccountsRequest = async selectedAccountsData => {
-  console.log(selectedAccountsData);
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);
 

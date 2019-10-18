@@ -6,12 +6,24 @@ export const AddAccountModalController = props => {
   const onModalSubmit = props.onModalSubmit;
   const onModalClose = props.onModalClose;
   const addAccounts = props.addAccounts;
+  const setAddAccounts = props.setAddAccounts;
   const isShowing = props.isShowing;
 
   const [selectedAccounts, setSelectedAccounts] = useState([]);
   const [step, setStep] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [disable, setDisable] = useState(true);
+
+  useEffect(() => {
+    document.getElementsByClassName("card__content")[0].scrollTo(0, 0);
+    if (!isShowing) {
+      resetModal();
+    }
+  }, [isShowing]);
+
+  useEffect(() => {
+    document.getElementsByClassName("card__content")[0].scrollTo(0, 0);
+  }, [step]);
 
   const handleStepNext = event => {
     if (step < 2) {
@@ -29,7 +41,6 @@ export const AddAccountModalController = props => {
     const name = event.target.getAttribute("data-account-name");
     const mask = event.target.getAttribute("data-account-mask");
     const checked = event.target.checked;
-    const updatedAccounts = selectedAccounts;
 
     const defaultSetting = {
       type: 1,
@@ -37,22 +48,25 @@ export const AddAccountModalController = props => {
       include_dollar: 1
     };
 
-    if (checked) {
-      updatedAccounts.push(
-        addAccounts.filter(
-          account => account.name === name && account.mask === mask
-        )[0]
-      );
-      updatedAccounts.map(account => {
-        account.settings = defaultSetting;
-        return account;
-      });
-    } else {
-      updatedAccounts.filter(
+    if (!checked) {
+      const updatedAccounts = selectedAccounts.filter(
         account => account.name !== name && account.mask !== mask
       );
+      setSelectedAccounts(updatedAccounts);
+      return;
     }
 
+    const updatedAccounts = selectedAccounts;
+
+    updatedAccounts.push(
+      addAccounts.filter(
+        account => account.name === name && account.mask === mask
+      )[0]
+    );
+    updatedAccounts.map(account => {
+      account.settings = defaultSetting;
+      return account;
+    });
     setSelectedAccounts(updatedAccounts);
   };
 
@@ -81,6 +95,14 @@ export const AddAccountModalController = props => {
     });
 
     setSelectedAccounts(updatedAccounts);
+  };
+
+  const resetModal = () => {
+    setAddAccounts([]);
+    setSelectedAccounts([]);
+    setStep(1);
+    setIsLoading(false);
+    setDisable(true);
   };
 
   return (
