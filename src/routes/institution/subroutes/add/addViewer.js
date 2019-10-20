@@ -2,8 +2,8 @@ import React from "react";
 import posed from "react-pose";
 
 import { PageLayout } from "../../../../modules/pageLayout";
-import SelectInstitution from "./components.js/selectInstitution";
-import { AccountForm } from "../../../../modules/accountForm"
+import SelectInstitution from "./components/selectInstitution";
+import { InstitutionForm } from "../../../../modules/institutionForm"
 
 const posedDivConfig = {
   preLoad: {
@@ -17,11 +17,10 @@ const posedDivConfig = {
 const ParentDiv = posed.div(posedDivConfig);
 
 export const AddViewer = props => {
-  const accountState = props.accountState
-  const accountForm = accountState.accountForm
+  const institutionState = props.institutionState
+  const institutionForm = institutionState.institutionForm
+  const institutions = institutionState.institutionsData.institutions
   const isLoading = props.isLoading
-
-  const institutions = accountState.accountInstitutions
 
   const selectedInstitution = props.selectedInstitution
   const onSelectInstitution = props.onSelectInstitution
@@ -32,13 +31,13 @@ export const AddViewer = props => {
       <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
         <SelectInstitution institutions={institutions} onSelectInstitution={onSelectInstitution}></SelectInstitution>
 
-        {(selectedInstitution !== null) ? <AccountForm
-          accountForm={accountForm}
+        {(selectedInstitution !== null) ? <InstitutionForm
+          institutionForm={institutionForm}
           onSubmitForm={onSubmitForm}
-          stateSchema={accountForm.stateSchema}
-          validationStateSchema={accountForm.validationStateSchema}
+          stateSchema={institutionForm.stateSchema}
+          validationStateSchema={institutionForm.validationStateSchema}
           institution={selectedInstitution}
-        ></AccountForm> : null}
+        ></InstitutionForm> : null}
       </ParentDiv>
     </PageLayout>
   );

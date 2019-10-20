@@ -19,8 +19,9 @@ import { NavigationBar } from "./components/navigationBar";
 import { Dashboard } from "./routes/dashboard";
 import { Account } from "./routes/account"
 import { Manage as AccountManage } from "./routes/account/subroutes/manage"
-import { Add as AccountAdd } from "./routes/account/subroutes/add"
+
 import { Institution } from "./routes/institution"
+import { Add as InstitutionAdd } from "./routes/institution/subroutes/add"
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -73,6 +74,17 @@ const App = () => {
                     />
                     <Route
                       exact={true}
+                      path="/institution/add"
+                      render={() =>
+                        checkAuthorization() ? (
+                          <InstitutionAdd />
+                        ) : (
+                            <Redirect to="/login" />
+                          )
+                      }
+                    />
+                    <Route
+                      exact={true}
                       path="/account/"
                       render={() =>
                         checkAuthorization() ? (
@@ -82,17 +94,7 @@ const App = () => {
                           )
                       }
                     />
-                    <Route
-                      exact={true}
-                      path="/account/add/"
-                      render={(props) =>
-                        checkAuthorization() ? (
-                          <AccountAdd router={props} />
-                        ) : (
-                            <Redirect to="/login" />
-                          )
-                      }
-                    />
+
                     <Route
                       exact={true}
                       path="/account/:id/"

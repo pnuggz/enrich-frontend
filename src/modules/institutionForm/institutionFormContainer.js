@@ -3,8 +3,8 @@ import React from "react";
 import { useForm } from "../useForm/index";
 import BeatLoader from 'react-spinners/BeatLoader';
 
-const AccountForm = props => {
-  const accountForm = props.accountForm;
+const InstitutionForm = props => {
+  const institutionForm = props.institutionForm;
   const stateSchema = props.stateSchema;
   const validationStateSchema = props.validationStateSchema;
   const onSubmitForm = props.onSubmitForm;
@@ -59,7 +59,7 @@ const AccountForm = props => {
 
         <div className="column is-full">
           <button type="submit" name="submit" className="button is-primary" disabled={disable}>
-            {(accountForm.isSubmit) ?
+            {(institutionForm.isSubmit) ?
               "SUBMITTING..."
               :
               "SUBMIT"
@@ -71,4 +71,4 @@ const AccountForm = props => {
   );
 };
 
-export default AccountForm;
+export default InstitutionForm;

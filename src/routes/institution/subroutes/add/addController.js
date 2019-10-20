@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { AddViewer } from "./addViewer";
 
 export const AddController = props => {
-  const accountState = props.accountState
-  const institutions = accountState.accountInstitutions
-  const dispatchAccountStateAction = props.dispatchAccountStateAction
+  const institutionState = props.institutionState;
+  const institutions = institutionState.institutionsData.institutions
+  const dispatchInstitutionStateAction = props.dispatchInstitutionStateAction
   const [isLoading, setIsloading] = useState(true);
 
   const [selectedInstitution, setSelectedInstitution] = useState(null)
@@ -25,8 +25,8 @@ export const AddController = props => {
   }
 
   const onSubmitForm = formState => {
-    dispatchAccountStateAction({
-      type: "ACCOUNT_FORM_SUBMIT",
+    dispatchInstitutionStateAction({
+      type: "INSTITUTION_FORM_SUBMIT",
       payload: formState
     });
   };
@@ -34,7 +34,7 @@ export const AddController = props => {
   return (
     <React.Fragment>
       <AddViewer
-        accountState={accountState}
+        institutionState={institutionState}
         isLoading={isLoading}
         onSubmitForm={onSubmitForm}
         selectedInstitution={selectedInstitution}

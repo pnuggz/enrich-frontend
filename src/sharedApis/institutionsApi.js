@@ -30,9 +30,25 @@ const getByUser = jsonUserInfo => {
   });
 };
 
+const postUserInstitution = (jsonUserInfo, institutionData) => {
+  const url = baseUrl + "/institution/user";
+
+  const jwtToken = jsonUserInfo.token;
+
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+    },
+    body: JSON.stringify(institutionData)
+  });
+};
+
 const institutionsApi = {
   getAll: getAll,
-  getByUser: getByUser
+  getByUser: getByUser,
+  postUserInstitution: postUserInstitution
 };
 
 export default institutionsApi;
