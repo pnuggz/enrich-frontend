@@ -1,0 +1,6 @@
+.top__links ul li:not(.dropdown__link),
+.top__links .item {
+  &.is-selected {
+    background-color: $top-link-active-color;
+  }
+}
