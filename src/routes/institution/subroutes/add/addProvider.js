@@ -28,12 +28,12 @@ const Add = () => {
   useEffect(() => {
     const submitInstitutionForm = async() => {
       const response = await postUserInstitution(institutionForm.stateSchema)
-
-      if(response.status.code !== 200) {
-        dispatchInstitutionStateAction({
-          type: "INSTITUTION_FORM_FAIL"
-        })
-      }
+      
+      // if(response.status.code !== 200) {
+      //   dispatchInstitutionStateAction({
+      //     type: "INSTITUTION_FORM_FAIL"
+      //   })
+      // }
 
       dispatchInstitutionStateAction({
         type: "INSTITUTION_FORM_SUCCESS"
