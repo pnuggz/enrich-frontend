@@ -9,7 +9,8 @@ const initialState = {
   institutionForm: {
     stateSchema: {
       login: { value: "", error: "" },
-      password: { value: "", error: "" }
+      password: { value: "", error: "" },
+      institution: { value: "", error: "" }
     },
     validationStateSchema: {
       login: {

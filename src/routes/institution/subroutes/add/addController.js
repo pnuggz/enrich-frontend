@@ -25,6 +25,8 @@ export const AddController = props => {
   }
 
   const onSubmitForm = formState => {
+    formState.institution.value = selectedInstitution.institution_id
+
     dispatchInstitutionStateAction({
       type: "INSTITUTION_FORM_SUBMIT",
       payload: formState
