@@ -26,6 +26,15 @@ const initialState = {
   }
 };
 
+const resetReducer = (state, action) => {
+  switch (action.type) {
+    case "INSTITUTION_STATE_RESET":
+      return initialState;
+    default:
+      return state;
+  }
+};
+
 const institutionReducer = (state, action) => {
   switch (action.type) {
     case "INSTITUTION_LOADED":
@@ -90,12 +99,13 @@ const institutionFormReducer = (state, action) => {
 
 const institutionReducerCombined = combineReducers(
   institutionReducer,
-  institutionFormReducer
+  institutionFormReducer,
+  resetReducer
 );
 
 const institutionReducerBundle = {
   initialState: initialState,
-  institutionReducer: institutionReducerCombined
+  institutionReducer: institutionReducerCombined,
 };
 
 export default institutionReducerBundle;
