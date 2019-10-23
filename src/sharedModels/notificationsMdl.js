@@ -31,3 +31,26 @@ export const getAllNotifications = async () => {
     return error;
   }
 };
+
+export const postNotificationStatus = async () => {
+  const userData = sessionStorage.getItem("userData");
+  const jsonUserInfo = JSON.parse(userData);
+
+  const auth = await checkAuthPromise()
+  if (!auth) {
+    return {
+      status: {
+        code: 500
+      }
+    }
+  }
+
+  try {
+    const fetch = await notificationsApi.postNotificationStatus(jsonUserInfo);
+    const response = await fetch.json()
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+};

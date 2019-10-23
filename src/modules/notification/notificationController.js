@@ -6,6 +6,7 @@ export const NotificationController = props => {
   const notificationState = props.notificationState
   const dispatchNotificationStateAction = props.dispatchNotificationStateAction
   const notifications = notificationState.notifications
+  const setNotificationUpdateId = props.setNotificationUpdateId
   const [hasNew, setHasNew] = useState(false)
   const [buttonStyle, setButtonStyle] = useState({})
   const [isHovered, setIsHovered] = useState(false)
@@ -21,7 +22,8 @@ export const NotificationController = props => {
   }, [notifications])
 
   const onClickNotification = event => {
-    console.log(event)
+    const dataset = event.target.dataset
+    setNotificationUpdateId(dataset.notificationId)
   }
 
   const onNotificationHover = hover => {

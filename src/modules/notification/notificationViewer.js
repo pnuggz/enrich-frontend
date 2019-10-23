@@ -16,7 +16,7 @@ export const NotificationViewer = props => {
           <ul className="dropdown">
             {notifications.map(notification => {
               return (
-                <li key={notification.id} className="dropdown__link" onClick={event => onClickNotification(event)}>
+                <li key={notification.id} className="dropdown__link" onClick={event => onClickNotification(event)} data-notification-id={notification.id}>
                   {notification.text}
                 </li>
               )

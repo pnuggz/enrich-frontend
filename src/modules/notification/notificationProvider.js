@@ -1,17 +1,25 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 
 import { useStateValue } from "../../lib/state"
 import { usePolling } from "../../lib/usePolling"
 
 import { NotificationController } from "./notificationController"
 
-import { getAllNotifications } from "../../sharedModels/notificationsMdl"
+import { getAllNotifications, postNotificationStatus } from "../../sharedModels/notificationsMdl"
 
 const Notification = () => {
   const [{ notificationState }, dispatchNotificationStateAction] = useStateValue()
   const notifications = notificationState.notifications
+  const [notificationUpdateId, setNotificationUpdateId] = useState(null)
 
   useEffect(() => {
+    const getNotifications = async () => {
+      const response = await getAllNotifications()
+      onPollingSuccess(response)
+    }
+
+    getNotifications()
+
     return () => {
       stopPolling()
     }
@@ -41,15 +49,24 @@ const Notification = () => {
     retryCount: 3, // this is optional
     onSuccess: onPollingSuccess,
     onFailure: onPollingFailure
-  });
+  }); 
 
   useEffect(() => {
-    console.log(notifications)
-  }, [notifications])
+    const updateNotification = async () => {
+      const response = await postNotificationStatus(notificationUpdateId)
+      if(response.status.code !== 200) {
+        setNotificationUpdateId(null)
+      }
+    }
+
+    if(notificationUpdateId !== null) {
+      updateNotification()
+    }
+  }, [notificationUpdateId])
 
   return (
     <React.Fragment>
-      <NotificationController notificationState={notificationState} dispatchNotificationStateAction={dispatchNotificationStateAction} />
+      <NotificationController notificationState={notificationState} dispatchNotificationStateAction={dispatchNotificationStateAction} setNotificationUpdateId={setNotificationUpdateId} />
     </React.Fragment>
   )
 }

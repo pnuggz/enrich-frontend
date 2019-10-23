@@ -17,6 +17,7 @@ const notificationReducer = (state, action) => {
   switch (action.type) {
     case "NOTIFICATION_UPDATE":
       return {
+        ...state,
         notifications: action.payload
       };
     default:
