@@ -13,6 +13,9 @@ const Institution = () => {
   useEffect(() => {
     const loadInstitutions = async () => {
       const response = await getAllInstitutions();
+      if (response.status.code !== 200) {
+        return
+      }
 
       dispatchInstitutionStateAction({
         type: "INSTITUTION_LOADED",
@@ -22,6 +25,9 @@ const Institution = () => {
 
     const loadUserInstitutions = async () => {
       const response = await getUserInstitutions()
+      if (response.status.code !== 200) {
+        return
+      }
 
       dispatchInstitutionStateAction({
         type: "USER_INSTITUTION_LOADED",

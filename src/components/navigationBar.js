@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 import WithRouterProps from "./withRouterProps";
 
+import { Notification } from "../modules/notification"
+
 const links = [
   {
     path: "/",
@@ -50,7 +52,10 @@ export const NavigationBar = props => {
             <img width="60px" src="logo192.png" />
           </div>
           <div className="top__links is-end">
-            <ul>{renderLinks()}</ul>
+            <ul>
+              <li><Notification /></li>
+              {renderLinks()}
+            </ul>
           </div>
         </nav>
       </div>

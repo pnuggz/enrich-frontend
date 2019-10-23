@@ -15,16 +15,19 @@ const Add = () => {
   useEffect(() => {
     const loadInstitutions = async () => {
       const response = await getAllInstitutions();
+      if (response.status.code !== 200) {
+        return
+      }
 
       dispatchInstitutionStateAction({
         type: "INSTITUTION_LOADED",
         payload: response.data.institutions
       });
     }
-    
+
     loadInstitutions()
 
-    return(() => {
+    return (() => {
       dispatchInstitutionStateAction({ type: "INSTITUTION_STATE_RESET" })
     })
   }, [])

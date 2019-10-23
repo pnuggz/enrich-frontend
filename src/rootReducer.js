@@ -1,10 +1,11 @@
 import { globalReducerBundle } from "./globalReducer";
-import { homeReducerBundle } from "./routes/home/index";
-import { signupReducerBundle } from "./routes/signup/index";
-import { loginReducerBundle } from "./routes/login/index";
-import { dashboardReducerBundle } from "./routes/dashboard/index"
-import { accountReducerBundle } from "./routes/account/index"
-import { institutionReducerBundle } from "./routes/institution/index"
+import { homeReducerBundle } from "./routes/home";
+import { signupReducerBundle } from "./routes/signup";
+import { loginReducerBundle } from "./routes/login";
+import { dashboardReducerBundle } from "./routes/dashboard"
+import { accountReducerBundle } from "./routes/account"
+import { institutionReducerBundle } from "./routes/institution"
+import { notificationReducerBundle } from "./modules/notification"
 
 export const initialState = {
   globalState: globalReducerBundle.initialState,
@@ -13,11 +14,12 @@ export const initialState = {
   loginState: loginReducerBundle.initialState,
   dashboardState: dashboardReducerBundle.initialState,
   accountState: accountReducerBundle.initialState,
-  institutionState: institutionReducerBundle.initialState
+  institutionState: institutionReducerBundle.initialState,
+  notificationState: notificationReducerBundle.initialState
 };
 
 export const rootReducer = (
-  { globalState, homeState, signupState, loginState, dashboardState, accountState, institutionState },
+  { globalState, homeState, signupState, loginState, dashboardState, accountState, institutionState, notificationState },
   action
 ) => ({
   globalState: globalReducerBundle.globalReducer(globalState, action),
@@ -26,5 +28,6 @@ export const rootReducer = (
   loginState: loginReducerBundle.loginReducer(loginState, action),
   dashboardState: dashboardReducerBundle.dashboardReducer(dashboardState, action),
   accountState: accountReducerBundle.accountReducer(accountState, action),
-  institutionState: institutionReducerBundle.institutionReducer(institutionState, action)
+  institutionState: institutionReducerBundle.institutionReducer(institutionState, action),
+  notificationState: notificationReducerBundle.notificationReducer(notificationState, action)
 });

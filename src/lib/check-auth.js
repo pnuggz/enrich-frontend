@@ -1,12 +1,11 @@
 export default function checkAuthorization() {
-  return true
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);
 
   if (userData) {
     const createdDate = new Date(jsonUserInfo.tokenCreatedDate);
     const created = Math.round(createdDate.getTime() / 1000);
-    const ttl = 7200;
+    const ttl = 3600;
     const expiry = created + ttl;
 
     const now = new Date();
