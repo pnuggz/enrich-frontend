@@ -2,6 +2,9 @@ import React from "react";
 import posed from "react-pose";
 
 import { PageLayout } from "../../modules/pageLayout";
+import { AddAccountModal } from "../../modules/addAccountModal"
+
+import Institution from "./components/institution"
 
 const posedDivConfig = {
   preLoad: {
@@ -19,50 +22,38 @@ export const InstitutionViewer = props => {
 
   const institutionsData = institutionState.institutionsData;
   const isLoading = props.isLoading;
+  const handleInstitutionSelect = props.handleInstitutionSelect
+  const selectedBasiqInstitutionId = props.selectedBasiqInstitutionId
 
-  const renderAccounts = () => {
-    const isLoading = institutionsData.isLoading;
-    const institutions = institutionsData.usersInstitutions;
+  const handleModalSubmit = props.handleModalSubmit
+  const handleModalClose = props.handleModalClose
+  const isModalShowing = props.isModalShowing
 
-    if (isLoading) {
-      return <div>IS LOADING...</div>;
-    }
-
-    if (institutions.length === 0) {
-      return <div><div>You currently don't have any institutions linked. Add one now to get started.</div><div>LINK BANK ACCOUNT</div></div>;
-    }
-
-    return (
-      <div className="grid">
-        <div className="column is-full">
-          <div className="grid">
-            {institutions.map(institution => {
-              return (
-                <div key={institution.id} className="column is-full">
-                  <div className="card__header">
-                    <h5>{institution.name}</h5>
-                  </div>
-                  <div className="card__content">
-                    <p>{institutions.country}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    );
-  };
+  const institutionsIsLoading = institutionsData.isLoading;
+  const institutions = institutionsData.usersInstitutions;
 
   return (
     <PageLayout>
       <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
         <div className="grid has-centered is-vertical">
           <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths">
-            {renderAccounts()}
+            {institutionsIsLoading ?
+              <div>IS LOADING...</div> :
+              <Institution
+                institutions={institutions}
+                handleInstitutionSelect={handleInstitutionSelect}
+              />
+            }
           </div>
         </div>
       </ParentDiv>
+
+      <AddAccountModal
+        basiqInstitutionId={selectedBasiqInstitutionId}
+        onModalSubmit={handleModalSubmit}
+        onModalClose={handleModalClose}
+        isModalShowing={isModalShowing}
+      />
     </PageLayout>
   );
 };

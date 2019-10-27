@@ -1,8 +1,7 @@
 import React from "react"
 
 export const NotificationViewer = props => {
-  const notificationState = props.notificationState
-  const notifications = notificationState.notifications
+  const notifications = props.notifications
   const buttonStyle = props.buttonStyle
   const onClickNotification = props.onClickNotification
   const onNotificationHover = props.onNotificationHover

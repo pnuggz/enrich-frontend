@@ -4,18 +4,19 @@ import { useStateValue } from "../../lib/state";
 
 import { AccountController } from "./accountController"
 
-import { accountsDataRequest } from "../../sharedModels/accountsMdl";
+// import { accountsDataRequest } from "../../sharedModels/accountsMdl";
 
 const Account = () => {
   const [{ accountState }, dispatchAccountStateAction] = useStateValue();
 
   useEffect(() => {
     const loadAccounts = async () => {
-      const response = await accountsDataRequest();
+      return
+      // const response = await accountsDataRequest();
 
       dispatchAccountStateAction({
         type: "ACCOUNT_LOADED",
-        payload: response.data.accounts
+        // payload: response.data.accounts
       });
     }
 

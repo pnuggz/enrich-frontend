@@ -13,7 +13,7 @@ export const StepOne = props => {
             <div
               className="card"
               style={{ height: "fit-content" }}
-              key={account.id}
+              key={account.account_id}
             >
               <div className="card__content">
                 <div className="grid">
@@ -22,32 +22,38 @@ export const StepOne = props => {
                   </div>
 
                   <div className="column is-10 grid">
-                    <div className="column is-full has-no-padding-sides">
-                      <b>Type: </b>
-                      {account.class.type}
+                    <div className="column is-full grid has-no-padding-sides">
+                      <b>Official Name: </b>
+                      {account.official_name}
                     </div>
-                    <div className="column is-full has-no-padding-sides">
-                      <b>Product: </b>
-                      {account.class.product}
+                    <div className="column is-full grid has-no-padding-sides">
+                      <div className="column is-half has-no-padding">
+                        <b>Type: </b>
+                        {account.type}
+                      </div>
+                      <div className="column is-half has-no-padding">
+                        <b>Subtype: </b>
+                        {account.subtype}
+                      </div>
                     </div>
-                    <div className="column is-full has-no-padding-sides">
-                      <b>Mask (last 4 digits):</b>
-                      <span> </span>
-                      {account.accountNo.substr((account.accountNo.length - 4))}
+                    <div className="column is-full grid has-no-padding-sides">
+                      <b>Mask (last 4 digits): </b>
+                      {account.mask}
                     </div>
                   </div>
                   <div className="column is-2">
                     <div className="is-switch is-small">
                       <input
                         type="checkbox"
-                        id={account.id}
+                        id={account.account_id}
                         onChange={event => {
                           handleAccountSelect(event);
                         }}
-                        data-account-id={account.id}
+                        data-account-name={account.name}
+                        data-account-mask={account.mask}
                         defaultChecked={selectedAccounts.reduce(
                           (bool, selAccount) => {
-                            if (selAccount.id === account.id) {
+                            if (selAccount.account_id === account.account_id) {
                               bool = true;
                             }
                             return bool;
@@ -55,7 +61,7 @@ export const StepOne = props => {
                           false
                         )}
                       />
-                      <label htmlFor={account.id}></label>
+                      <label htmlFor={account.account_id}></label>
                     </div>
                   </div>
                 </div>

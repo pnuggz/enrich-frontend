@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useStateValue } from "../../lib/state";
 
 import { InstitutionController } from "./institutionController"
 
-import { getAllInstitutions } from "../../sharedModels/institutionsMdl"
-import { getUserInstitutions } from "../../sharedModels/institutionsMdl"
+import { getAllInstitutions, getUserInstitutionsWithAccounts } from "../../sharedModels/institutionsMdl"
+import { postNewAccounts } from "../../sharedModels/accountsMdl";
 
 const Institution = () => {
   const [{ institutionState }, dispatchInstitutionStateAction] = useStateValue();
+  const [selectedBasiqInstitutionId, setSelectedBasiqInstitutionId] = useState(null)
+  const [newAccountsData, setNewAccountsData] = useState(null)
 
   useEffect(() => {
     const loadInstitutions = async () => {
@@ -24,7 +26,8 @@ const Institution = () => {
     }
 
     const loadUserInstitutions = async () => {
-      const response = await getUserInstitutions()
+      const response = await getUserInstitutionsWithAccounts()
+      console.log(response)
       if (response.status.code !== 200) {
         return
       }
@@ -35,15 +38,33 @@ const Institution = () => {
       });
     }
 
-    loadInstitutions()
+    // loadInstitutions()
     loadUserInstitutions()
   }, []);
+
+  useEffect(() => {
+    const postAccounts = async () => {
+      const accounts = newAccountsData.accounts
+      const basiqInstitutionId = newAccountsData.basiqInstitutionId
+      const postNewAccountsResponse = await postNewAccounts(basiqInstitutionId, accounts)
+      if (postNewAccountsResponse.status.code !== 200) {
+        console.log(postNewAccountsResponse.status)
+      }
+      setNewAccountsData(null)
+    }
+    if (newAccountsData !== null) {
+      postAccounts()
+    }
+  }, [newAccountsData])
 
   return (
     <React.Fragment>
       <InstitutionController
         institutionState={institutionState}
         dispatchInstitutionStateAction={dispatchInstitutionStateAction}
+        selectedBasiqInstitutionId={selectedBasiqInstitutionId}
+        setSelectedBasiqInstitutionId={setSelectedBasiqInstitutionId}
+        setNewAccountsData={setNewAccountsData}
       />
     </React.Fragment>
   );

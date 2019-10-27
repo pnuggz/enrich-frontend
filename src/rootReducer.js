@@ -5,7 +5,6 @@ import { loginReducerBundle } from "./routes/login";
 import { dashboardReducerBundle } from "./routes/dashboard"
 import { accountReducerBundle } from "./routes/account"
 import { institutionReducerBundle } from "./routes/institution"
-import { notificationReducerBundle } from "./modules/notification"
 
 export const initialState = {
   globalState: globalReducerBundle.initialState,
@@ -14,12 +13,11 @@ export const initialState = {
   loginState: loginReducerBundle.initialState,
   dashboardState: dashboardReducerBundle.initialState,
   accountState: accountReducerBundle.initialState,
-  institutionState: institutionReducerBundle.initialState,
-  notificationState: notificationReducerBundle.initialState
+  institutionState: institutionReducerBundle.initialState
 };
 
 export const rootReducer = (
-  { globalState, homeState, signupState, loginState, dashboardState, accountState, institutionState, notificationState },
+  { globalState, homeState, signupState, loginState, dashboardState, accountState, institutionState },
   action
 ) => ({
   globalState: globalReducerBundle.globalReducer(globalState, action),
@@ -28,6 +26,5 @@ export const rootReducer = (
   loginState: loginReducerBundle.loginReducer(loginState, action),
   dashboardState: dashboardReducerBundle.dashboardReducer(dashboardState, action),
   accountState: accountReducerBundle.accountReducer(accountState, action),
-  institutionState: institutionReducerBundle.institutionReducer(institutionState, action),
-  notificationState: notificationReducerBundle.notificationReducer(notificationState, action)
+  institutionState: institutionReducerBundle.institutionReducer(institutionState, action)
 });

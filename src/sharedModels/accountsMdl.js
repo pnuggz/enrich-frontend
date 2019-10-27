@@ -2,12 +2,12 @@ import { updateUserSession } from "../lib/session";
 
 import accountsApi from "../sharedApis/accountsApi";
 
-export const getInstitutions = async () => {
+export const getAllAccountsByInstitutionId = async (basiqInstitutionId) => {
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);
 
   try {
-    const fetch = await accountsApi.getInstitutions(jsonUserInfo);
+    const fetch = await accountsApi.getAllByInstitutionId(jsonUserInfo, basiqInstitutionId);
     const response = await fetch.json();
 
     if (response.status.code === 200) {
@@ -20,12 +20,12 @@ export const getInstitutions = async () => {
   }
 };
 
-export const accountsDataRequest = async () => {
+export const getUserAccountsByInstitutionId = async (basiqInstitutionId) => {
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);
 
   try {
-    const fetch = await accountsApi.get(jsonUserInfo);
+    const fetch = await accountsApi.getUserByInstitutionId(jsonUserInfo, basiqInstitutionId);
     const response = await fetch.json();
 
     if (response.status.code === 200) {
@@ -38,12 +38,12 @@ export const accountsDataRequest = async () => {
   }
 };
 
-export const accountSelectedRequest = async accountId => {
+export const postNewAccounts = async (basiqInstitutionId, accounts) => {
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);
 
   try {
-    const fetch = await accountsApi.getSelected(jsonUserInfo, accountId);
+    const fetch = await accountsApi.postNew(jsonUserInfo, basiqInstitutionId, accounts);
     const response = await fetch.json();
 
     if (response.status.code === 200) {
@@ -54,22 +54,4 @@ export const accountSelectedRequest = async accountId => {
   } catch (error) {
     return error;
   }
-};
-
-export const addAccountsRequest = async selectedAccountsData => {
-  const userData = sessionStorage.getItem("userData");
-  const jsonUserInfo = JSON.parse(userData);
-
-  try {
-    const fetch = await accountsApi.submit(jsonUserInfo, selectedAccountsData);
-    const response = await fetch.json();
-
-    if (response.status.code === 200) {
-      updateUserSession(response);
-    }
-
-    return response;
-  } catch (error) {
-    return error;
-  }
-};
+}

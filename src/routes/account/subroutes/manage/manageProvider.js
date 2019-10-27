@@ -4,20 +4,19 @@ import { useStateValue } from "../../../../lib/state";
 
 import { ManageController } from "./manageController"
 
-import { accountSelectedRequest } from "../../../../sharedModels/accountsMdl"
-
 const Manage = props => {
   const router = props.router
   const [{ accountState }, dispatchAccountStateAction] = useStateValue()
 
   useEffect(() => {
     const loadAccount = async () => {
+      return
       const accountId = router.match.params.id
-      const response = await accountSelectedRequest(accountId);
+      // const response = await accountSelectedRequest(accountId);
 
       dispatchAccountStateAction({
         type: "ACCOUNT_LOADED",
-        payload: response.data.account
+        // payload: response.data.account
       });
     }
 

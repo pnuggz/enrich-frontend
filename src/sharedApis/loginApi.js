@@ -14,8 +14,23 @@ const submit = loginData => {
   });
 };
 
+const refreshData = jsonUserInfo => {
+  const url = baseUrl + "/auto/login/user";
+
+  const jwtToken = jsonUserInfo.token;
+
+  return fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${jwtToken}`,
+    }
+  });
+};
+
 const loginApi = {
-  submit: submit
+  submit: submit,
+  refreshData: refreshData
 };
 
 export default loginApi;

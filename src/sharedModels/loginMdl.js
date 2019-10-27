@@ -16,3 +16,17 @@ export const loginRequest = async loginData => {
     return error;
   }
 };
+
+export const loginRefreshData = async () => {
+  const userData = sessionStorage.getItem("userData");
+  const jsonUserInfo = JSON.parse(userData);
+
+  try {
+    const fetch = await loginApi.refreshData(jsonUserInfo);
+    const response = await fetch.json()
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+}

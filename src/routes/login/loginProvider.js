@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useStateValue } from "../../lib/state";
 import history from "../../lib/history";
 
-import { loginRequest } from "../../sharedModels/loginMdl";
+import { loginRequest, loginRefreshData } from "../../sharedModels/loginMdl";
 
 import { LoginController } from "./loginController";
 
@@ -13,11 +13,13 @@ const Login = () => {
   useEffect(() => {
     const submitLogin = async () => {
       const response = await loginRequest(loginState.stateSchema);
-      if (response.status.code !== 200) {
+      if (response === undefined || response.status.code !== 200) {
         dispatchLoginStateAction({ type: "LOGIN_FAIL" });
         console.log(response.status);
         return;
       }
+
+      loginRefreshData()
 
       dispatchLoginStateAction({ type: "LOGIN_SUCCESS" });
       //eslint-disable-next-line

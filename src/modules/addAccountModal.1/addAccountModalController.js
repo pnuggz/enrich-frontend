@@ -8,8 +8,6 @@ export const AddAccountModalController = props => {
   const addAccounts = props.addAccounts;
   const setAddAccounts = props.setAddAccounts;
   const isShowing = props.isShowing;
-  const accountsIsLoading = props.accountsIsLoading
-  const setAccountsIsLoading = props.setAccountsIsLoading
 
   const [selectedAccounts, setSelectedAccounts] = useState([]);
   const [step, setStep] = useState(1);
@@ -40,7 +38,8 @@ export const AddAccountModalController = props => {
   };
 
   const handleAccountSelect = event => {
-    const id = event.target.getAttribute("data-account-id");
+    const name = event.target.getAttribute("data-account-name");
+    const mask = event.target.getAttribute("data-account-mask");
     const checked = event.target.checked;
 
     const defaultSetting = {
@@ -51,7 +50,7 @@ export const AddAccountModalController = props => {
 
     if (!checked) {
       const updatedAccounts = selectedAccounts.filter(
-        account => account.id !== id
+        account => account.name !== name && account.mask !== mask
       );
       setSelectedAccounts(updatedAccounts);
       return;
@@ -61,7 +60,7 @@ export const AddAccountModalController = props => {
 
     updatedAccounts.push(
       addAccounts.filter(
-        account => account.id === id
+        account => account.name === name && account.mask === mask
       )[0]
     );
     updatedAccounts.map(account => {
@@ -72,22 +71,23 @@ export const AddAccountModalController = props => {
   };
 
   const handleSelectedAccountSettings = event => {
-    const id = event.target.getAttribute("data-account-id");
+    const name = event.target.getAttribute("data-account-name");
+    const mask = event.target.getAttribute("data-account-mask");
     const setting = event.target.getAttribute("name");
     const updatedAccounts = selectedAccounts;
 
     updatedAccounts.map(account => {
-      if (account.id !== id) {
+      if (account.name !== name && account.mask !== mask) {
         return account;
       }
 
-      if (setting === "type_" + account.id) {
+      if (setting === "type_" + account.account_id) {
         account.settings.type = event.target.value;
       }
-      if (setting === "limit_" + account.id) {
+      if (setting === "limit_" + account.account_id) {
         account.settings.limit = event.target.value;
       }
-      if (setting === "include_dollar_" + account.id) {
+      if (setting === "include_dollar_" + account.account_id) {
         const val = event.target.checked === "on" ? 1 : 0;
         account.settings.include_dollar = val;
       }
@@ -103,7 +103,6 @@ export const AddAccountModalController = props => {
     setStep(1);
     setIsLoading(false);
     setDisable(true);
-    setAccountsIsLoading(true)
   };
 
   return (
@@ -120,7 +119,6 @@ export const AddAccountModalController = props => {
       handleAccountSelect={handleAccountSelect}
       selectedAccounts={selectedAccounts}
       handleSelectedAccountSettings={handleSelectedAccountSettings}
-      accountsIsLoading={accountsIsLoading}
     />
   );
 };

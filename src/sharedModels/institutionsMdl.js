@@ -38,6 +38,24 @@ export const getUserInstitutions = async () => {
   }
 };
 
+export const getUserInstitutionsWithAccounts = async () => {
+  const userData = sessionStorage.getItem("userData");
+  const jsonUserInfo = JSON.parse(userData);
+
+  try {
+    const fetch = await institutionsApi.getByUserWithAcounts(jsonUserInfo);
+    const response = await fetch.json()
+
+    if (response.status.code === 200) {
+      updateUserSession(response)
+    }
+
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const postUserInstitution = async (institutionData) => {
   const userData = sessionStorage.getItem("userData");
   const jsonUserInfo = JSON.parse(userData);

@@ -13,7 +13,6 @@ export const AddAccountModalViewer = props => {
   const isLoading = props.isLoading;
   const isShowing = props.isShowing;
   const disable = props.disable;
-  const accountsIsLoading = props.accountsIsLoading
 
   const step = props.step;
   const handleStepNext = props.handleStepNext;
@@ -36,22 +35,18 @@ export const AddAccountModalViewer = props => {
         />
       }
     >
-      {accountsIsLoading ?
-        (<div>LOADING...</div>) :
-        step === 1 ? (
-          <StepOne
-            addAccounts={addAccounts}
-            selectedAccounts={selectedAccounts}
-            handleAccountSelect={handleAccountSelect}
-          />
-        ) : step === 2 ? (
-          <StepTwo
-            selectedAccounts={selectedAccounts}
-            handleSelectedAccountSettings={handleSelectedAccountSettings}
-          />
-        ) : null
-      }
-
+      {step === 1 ? (
+        <StepOne
+          addAccounts={addAccounts}
+          selectedAccounts={selectedAccounts}
+          handleAccountSelect={handleAccountSelect}
+        />
+      ) : step === 2 ? (
+        <StepTwo
+          selectedAccounts={selectedAccounts}
+          handleSelectedAccountSettings={handleSelectedAccountSettings}
+        />
+      ) : null}
     </ModalModule>
   );
 };

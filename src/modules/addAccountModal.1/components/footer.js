@@ -4,7 +4,7 @@ import { ButtonComponent } from "./button";
 
 export const Footer = props => {
   const step = props.step;
-  const onModalSubmit = props.onModalSubmit;
+  const onSubmitModal = props.onSubmitModal;
   const handleStepNext = props.handleStepNext;
   const handleStepPrevious = props.handleStepPrevious;
   const selectedAccounts = props.selectedAccounts;
@@ -21,7 +21,7 @@ export const Footer = props => {
       {step === 1 ? (
         <ButtonComponent handleClick={handleStepNext}>Next</ButtonComponent>
       ) : step === 2 ? (
-        <ButtonComponent handleClick={onModalSubmit} data={selectedAccounts}>
+        <ButtonComponent handleClick={onSubmitModal} data={selectedAccounts}>
           Submit
         </ButtonComponent>
       ) : null}

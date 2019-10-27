@@ -51,7 +51,7 @@ const institutionReducer = (state, action) => {
         ...state,
         institutionsData: {
           ...state.institutionsData,
-          userInstitutions: action.payload,
+          usersInstitutions: action.payload,
           isLoading: false
         }
       };

@@ -12,7 +12,7 @@ export const StepTwo = props => {
             <div
               className="card"
               style={{ height: "fit-content" }}
-              key={account.id}
+              key={account.account_id}
             >
               <div className="card__content">
                 <div className="grid">
@@ -21,6 +21,20 @@ export const StepTwo = props => {
                   </div>
 
                   <div className="column is-full grid">
+                    <div className="column is-full grid has-no-padding-sides">
+                      <b>Official Name: </b>
+                      {account.official_name}
+                    </div>
+                    <div className="column is-full grid has-no-padding-sides">
+                      <div className="column is-half has-no-padding">
+                        <b>Type: </b>
+                        {account.type}
+                      </div>
+                      <div className="column is-half has-no-padding">
+                        <b>Subtype: </b>
+                        {account.subtype}
+                      </div>
+                    </div>
                     <div className="column is-full grid has-no-padding-sides">
                       <div className="column is-shrink is-inline-label has-no-padding">
                         <label>Tracking Type</label>
@@ -31,8 +45,9 @@ export const StepTwo = props => {
                             onChange={event => {
                               handleSelectedAccountSettings(event);
                             }}
-                            name={"type_" + account.id}
-                            data-account-id={account.id}
+                            name={"type_" + account.account_id}
+                            data-account-name={account.name}
+                            data-account-mask={account.mask}
                             defaultValue={account.settings.type}
                           >
                             <option value={1}>Donation</option>
@@ -51,8 +66,9 @@ export const StepTwo = props => {
                           onInput={event => {
                             handleSelectedAccountSettings(event);
                           }}
-                          name={"limit_" + account.id}
-                          data-account-id={account.id}
+                          name={"limit_" + account.account_id}
+                          data-account-name={account.name}
+                          data-account-mask={account.mask}
                           defaultValue={account.settings.limit}
                         ></input>
                       </div>
@@ -65,7 +81,8 @@ export const StepTwo = props => {
                         <div className="is-switch">
                           <input
                             type="checkbox"
-                            name={"include_dollar_" + account.id}
+                            id={"include_dollar_" + account.account_id}
+                            name={"include_dollar_" + account.account_id}
                             data-account-name={account.name}
                             data-account-mask={account.mask}
                             onChange={event => {
@@ -74,7 +91,7 @@ export const StepTwo = props => {
                             defaultChecked={account.settings.include_dollar}
                           />
                           <label
-                            htmlFor={"include_dollar_" + account.id}
+                            htmlFor={"include_dollar_" + account.account_id}
                           ></label>
                         </div>
                       </div>

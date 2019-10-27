@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react"
 
-import { useStateValue } from "../../lib/state"
 import { usePolling } from "../../lib/usePolling"
 
 import { NotificationController } from "./notificationController"
@@ -8,9 +7,8 @@ import { NotificationController } from "./notificationController"
 import { getAllNotifications, postNotificationStatus } from "../../sharedModels/notificationsMdl"
 
 const Notification = () => {
-  const [{ notificationState }, dispatchNotificationStateAction] = useStateValue()
-  const notifications = notificationState.notifications
   const [notificationUpdateId, setNotificationUpdateId] = useState(null)
+  const [notifications, setNotifications] = useState([])
 
   useEffect(() => {
     const getNotifications = async () => {
@@ -31,11 +29,8 @@ const Notification = () => {
       return false
     }
 
-    const notifications = response.data || []
-    dispatchNotificationStateAction({
-      type: "NOTIFICATION_UPDATE",
-      payload: notifications
-    })
+    const updateNotifications = response.data || []
+    setNotifications(updateNotifications)
     return true
   }
 
@@ -49,24 +44,24 @@ const Notification = () => {
     retryCount: 3, // this is optional
     onSuccess: onPollingSuccess,
     onFailure: onPollingFailure
-  }); 
+  });
 
   useEffect(() => {
     const updateNotification = async () => {
       const response = await postNotificationStatus(notificationUpdateId)
-      if(response.status.code !== 200) {
+      if (response.status.code !== 200) {
         setNotificationUpdateId(null)
       }
     }
 
-    if(notificationUpdateId !== null) {
+    if (notificationUpdateId !== null) {
       updateNotification()
     }
   }, [notificationUpdateId])
 
   return (
     <React.Fragment>
-      <NotificationController notificationState={notificationState} dispatchNotificationStateAction={dispatchNotificationStateAction} setNotificationUpdateId={setNotificationUpdateId} />
+      <NotificationController notifications={notifications} setNotificationUpdateId={setNotificationUpdateId} />
     </React.Fragment>
   )
 }
