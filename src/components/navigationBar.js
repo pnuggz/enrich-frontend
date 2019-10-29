@@ -32,33 +32,34 @@ export const NavigationBar = props => {
     setLocation(propsLocation);
   }, [propsLocation]);
 
-  const renderLinks = () => {
-    return links.map((link, key) => {
-      const linkClass = location.pathname === link.path ? "is-selected" : "";
-      return (
-        <Link key={key} exact="true" to={link.path}>
-          <li className={linkClass}>{link.text}</li>
-        </Link>
-      );
-    });
-  };
-
   return (
-    <div className="grid">
-      <WithRouterProps updateLocation={location => updateLocation(location)} />
-      <div className="column is-full has-no-padding">
-        <nav className="top">
-          <div className="top__brand">
-            <img width="60px" src="logo192.png" />
+    <React.Fragment>
+      {(location.pathname !== "/") ? 
+        <div className="grid">
+          <WithRouterProps updateLocation={location => updateLocation(location)} />
+          <div className="column is-full has-no-padding">
+            <nav className="top">
+              <div className="top__brand">
+                <img width="60px" src="logo192.png" />
+              </div>
+              <div className="top__links is-end">
+                <ul>
+                  <li><Notification /></li>
+                  {links.map((link, key) => {
+                    const linkClass = location.pathname === link.path ? "is-selected" : "";
+                    return (
+                      <Link key={key} exact="true" to={link.path}>
+                        <li className={linkClass}>{link.text}</li>
+                      </Link>
+                    )
+                  })}
+                </ul>
+              </div>
+            </nav>
           </div>
-          <div className="top__links is-end">
-            <ul>
-              <li><Notification /></li>
-              {renderLinks()}
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
+        </div>
+        : null
+      }
+    </React.Fragment>
   );
 };
