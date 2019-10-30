@@ -4,15 +4,14 @@ const BgShape = props => {
   const shapeStyle = {
     background: "orange",
     width: "100%",
-    height: "50%",
+    height: "40%",
     msTransform: "skewY(-20deg)",
     WebkitTransform: "skewY(-20deg)",
-    transform: "skewY(-20deg)",
-    borderRadius: "30px",
+    transform: "skewY(-20deg) translateX(50%)",
+    borderRadius: "40px",
     position: "absolute",
-    top: "25%",
-    left: "50px",
-    zIndex: "-100"
+    top: "40%",
+    left: "50px"
   }
 
   return (
