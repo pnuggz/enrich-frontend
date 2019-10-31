@@ -10,13 +10,23 @@ export const getAllAccountsByInstitutionId = async (basiqInstitutionId) => {
     const fetch = await accountsApi.getAllByInstitutionId(jsonUserInfo, basiqInstitutionId);
     const response = await fetch.json();
 
+    if(response === undefined) {
+      return undefined
+    }
+
     if (response.status.code === 200) {
       updateUserSession(response);
     }
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -34,7 +44,13 @@ export const getUserAccountsByInstitutionId = async (basiqInstitutionId) => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -52,6 +68,12 @@ export const postNewAccounts = async (basiqInstitutionId, accounts) => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 }

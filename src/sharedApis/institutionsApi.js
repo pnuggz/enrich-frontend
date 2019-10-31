@@ -5,13 +5,10 @@ const baseUrl = config.enrichApi.baseUrl;
 const getAll = jsonUserInfo => {
   const url = baseUrl + "/institution/all";
 
-  const jwtToken = jsonUserInfo.token;
-
   return fetch(url, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwtToken}`,
+      "Content-Type": "application/json"
     }
   });
 };

@@ -6,6 +6,12 @@ export const checkAuthorizationRequest = async authData => {
 
     return fetch;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };

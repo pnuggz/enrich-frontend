@@ -28,7 +28,13 @@ export const getAllNotifications = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -51,6 +57,12 @@ export const postNotificationStatus = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };

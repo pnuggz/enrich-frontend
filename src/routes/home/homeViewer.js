@@ -13,11 +13,30 @@ const posedDivConfig = {
 };
 
 export const HomeViewer = props => {
+  const institutionState = props.institutionState
+  const institutionForm = institutionState.institutionForm
+  const institutions = institutionState.institutionsData.institutions
+  const isLoading = props.isLoading
+
+  const selectedInstitution = props.selectedInstitution
+  const onSelectInstitution = props.onSelectInstitution
+  const onSubmitForm = props.onSubmitForm
   
   return (
     <React.Fragment>
       <section className="hero is-full has-bg-black has-text-white">
-        <Hero />
+        <Hero 
+          isLoading={isLoading}
+          
+          institutions={institutions} 
+          onSelectInstitution={onSelectInstitution}
+
+          institutionForm={institutionForm}
+          onSubmitForm={onSubmitForm}
+          stateSchema={institutionForm.stateSchema}
+          validationStateSchema={institutionForm.validationStateSchema}
+          institution={selectedInstitution}
+        />
       </section>
       <section className="is-full">
         <div className="grid">

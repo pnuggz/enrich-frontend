@@ -13,7 +13,13 @@ export const loginRequest = async loginData => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -27,6 +33,12 @@ export const loginRefreshData = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 }

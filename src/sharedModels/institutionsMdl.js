@@ -3,11 +3,8 @@ import { updateUserSession } from "../lib/session"
 import institutionsApi from "../sharedApis/institutionsApi";
 
 export const getAllInstitutions = async () => {
-  const userData = sessionStorage.getItem("userData");
-  const jsonUserInfo = JSON.parse(userData);
-
   try {
-    const fetch = await institutionsApi.getAll(jsonUserInfo);
+    const fetch = await institutionsApi.getAll();
     const response = await fetch.json()
 
     if (response.status.code === 200) {
@@ -16,7 +13,13 @@ export const getAllInstitutions = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -34,7 +37,13 @@ export const getUserInstitutions = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -52,7 +61,13 @@ export const getUserInstitutionsWithAccounts = async () => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
 
@@ -70,6 +85,12 @@ export const postUserInstitution = async (institutionData) => {
 
     return response;
   } catch (error) {
-    return error;
+    return {
+      status: {
+        code: 500,
+        error: error,
+        message: `Internal server error.`
+      }
+    }
   }
 };
