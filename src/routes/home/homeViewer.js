@@ -2,6 +2,8 @@ import React from "react"
 import posed from "react-pose";
 
 import Hero from "./components/hero"
+import SectionOne from "./components/sectionOne";
+import SectionTwo from "./components/sectionTwo";
 
 const posedDivConfig = {
   preLoad: {
@@ -21,14 +23,14 @@ export const HomeViewer = props => {
   const selectedInstitution = props.selectedInstitution
   const onSelectInstitution = props.onSelectInstitution
   const onSubmitForm = props.onSubmitForm
-  
+
   return (
     <React.Fragment>
       <section className="hero is-full has-bg-black has-text-white">
-        <Hero 
+        <Hero
           isLoading={isLoading}
-          
-          institutions={institutions} 
+
+          institutions={institutions}
           onSelectInstitution={onSelectInstitution}
 
           institutionForm={institutionForm}
@@ -39,11 +41,10 @@ export const HomeViewer = props => {
         />
       </section>
       <section className="is-full">
-        <div className="grid">
-          <div className="column is-full">
-            TEST
-          </div>
-        </div>
+        <SectionOne />
+      </section>
+      <section className="is-full" style={{ backgroundColor: "#F7F9F9" }}>
+        <SectionTwo />
       </section>
     </React.Fragment>
   )
