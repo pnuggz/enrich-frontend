@@ -24,27 +24,29 @@ export const HomeViewer = props => {
   
   return (
     <React.Fragment>
-      <section className="hero is-full has-bg-black has-text-white">
-        <Hero 
-          isLoading={isLoading}
-          
-          institutions={institutions} 
-          onSelectInstitution={onSelectInstitution}
+      <div id="landing">
+        <section className="hero is-full">
+          <Hero 
+            isLoading={isLoading}
+            
+            institutions={institutions} 
+            onSelectInstitution={onSelectInstitution}
 
-          institutionForm={institutionForm}
-          onSubmitForm={onSubmitForm}
-          stateSchema={institutionForm.stateSchema}
-          validationStateSchema={institutionForm.validationStateSchema}
-          institution={selectedInstitution}
-        />
-      </section>
-      <section className="is-full">
-        <div className="grid">
-          <div className="column is-full">
-            TEST
+            institutionForm={institutionForm}
+            onSubmitForm={onSubmitForm}
+            stateSchema={institutionForm.stateSchema}
+            validationStateSchema={institutionForm.validationStateSchema}
+            institution={selectedInstitution}
+          />
+        </section>
+        <section className="is-full">
+          <div className="grid">
+            <div className="column is-full">
+              TEST
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </React.Fragment>
   )
 } 
