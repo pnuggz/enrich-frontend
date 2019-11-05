@@ -2,6 +2,8 @@ import React from "react"
 import posed from "react-pose";
 
 import Hero from "./components/hero"
+import SectionOne from "./components/sectionOne";
+import SectionTwo from "./components/sectionTwo";
 
 const posedDivConfig = {
   preLoad: {
@@ -21,7 +23,7 @@ export const HomeViewer = props => {
   const selectedInstitution = props.selectedInstitution
   const onSelectInstitution = props.onSelectInstitution
   const onSubmitForm = props.onSubmitForm
-  
+
   return (
     <React.Fragment>
       <div id="landing">

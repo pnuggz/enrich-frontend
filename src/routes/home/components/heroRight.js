@@ -2,6 +2,7 @@ import React from "react"
 
 import SelectInstitution from "./selectInstitution";
 import { InstitutionForm } from "../../../modules/institutionForm"
+import FullySecured from "./fullySecured";
 
 const HeroRight = props => {
   const isLoading = props.isLoading
@@ -15,25 +16,31 @@ const HeroRight = props => {
 
   return (
     <React.Fragment>
-      <div className="card grid">
-        <div className="column is-full">
-          <h4>Quickly check to see if your bank is supported!</h4>
-          <br/>
-          <SelectInstitution institutions={institutions} onSelectInstitution={onSelectInstitution}></SelectInstitution>
+      <div className="card is-rounded">
+        <div className="grid card__content">
+          <div className="column is-full">
+            <div className="column has-padding-left has-padding-right">
+              <h4>Quickly check to see if your bank institution is supported!</h4>
+              <br />
+              <SelectInstitution institutions={institutions} onSelectInstitution={onSelectInstitution}></SelectInstitution>
+            </div>
 
-          {(institution !== null) ? 
-          <InstitutionForm
-            isLoading={isLoading}
-      
-            institutions={institutions} 
-            onSelectInstitution={onSelectInstitution}
+            {(institution !== null) ?
+              <InstitutionForm
+                isLoading={isLoading}
 
-            institutionForm={institutionForm}
-            onSubmitForm={onSubmitForm}
-            stateSchema={stateSchema}
-            validationStateSchema={validationStateSchema}
-            institution={institution}
-          /> : null}
+                institutions={institutions}
+                onSelectInstitution={onSelectInstitution}
+
+                institutionForm={institutionForm}
+                onSubmitForm={onSubmitForm}
+                stateSchema={stateSchema}
+                validationStateSchema={validationStateSchema}
+                institution={institution}
+              /> :
+              <FullySecured />
+            }
+          </div>
         </div>
       </div>
     </React.Fragment>
