@@ -1,0 +1,7 @@
+@for $i from 1 through 10 {
+  $base: 100;
+  $zindex: $base * $i;
+  .has-zindex-#{$zindex} { 
+    z-index: $zindex;
+  }
+}

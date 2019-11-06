@@ -5,6 +5,20 @@ import Hero from "./components/hero"
 import SectionOne from "./components/sectionOne";
 import SectionTwo from "./components/sectionTwo";
 
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardTitle,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
+
 const posedDivConfig = {
   preLoad: {
     x: "-100%"
@@ -27,7 +41,7 @@ export const HomeViewer = props => {
   return (
     <React.Fragment>
       <div id="landing">
-        <section className="hero is-full">
+        <div className="wrapper">
           <Hero 
             isLoading={isLoading}
             
@@ -40,14 +54,18 @@ export const HomeViewer = props => {
             validationStateSchema={institutionForm.validationStateSchema}
             institution={selectedInstitution}
           />
-        </section>
-        <section className="is-full">
-          <div className="grid">
-            <div className="column is-full">
-              TEST
-            </div>
-          </div>
-        </section>
+          <section className="section section-lg">
+            <section className="section">
+              <Container>
+                <Row className="row-grid justify-content-between">
+                  <Col className="mt-lg-5" md="5">
+                    TEST
+                  </Col>
+                </Row>
+              </Container>
+            </section>
+          </section>
+        </div>
       </div>
     </React.Fragment>
   )

@@ -73,7 +73,7 @@ const Hero = props => {
         right={"-5%"}
         bottom={"0%"}
       />
-      <div className="container">
+      <div className="container has-zindex-100 is-color-white">
         <div className="grid">
           <div className="column is-6">
             <HeroLeft/>

@@ -9,8 +9,8 @@ const HeroLeft = props => {
         It all starts with a little nudge that will snowball to a better world.
       </p>
       <div className="is-button-group">
-        <button className="button is-white is-rounded">Learn more</button>
-        <button className="button is-white is-rounded">Sign up</button>
+        <button className="button is-rounded is-bg-neutral is-bordercolor-none">Learn more</button>
+        <button className="is-rounded is-bg-primary is-bordercolor-none is-color-white button">Sign up</button>
       </div>
     </React.Fragment>
   )
