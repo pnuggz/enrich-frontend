@@ -8403,6 +8403,7 @@ fieldset[disabled]
       color: #ccc; }
 
 .dropdown-menu {
+  color: red;
   border: 0;
   box-shadow: 0px 10px 50px 0px rgba(0, 0, 0, 0.2);
   border-radius: 0.1428rem;
@@ -13823,7 +13824,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   border-radius: 3px;
   background: #FFF;
   cursor: default;
-  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+  box-shadow: inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
   -webkit-transition: 300ms ease 0s;
   -moz-transition: 300ms ease 0s;
   -ms-transition: 300ms ease 0s;

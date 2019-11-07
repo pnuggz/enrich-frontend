@@ -5,20 +5,6 @@ import Hero from "./components/hero";
 import SectionOne from "./components/sectionOne";
 import SectionTwo from "./components/sectionTwo";
 
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Col
-} from "reactstrap";
-
 const posedDivConfig = {
   preLoad: {
     x: "-100%"
@@ -52,17 +38,6 @@ export const HomeViewer = props => {
             validationStateSchema={institutionForm.validationStateSchema}
             institution={selectedInstitution}
           />
-          {/* <section className="section section-lg">
-            <section className="section">
-              <Container>
-                <Row className="row-grid justify-content-between">
-                  <Col className="mt-lg-5" md="5">
-                    TEST
-                  </Col>
-                </Row>
-              </Container>
-            </section>
-          </section> */}
         </div>
       </div>
     </React.Fragment>
