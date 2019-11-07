@@ -1,7 +1,7 @@
-import React from "react"
+import React from "react";
 import posed from "react-pose";
 
-import Hero from "./components/hero"
+import Hero from "./components/hero";
 import SectionOne from "./components/sectionOne";
 import SectionTwo from "./components/sectionTwo";
 
@@ -29,32 +29,30 @@ const posedDivConfig = {
 };
 
 export const HomeViewer = props => {
-  const institutionState = props.institutionState
-  const institutionForm = institutionState.institutionForm
-  const institutions = institutionState.institutionsData.institutions
-  const isLoading = props.isLoading
+  const institutionState = props.institutionState;
+  const institutionForm = institutionState.institutionForm;
+  const institutions = institutionState.institutionsData.institutions;
+  const isLoading = props.isLoading;
 
-  const selectedInstitution = props.selectedInstitution
-  const onSelectInstitution = props.onSelectInstitution
-  const onSubmitForm = props.onSubmitForm
+  const selectedInstitution = props.selectedInstitution;
+  const onSelectInstitution = props.onSelectInstitution;
+  const onSubmitForm = props.onSubmitForm;
 
   return (
     <React.Fragment>
-      <div id="landing">
+      <div id="landing" className="index-page">
         <div className="wrapper">
-          <Hero 
+          <Hero
             isLoading={isLoading}
-            
-            institutions={institutions} 
+            institutions={institutions}
             onSelectInstitution={onSelectInstitution}
-
             institutionForm={institutionForm}
             onSubmitForm={onSubmitForm}
             stateSchema={institutionForm.stateSchema}
             validationStateSchema={institutionForm.validationStateSchema}
             institution={selectedInstitution}
           />
-          <section className="section section-lg">
+          {/* <section className="section section-lg">
             <section className="section">
               <Container>
                 <Row className="row-grid justify-content-between">
@@ -64,9 +62,9 @@ export const HomeViewer = props => {
                 </Row>
               </Container>
             </section>
-          </section>
+          </section> */}
         </div>
       </div>
     </React.Fragment>
-  )
-} 
+  );
+};

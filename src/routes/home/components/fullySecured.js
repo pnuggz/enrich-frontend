@@ -1,5 +1,7 @@
 import React from "react";
 
+import imgPadlock from "../../../assets/img/home/hero-right-padlock.png"
+
 const FullySecured = props => {
   return (
     <React.Fragment>
@@ -10,7 +12,7 @@ const FullySecured = props => {
               We use the highest level of security and will never store your bank login details.
             </div>
             <div className="column is-full">
-              <img className="is-margin-center" src={"img/home/hero-right-padlock.png"} width={"30%"} />
+              <img className="is-margin-center" src={imgPadlock} width={"30%"} />
             </div>
           </div>
         </div>
