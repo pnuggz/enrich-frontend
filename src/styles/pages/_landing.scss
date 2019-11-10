@@ -1,5 +1,13 @@
-.hero__content {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
+.section-heading-text {
+  position: absolute;
+  top: 110px;
+  left: 60px;
+}
+
+.info {
+  &:first-of-type {
+    @media (min-width: 768px) {
+      padding-top: 60% !important;
+    }
+  }
 }

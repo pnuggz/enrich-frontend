@@ -26,7 +26,7 @@ export const HomeViewer = props => {
 
   return (
     <React.Fragment>
-      <div id="landing" className="index-page">
+      <div id="landing" className="index-page scrollbar-styling">
         <div className="wrapper">
           <Hero
             isLoading={isLoading}
@@ -38,6 +38,8 @@ export const HomeViewer = props => {
             validationStateSchema={institutionForm.validationStateSchema}
             institution={selectedInstitution}
           />
+          <SectionOne />
+          <SectionTwo />
         </div>
       </div>
     </React.Fragment>

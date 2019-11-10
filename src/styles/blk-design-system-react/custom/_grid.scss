@@ -1,0 +1,52 @@
+$xs_breakpoint: "360px";
+$sm_breakpoint: "544px";
+$md_breakpoint: "768px";
+$lg_breakpoint: "1200px";
+
+.hidden-xs-down {
+  @media screen and (max-width: $xs_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-xs-up {
+  @media screen and (min-width: $xs_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-sm-down {
+  @media screen and (max-width: $sm_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-sm-up {
+  @media screen and (min-width: $sm_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-md-down {
+  @media screen and (max-width: $md_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-md-up {
+  @media screen and (min-width: $md_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-lg-down {
+  @media screen and (max-width: $lg_breakpoint) {
+    display: none !important;
+  }
+}
+
+.hidden-lg-up {
+  @media screen and (min-width: $lg_breakpoint) {
+    display: none !important;
+  }
+}

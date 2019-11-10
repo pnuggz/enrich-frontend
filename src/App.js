@@ -8,7 +8,7 @@ import { StateProvider } from "./lib/state";
 
 import { initialState, rootReducer } from "./rootReducer";
 
-import "./styles/index.css";
+import "./styles/index.css?v=1.0.0";
 
 import { Home } from "./routes/home/index";
 import { Signup } from "./routes/signup/index";
@@ -17,11 +17,11 @@ import { About } from "./routes/about/index";
 import { Contact } from "./routes/contact/index";
 import { NavigationBar } from "./components/navigationBar";
 import { Dashboard } from "./routes/dashboard";
-import { Account } from "./routes/account"
-import { Manage as AccountManage } from "./routes/account/subroutes/manage"
+import { Account } from "./routes/account";
+import { Manage as AccountManage } from "./routes/account/subroutes/manage";
 
-import { Institution } from "./routes/institution"
-import { Add as InstitutionAdd } from "./routes/institution/subroutes/add"
+import { Institution } from "./routes/institution";
+import { Add as InstitutionAdd } from "./routes/institution/subroutes/add";
 
 const RouteContainer = posed.div({
   enter: { opacity: 1, delay: 300, beforeChildren: true },
@@ -57,8 +57,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <Dashboard />
                         ) : (
-                            <Redirect to="/login" />
-                          )
+                          <Redirect to="/login" />
+                        )
                       }
                     />
                     <Route
@@ -68,8 +68,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <Institution />
                         ) : (
-                            <Redirect to="/login" />
-                          )
+                          <Redirect to="/login" />
+                        )
                       }
                     />
                     <Route
@@ -79,8 +79,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <InstitutionAdd />
                         ) : (
-                            <Redirect to="/login" />
-                          )
+                          <Redirect to="/login" />
+                        )
                       }
                     />
                     <Route
@@ -90,20 +90,20 @@ const App = () => {
                         checkAuthorization() ? (
                           <Account />
                         ) : (
-                            <Redirect to="/login" />
-                          )
+                          <Redirect to="/login" />
+                        )
                       }
                     />
 
                     <Route
                       exact={true}
                       path="/account/:id/"
-                      render={(props) =>
+                      render={props =>
                         checkAuthorization() ? (
                           <AccountManage router={props} />
                         ) : (
-                            <Redirect to="/login" />
-                          )
+                          <Redirect to="/login" />
+                        )
                       }
                     />
                     <Route

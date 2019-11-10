@@ -8,6 +8,7 @@
     "history": "^4.9.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-onclickoutside": "^6.9.0",
     "react-plaid-link": "^1.5.0",
     "react-pose": "^4.0.8",
     "react-router-dom": "^5.0.1",

@@ -1,41 +1,62 @@
-import React, { useState } from "react"
-import classnames from "classnames";
-import {
-  Row,
-  Col,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap"
+import React, { useState } from "react";
+
+import { Row, Col, InputGroup } from "reactstrap";
+
+import SearchDropdown from "../../../components/searchDropdown";
 
 const SelectInstitution = props => {
-  const institutions = props.institutions
-  const onSelectInstitution = props.onSelectInstitution
+  const institutions = props.institutions;
+  const onSelectInstitution = props.onSelectInstitution;
 
-  const [dropdownIsOpen, setDropdownIsOpen] = useState(false)
+  const institutionsSample = [
+    {
+      id: 1,
+      name: "Item 1"
+    },
+    {
+      id: 2,
+      name: "Item 2"
+    },
+    {
+      id: 3,
+      name: "Item 3"
+    },
+    {
+      id: 4,
+      name: "Item 4"
+    },
+    {
+      id: 5,
+      name: "Item 5"
+    },
+    {
+      id: 6,
+      name: "Item 2"
+    },
+    {
+      id: 7,
+      name: "Item 3"
+    },
+    {
+      id: 8,
+      name: "Item 4"
+    }
+  ];
 
   if (institutions.length === 0) {
     return (
       <Row>
         <Col>
-          <Dropdown className="input-select" isOpen={dropdownIsOpen} toggle={() => setDropdownIsOpen(!dropdownIsOpen)}>
-            <DropdownToggle caret>
-              Dropdown
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Header</DropdownItem>
-              <DropdownItem>Some Action</DropdownItem>
-              <DropdownItem disabled>Action (disabled)</DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Foo Action</DropdownItem>
-              <DropdownItem>Bar Action</DropdownItem>
-              <DropdownItem>Quo Action</DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
+          <InputGroup>
+            <SearchDropdown
+              placeholder={"Select Institution"}
+              items={institutionsSample}
+              onSelectItem={onSelectInstitution}
+            />
+          </InputGroup>
         </Col>
       </Row>
-    )
+    );
   }
 
   return (
@@ -44,12 +65,14 @@ const SelectInstitution = props => {
         <option value={0}>-- Select institution --</option>
         {institutions.map(institution => {
           return (
-            <option key={institution.id} value={institution.id}>{institution.name}</option>
-          )
+            <option key={institution.id} value={institution.id}>
+              {institution.name}
+            </option>
+          );
         })}
       </select>
     </div>
-  )
-}
+  );
+};
 
-export default SelectInstitution
+export default SelectInstitution;

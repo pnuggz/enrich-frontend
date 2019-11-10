@@ -1,24 +1,33 @@
 import React from "react";
 
-import imgPadlock from "../../../assets/img/home/hero-right-padlock.png"
+import { Row, Col } from "reactstrap";
 
-const FullySecured = props => {
+import imgPadlock from "../../../assets/img/home/hero-right-padlock.png";
+
+const FullySecured = () => {
   return (
     <React.Fragment>
-      <div className="grid">
-        <div className="column is-full has-text-center">
-          <div className="grid">
-            <div className="column is-full">
-              We use the highest level of security and will never store your bank login details.
-            </div>
-            <div className="column is-full">
-              <img className="is-margin-center" src={imgPadlock} width={"30%"} />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Row className="mt-1">
+        <Col style={{ textAlign: "center" }}>
+          <span style={{ fontSize: "0.8rem" }}>
+            We use the highest level of security and will never store your bank
+            login details.
+          </span>
+        </Col>
+      </Row>
+      <Row className="justify-content-center mt-2">
+        <Col>
+          <img
+            className="img-fluid"
+            src={imgPadlock}
+            width={"30%"}
+            alt="Secure padlock"
+            style={{ display: "block", margin: "auto" }}
+          />
+        </Col>
+      </Row>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default FullySecured
+export default FullySecured;
