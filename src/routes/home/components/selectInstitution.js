@@ -47,13 +47,11 @@ const SelectInstitution = props => {
     return (
       <Row>
         <Col>
-          <InputGroup>
-            <SearchDropdown
-              placeholder={"Select Institution"}
-              items={institutionsSample}
-              onSelectItem={onSelectInstitution}
-            />
-          </InputGroup>
+          <SearchDropdown
+            placeholder={"Select Institution"}
+            items={institutionsSample}
+            onSelectItem={onSelectInstitution}
+          />
         </Col>
       </Row>
     );

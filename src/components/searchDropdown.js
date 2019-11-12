@@ -7,7 +7,8 @@ import ObjectsQueryFilter from "../lib/objectsQueryFilter";
 const SearchDropdown = props => {
   const defaultPlaceholder = props.placeholder || "Search";
   const defaultItems = props.items || [];
-  const onSelectItem = props.onSelectItem;
+  // const onSelectItem = props.onSelectItem;
+  const onSelectItem = e => console.log(e);
 
   const [placeholder, setPlaceholder] = useState(defaultPlaceholder);
   const [value, setValue] = useState(null);
@@ -73,52 +74,54 @@ const SearchDropdown = props => {
 
   return (
     <React.Fragment>
-      <input
-        type="text"
-        className="form-control search-dropdown"
-        value={placeholder}
-        onFocus={e => searchFocus(e)}
-        onChange={e => searchFilter(e)}
-        onBlur={e => resetFilter(e)}
-      />
-      <InputGroupAddon addonType="append">
-        <InputGroupText
-          className="input-group-text has-border-right-radius"
-          style={{ lineHeight: 1, cursor: "pointer" }}
-          onClick={() => {
-            document.getElementsByClassName("search-dropdown")[0].focus();
-          }}
+      <div className="search-dropdown">
+        <input
+          type="text"
+          className="search-dropdown__input"
+          value={placeholder}
+          onFocus={e => searchFocus(e)}
+          onChange={e => searchFilter(e)}
+          onBlur={e => resetFilter(e)}
+        />
+        <div className="search-dropdown__caret-wrapper">
+          <div
+            className="search-dropdown__caret"
+            style={{ lineHeight: 1, cursor: "pointer" }}
+            onClick={() => {
+              document.getElementsByClassName("search-dropdown")[0].focus();
+            }}
+          >
+            {/* <i className="tim-icons icon-lock-circle" /> */}
+            {isFocus ? ">" : "<"}
+          </div>
+        </div>
+        <div
+          className="search-dropdown__item-wrapper"
+          style={{ display: isFocus ? "block" : "none" }}
         >
-          {/* <i className="tim-icons icon-lock-circle" /> */}
-          {isFocus ? ">" : "<"}
-        </InputGroupText>
-      </InputGroupAddon>
-      <div
-        className="search-dropdown-menu scrollbar-styling"
-        style={{ display: isFocus ? "block" : "none" }}
-      >
-        {items.map(item => {
-          return item.id === 0 ? (
-            <div
-              className="search-dropdown-item text-warning"
-              key={item.id}
-              value={item.id}
-              tabIndex={0}
-            >
-              {item.name}
-            </div>
-          ) : (
-            <div
-              className="search-dropdown-item"
-              key={item.id}
-              value={item.id}
-              onClick={e => selectItem(e)}
-              tabIndex={0}
-            >
-              {item.name}
-            </div>
-          );
-        })}
+          {items.map(item => {
+            return item.id === 0 ? (
+              <div
+                className="search-dropdown-item text-warning"
+                key={item.id}
+                value={item.id}
+                tabIndex={0}
+              >
+                {item.name}
+              </div>
+            ) : (
+              <div
+                className="search-dropdown-item"
+                key={item.id}
+                value={item.id}
+                onClick={e => selectItem(e)}
+                tabIndex={0}
+              >
+                {item.name}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </React.Fragment>
   );

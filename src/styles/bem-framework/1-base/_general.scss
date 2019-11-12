@@ -30,6 +30,7 @@ html {
   -ms-text-size-adjust: 100%; // 4
   -ms-overflow-style: scrollbar; // 5
   -webkit-tap-highlight-color: rgba($black, 0); // 6
+  overflow-x: hidden;
 }
 
 // IE10+ doesn't honor `<meta name="viewport">` in some cases.
@@ -68,9 +69,9 @@ body {
   font-size: $font-size-base;
   font-weight: $font-weight-base;
   line-height: $line-height-base;
-  color: $gray-900 !default;
+  color: $gray-900;
   text-align: left; // 3
-  background-color: $white !default; // 2
+  background-color: $background-color; // 2
 }
 
 // Suppress the focus outline on elements that cannot be accessed via keyboard.
@@ -119,7 +120,7 @@ h6 {
 // bottom margin to use `rem` units instead of `em`.
 p {
   margin-top: 0;
-  margin-bottom: 1rem !default;
+  margin-bottom: 1rem;
 }
 
 // Abbreviations
@@ -211,14 +212,14 @@ sup {
 //
 
 a {
-  color: $primary !default;
-  text-decoration: none !default;
+  color: $primary;
+  text-decoration: none;
   background-color: transparent; // Remove the gray background on active links in IE 10.
   -webkit-text-decoration-skip: objects; // Remove gaps in links underline in iOS 8+ and Safari 8+.
 
   @include hover {
-    color: darken($primary, 15%) !default;
-    text-decoration: underline !default;
+    color: darken($primary, 15%);
+    text-decoration: underline;
   }
 }
 

@@ -25,54 +25,6 @@ import imgPath5 from "../../../assets/img/landing/path5.png";
 const SectionTwo = () => {
   return (
     <React.Fragment>
-      {/* <section className="section">
-          <Container>
-            <Row>
-              <Col lg="6" md="6">
-                <h1 className="profile-title text-left">Mike Scheinder</h1>
-                <h5 className="text-on-back">01</h5>
-                <p className="profile-description">
-                  Offices parties lasting outward nothing age few resolve.
-                  Impression to discretion understood to we interested he
-                  excellence. Him remarkably use projection collecting. Going
-                  about eat forty world has round miles.
-                </p>
-                <div className="btn-wrapper profile pt-3">
-                  <Button
-                    className="btn-icon btn-round"
-                    color="twitter"
-                    href="https://twitter.com/creativetim"
-                    id="tooltip639225725"
-                    target="_blank"
-                  >
-                    <i className="fab fa-twitter" />
-                  </Button>
-                  <Button
-                    className="btn-icon btn-round"
-                    color="facebook"
-                    href="https://www.facebook.com/creativetim"
-                    id="tooltip982846143"
-                    target="_blank"
-                  >
-                    <i className="fab fa-facebook-square" />
-                  </Button>
-                  <Button
-                    className="btn-icon btn-round"
-                    color="dribbble"
-                    href="https://dribbble.com/creativetim"
-                    id="tooltip951161185"
-                    target="_blank"
-                  >
-                    <i className="fab fa-dribbble" />
-                  </Button>
-                </div>
-              </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
-                TEST
-              </Col>
-            </Row>
-          </Container>
-        </section> */}
       <section className="section section-lg">
         <img
           alt="..."
@@ -196,7 +148,7 @@ const SectionTwo = () => {
         <section className="section">
           <Container>
             <Row>
-              <Col lg="6" md="6">
+              <Col lg="4" md="6">
                 <h1 className="profile-title text-left">For Humanity</h1>
                 <p className="profile-description">
                   This app was created for the people, and will grow with the
@@ -208,7 +160,7 @@ const SectionTwo = () => {
                   Get in contact with us to leave a feedback, or have a chat.
                 </p>
               </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              <Col className="ml-auto mr-auto" lg="6" md="6">
                 <Card className="card-plain">
                   <CardBody>
                     <Form>

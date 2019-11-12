@@ -1,0 +1,15 @@
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(2.25rem + 2px);
+  padding: 0.5rem 0.7rem;
+  font-size: 0.875rem;
+  line-height: 1.42857;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 1px solid #cad1d7;
+  border-radius: 0.25rem;
+  box-shadow: none;
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}

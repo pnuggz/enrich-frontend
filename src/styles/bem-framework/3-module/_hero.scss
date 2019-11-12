@@ -1,0 +1,21 @@
+.hero {
+  min-height: 100vh;
+  max-height: 999px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+
+  &__content {
+    position: absolute;
+    z-index: 2;
+    padding: 0 15px;
+    width: 100%;
+    max-width: 880px;
+
+    &--center {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Container, Row, Col } from "reactstrap";
-
 import imgPath4 from "../../../assets/img/landing/path4.png";
 
 const SectionOne = () => {
@@ -15,12 +13,12 @@ const SectionOne = () => {
             src={imgPath4}
             style={{ left: "-110px", maxWidth: "60%", top: "50px" }}
           />
-          <Container>
-            <Row className="justify-content-center">
-              <Col md="12" lg="12">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-md-12 col-mg-12">
                 <h2 className="text-center">Your best benefit</h2>
-                <Row className="row-grid justify-content-center">
-                  <Col md="4" lg="3">
+                <div className="row justify-content-center">
+                  <div className="col-md-4 col-lg-3">
                     <div className="info">
                       <div className="icon icon-primary">
                         <i className="tim-icons icon-money-coins" />
@@ -32,8 +30,8 @@ const SectionOne = () => {
                         quickly it adds up.
                       </p>
                     </div>
-                  </Col>
-                  <Col md="4" lg="3">
+                  </div>
+                  <div className="col-md-4 col-lg-3">
                     <div className="info">
                       <div className="icon icon-warning">
                         <i className="tim-icons icon-chart-pie-36" />
@@ -45,8 +43,8 @@ const SectionOne = () => {
                         amounts to set aside more.
                       </p>
                     </div>
-                  </Col>
-                  <Col md="4" lg="3">
+                  </div>
+                  <div className="col-md-4 col-lg-3">
                     <div className="info">
                       <div className="icon icon-success">
                         <i className="tim-icons icon-single-02" />
@@ -58,11 +56,11 @@ const SectionOne = () => {
                         technology help you grow it.
                       </p>
                     </div>
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
-          </Container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </section>
     </React.Fragment>

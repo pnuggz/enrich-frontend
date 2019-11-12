@@ -1,10 +1,10 @@
 import React from "react";
 
-import BgSquare from "../../../components/bgSquare"
+import BgSquare from "./bgSquare";
 
-const BgShape = () => {
+const Hero = props => {
   return (
-    <React.Fragment>
+    <div className="hero">
       <BgSquare
         animation={"move-left-right 4s infinite"}
         height={"300px"}
@@ -61,8 +61,11 @@ const BgShape = () => {
         right={"-5%"}
         bottom={"0%"}
       />
-    </React.Fragment>
-  )
-}
+      <div className="hero__content hero__content--center">
+        {props.children}
+      </div>
+    </div>
+  );
+};
 
-export default BgShape
+export default Hero;

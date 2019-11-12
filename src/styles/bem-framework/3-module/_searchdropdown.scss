@@ -1,0 +1,95 @@
+$search-dropdown-padding: 10px 18px 10px 18px;
+
+.search-dropdown {
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+
+  &__input {
+    @extend .form-control;
+
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+
+    border-right: 0 none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    padding: $search-dropdown-padding;
+  }
+
+  &__caret-wrapper {
+    margin-left: -1px;
+    display: flex;
+  }
+
+  &__caret {
+    @extend .form-control;
+
+    line-height: 1;
+    cursor: pointer;
+
+    border-left: 0 none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    padding: $search-dropdown-padding;
+  }
+
+  &__item-wrapper {
+    @extend .scrollbar-styling;
+
+    cursor: auto;
+    position: absolute;
+    display: none;
+    outline: 0;
+    top: 100%;
+    min-width: max-content;
+    margin: 0;
+    background: #344675;
+    text-shadow: none;
+    text-align: left;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transition: opacity 0.1s ease;
+    z-index: 100;
+    will-change: transform, opacity;
+    left: 0;
+    right: auto;
+    box-shadow: 0 2px 4px 0 rgba(34, 36, 38, 0.12),
+      0 2px 10px 0 rgba(34, 36, 38, 0.15) !important;
+    max-height: 20vh;
+    margin-top: 0.5em !important;
+    border-radius: 0.4285rem;
+    padding: 0;
+    border: 1px solid #cad1d7;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-overflow-scrolling: touch;
+    min-width: 100%;
+  }
+
+  &__item {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    border: none;
+    height: auto;
+    border-top: none;
+    padding: $search-dropdown-padding;
+    font-size: 0.75rem;
+    line-height: 1em;
+    color: #fff;
+    white-space: nowrap;
+    text-align: left;
+    text-transform: none;
+    box-shadow: none;
+    -webkit-touch-callout: none;
+  }
+}

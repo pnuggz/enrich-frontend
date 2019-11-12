@@ -1,27 +1,27 @@
 import React from "react";
 
-import { Container, Row, Col, Button } from "reactstrap";
+import Button from "../../../components/button";
 
 const HeroLeft = props => {
   return (
     <React.Fragment>
-      <Container>
-        <Row>
-          <Col>
+      <div className="container">
+        <div className="row">
+          <div className="col">
             <h1 className="text-white">Spare a change for change</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
             <p className="text-white mb-3">
               Making a difference to you favourite cause has never been this
               easy. It all starts with a little nudge that will snowball to a
               better world.
             </p>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
             <div className="btn-wrapper">
               <div className="button-container">
                 <Button
@@ -44,9 +44,9 @@ const HeroLeft = props => {
                 </Button>
               </div>
             </div>
-          </Col>
-        </Row>
-      </Container>
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 };
