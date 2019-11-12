@@ -17,5 +17,11 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
+
+    &--text-center-sm-down {
+      @include media-breakpoint-down('sm') {
+        text-align: center;
+      }
+    }
   }
 }

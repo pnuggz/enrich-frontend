@@ -48,7 +48,7 @@ const SearchDropdown = props => {
       return;
     }
 
-    const input = document.getElementsByClassName("search-dropdown")[0].value;
+    const input = document.getElementsByClassName("search-dropdown__input")[0].value;
     if (input === "") {
       setPlaceholder(defaultPlaceholder);
       setValue(null);
@@ -88,7 +88,7 @@ const SearchDropdown = props => {
             className="search-dropdown__caret"
             style={{ lineHeight: 1, cursor: "pointer" }}
             onClick={() => {
-              document.getElementsByClassName("search-dropdown")[0].focus();
+              document.getElementsByClassName("search-dropdown__input")[0].focus();
             }}
           >
             {/* <i className="tim-icons icon-lock-circle" /> */}
