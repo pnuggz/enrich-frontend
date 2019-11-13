@@ -31,7 +31,7 @@ export const HomeViewer = props => {
     <React.Fragment>
       <div className="index-page scrollbar-styling">
         <Hero>
-          <div className="row justify-content-between align-items-center text-left">
+          <div className="row justify-content-between align-items-center">
             <div className="col-md-6 col-lg-6">
               <HeroLeft />
             </div>

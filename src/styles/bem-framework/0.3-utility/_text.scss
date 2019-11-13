@@ -24,6 +24,46 @@
   }
 }
 
+@each $breakpoint in $grid-breakpoints {
+  $key: nth($breakpoint, 1);
+
+  .text-left-#{$key}-down {
+    @include media-breakpoint-down(#{$key}) {
+      text-align: left;
+    }
+  }
+
+  .text-left-#{$key}-up {
+    @include media-breakpoint-up($key) {
+      text-align: left;
+    }
+  }
+
+  .text-center-#{$key}-down {
+    @include media-breakpoint-down($key) {
+      text-align: center;
+    }
+  }
+
+  .text-center-#{$key}-up {
+    @include media-breakpoint-up($key) {
+      text-align: center;
+    }
+  }
+
+  .text-right-#{$key}-down {
+    @include media-breakpoint-down($key) {
+      text-align: center;
+    }
+  }
+
+  .text-right-#{$key}-up {
+    @include media-breakpoint-up($key) {
+      text-align: center;
+    }
+  }
+}
+
 // Transformation
 
 .text-lowercase  { text-transform: lowercase !important; }

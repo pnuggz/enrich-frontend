@@ -7,7 +7,7 @@ const FullySecured = () => {
     <React.Fragment>
       <div className="row mt-1">
         <div className="col text-align-center">
-          <span className="text-white font-size-sm">
+          <span className="text-white text-size-sm">
             We use the highest level of security and will never store your bank
             login details.
           </span>

@@ -61,7 +61,7 @@ const Hero = props => {
         right={"-5%"}
         bottom={"0%"}
       />
-      <div className="hero__content hero__content--center">
+      <div className="hero__content hero__content--center text-center-sm-down">
         {props.children}
       </div>
     </div>

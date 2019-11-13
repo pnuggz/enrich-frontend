@@ -7,8 +7,15 @@ const HeroLeft = props => {
     <React.Fragment>
       <div className="container">
         <div className="row">
-          <div className="col">
-            <h1 className="text-white">Spare a change for change</h1>
+          <div className="col mb-3">
+            <h1 className="text-white text-weight-bold">
+              <div className="row">
+                <div className="col">Spare a change for </div>
+              </div>
+              <div className="row">
+                <div className="col">change</div>
+              </div>
+            </h1>
           </div>
         </div>
         <div className="row">

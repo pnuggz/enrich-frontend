@@ -15930,6 +15930,120 @@ td.rdtYear:hover {
   .text-xl-center {
     text-align: center !important; } }
 
+@media (max-width: 575.98px) {
+  .text-left-xs-down {
+    text-align: left; } }
+
+.text-left-xs-up {
+  text-align: left; }
+
+@media (max-width: 575.98px) {
+  .text-center-xs-down {
+    text-align: center; } }
+
+.text-center-xs-up {
+  text-align: center; }
+
+@media (max-width: 575.98px) {
+  .text-right-xs-down {
+    text-align: center; } }
+
+.text-right-xs-up {
+  text-align: center; }
+
+@media (max-width: 767.98px) {
+  .text-left-sm-down {
+    text-align: left; } }
+
+@media (min-width: 576px) {
+  .text-left-sm-up {
+    text-align: left; } }
+
+@media (max-width: 767.98px) {
+  .text-center-sm-down {
+    text-align: center; } }
+
+@media (min-width: 576px) {
+  .text-center-sm-up {
+    text-align: center; } }
+
+@media (max-width: 767.98px) {
+  .text-right-sm-down {
+    text-align: center; } }
+
+@media (min-width: 576px) {
+  .text-right-sm-up {
+    text-align: center; } }
+
+@media (max-width: 991.98px) {
+  .text-left-md-down {
+    text-align: left; } }
+
+@media (min-width: 768px) {
+  .text-left-md-up {
+    text-align: left; } }
+
+@media (max-width: 991.98px) {
+  .text-center-md-down {
+    text-align: center; } }
+
+@media (min-width: 768px) {
+  .text-center-md-up {
+    text-align: center; } }
+
+@media (max-width: 991.98px) {
+  .text-right-md-down {
+    text-align: center; } }
+
+@media (min-width: 768px) {
+  .text-right-md-up {
+    text-align: center; } }
+
+@media (max-width: 1199.98px) {
+  .text-left-lg-down {
+    text-align: left; } }
+
+@media (min-width: 992px) {
+  .text-left-lg-up {
+    text-align: left; } }
+
+@media (max-width: 1199.98px) {
+  .text-center-lg-down {
+    text-align: center; } }
+
+@media (min-width: 992px) {
+  .text-center-lg-up {
+    text-align: center; } }
+
+@media (max-width: 1199.98px) {
+  .text-right-lg-down {
+    text-align: center; } }
+
+@media (min-width: 992px) {
+  .text-right-lg-up {
+    text-align: center; } }
+
+.text-left-xl-down {
+  text-align: left; }
+
+@media (min-width: 1200px) {
+  .text-left-xl-up {
+    text-align: left; } }
+
+.text-center-xl-down {
+  text-align: center; }
+
+@media (min-width: 1200px) {
+  .text-center-xl-up {
+    text-align: center; } }
+
+.text-right-xl-down {
+  text-align: center; }
+
+@media (min-width: 1200px) {
+  .text-right-xl-up {
+    text-align: center; } }
+
 .text-lowercase {
   text-transform: lowercase !important; }
 
@@ -16368,9 +16482,6 @@ section {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%); }
-    @media (max-width: 767.98px) {
-      .hero__content--text-center-sm-down {
-        text-align: center; } }
 
 .search-dropdown {
   margin-bottom: 10px;

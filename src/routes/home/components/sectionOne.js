@@ -16,7 +16,7 @@ const SectionOne = () => {
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-md-12 col-mg-12">
-                <h2 className="text-center">Your best benefit</h2>
+                <h1 className="text-center text-weight-bold">Your best benefits</h1>
                 <div className="row justify-content-center">
                   <div className="col-md-4 col-lg-3">
                     <div className="info">
@@ -26,7 +26,7 @@ const SectionOne = () => {
                       <h4 className="info-title">Round-Ups</h4>
                       <hr className="line-primary" />
                       <p>
-                        Invest the change from your daily purchases  and see how
+                        Invest the change from your daily purchases and see how
                         quickly it adds up.
                       </p>
                     </div>
@@ -39,7 +39,7 @@ const SectionOne = () => {
                       <h4 className="info-title">Recurring</h4>
                       <hr className="line-warning" />
                       <p>
-                        Set recurring daily, weekly or monthly  investment
+                        Set recurring daily, weekly or monthly investment
                         amounts to set aside more.
                       </p>
                     </div>
@@ -52,7 +52,7 @@ const SectionOne = () => {
                       <h4 className="info-title">Lump Sums</h4>
                       <hr className="line-success" />
                       <p>
-                        Invest a lump sum into your account and  let our
+                        Invest a lump sum into your account and let our
                         technology help you grow it.
                       </p>
                     </div>
