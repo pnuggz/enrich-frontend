@@ -5,11 +5,11 @@ import imgPath4 from "../../../assets/img/landing/path4.png";
 const SectionOne = () => {
   return (
     <React.Fragment>
-      <section className="section">
-        <section className="section">
+      <section>
+        <section>
           <img
             alt="..."
-            class="path"
+            className="path"
             src={imgPath4}
             style={{ left: "-110px", maxWidth: "60%", top: "50px" }}
           />

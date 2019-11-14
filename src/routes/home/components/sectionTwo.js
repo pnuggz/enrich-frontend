@@ -4,18 +4,20 @@ import {
   Container,
   Row,
   Col,
-  Button,
   Card,
   CardHeader,
   CardBody,
   CardFooter,
-  ListGroup,
-  ListGroupItem,
   Form,
   FormGroup,
   Input,
-  UncontrolledTooltip
+  UncontrolledTooltip,
+  Button
 } from "reactstrap";
+
+// import Button from "../../../components/button"
+import ListGroup from "../../../components/listGroup"
+import ListGroupItem from "../../../components/listGroupItem"
 
 import imgApp from "../../../assets/img/landing/app.png";
 import imgPath2 from "../../../assets/img/landing/path2.png";
@@ -56,10 +58,10 @@ const SectionTwo = () => {
             top: "420px"
           }}
         />
-        <section className="section">
-          <Container>
-            <Row>
-              <Col lg="6" md="6">
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-md-6">
                 <h1 className="profile-title text-left">Absolute Security</h1>
                 <p className="profile-description">
                   We take the security of your information and your data very
@@ -68,37 +70,37 @@ const SectionTwo = () => {
                   your phone so you don’t have to worry if you lose it or it
                   gets stolen.
                 </p>
-              </Col>
-              <Col className="ml-auto mr-auto" lg="4" md="6">
+              </div>
+              <div className="col-lg-4 col-md-6 ml-auto mr-auto">
                 <img alt="App" src={imgApp} />
-              </Col>
-            </Row>
-          </Container>
+              </div>
+            </div>
+          </div>
         </section>
       </section>
 
-      <section className="section section-lg">
-        <Container>
-          <Row className="justify-content-between">
-            <Col md="6" className="mt-auto">
+      <section>
+        <div className="container">
+          <div className="row justify-content-between">
+            <div className="col-md-6 mt-auto">
               <div className="mt-3">
-                <Card className="card-coin card-plain">
-                  <CardHeader>
+                <div className="card card-coin card-plain">
+                  <div className="card-header">
                     <img
                       alt="..."
                       className="img-center img-fluid"
                       src={require("../../../assets/img/landing/path1.png")}
                     />
-                  </CardHeader>
-                  <CardBody>
-                    <Row>
-                      <Col className="text-center" md="12">
+                  </div>
+                  <div className="card-body">
+                    <div className="row">
+                      <div className="col-md-12 text-center">
                         <h4 className="text-uppercase">DREAM</h4>
                         <span>Plan</span>
                         <hr className="line-primary" />
-                      </Col>
-                    </Row>
-                    <Row>
+                      </div>
+                    </div>
+                    <div className="row">
                       <ListGroup>
                         <ListGroupItem>Unlimited bank accounts</ListGroupItem>
                         <ListGroupItem>
@@ -106,12 +108,12 @@ const SectionTwo = () => {
                         </ListGroupItem>
                         <ListGroupItem>24/7 Support</ListGroupItem>
                       </ListGroup>
-                    </Row>
-                  </CardBody>
-                </Card>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </Col>
-            <Col md="5">
+            </div>
+            <div className="col-md-5">
               <h1 className="profile-title text-left">Pricing</h1>
               <p className="profile-description text-left">
                 We are a non-profit organisation with a mission of connecting
@@ -133,22 +135,22 @@ const SectionTwo = () => {
                 <Button
                   className="btn-simple"
                   color="primary"
-                  href="#pablo"
+                  href="#"
                   onClick={e => e.preventDefault()}
                 >
                   <i className="tim-icons icon-book-bookmark" /> Learn More
                 </Button>
               </div>
-            </Col>
-          </Row>
-        </Container>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section className="section section-lg">
-        <section className="section">
-          <Container>
-            <Row>
-              <Col lg="4" md="6">
+      <section>
+        <section>
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-4 col-md-6" lg="4" md="6">
                 <h1 className="profile-title text-left">For Humanity</h1>
                 <p className="profile-description">
                   This app was created for the people, and will grow with the
@@ -159,52 +161,52 @@ const SectionTwo = () => {
                 <p className="profile-description">
                   Get in contact with us to leave a feedback, or have a chat.
                 </p>
-              </Col>
-              <Col className="ml-auto mr-auto" lg="6" md="6">
-                <Card className="card-plain">
-                  <CardBody>
+              </div>
+              <div className="col-lg-6 col-md-6 ml-auto mr-auto" lg="6" md="6">
+                <div className="card card-plain">
+                  <div className="card-body">
                     <Form>
-                      <Row>
-                        <Col md="6">
+                      <div className="row">
+                        <div className="col-md-6">
                           <FormGroup>
                             <label>Your Name</label>
                             <Input defaultValue="Mike" type="text" />
                           </FormGroup>
-                        </Col>
-                        <Col md="6">
+                        </div>
+                        <div md="6">
                           <FormGroup>
                             <label>Email address</label>
                             <Input placeholder="mike@email.com" type="email" />
                           </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="6">
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-6">
                           <FormGroup>
                             <label>Phone</label>
                             <Input defaultValue="001-12321345" type="text" />
                           </FormGroup>
-                        </Col>
-                        <Col md="6">
+                        </div>
+                        <div md="6">
                           <FormGroup>
                             <label>Company</label>
                             <Input defaultValue="CreativeTim" type="text" />
                           </FormGroup>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col md="12">
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12" md="12">
                           <FormGroup>
                             <label>Message</label>
                             <Input placeholder="Hello there!" type="text" />
                           </FormGroup>
-                        </Col>
-                      </Row>
+                        </div>
+                      </div>
                       <Button
                         className="btn-round float-right"
                         color="primary"
                         data-placement="right"
-                        id="tooltip341148792"
+                        id="tooltip3"
                         type="button"
                       >
                         Send text
@@ -212,16 +214,16 @@ const SectionTwo = () => {
                       <UncontrolledTooltip
                         delay={0}
                         placement="right"
-                        target="tooltip341148792"
+                        target="tooltip3"
                       >
                         Can't wait for your message
                       </UncontrolledTooltip>
                     </Form>
-                  </CardBody>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </section>
     </React.Fragment>
