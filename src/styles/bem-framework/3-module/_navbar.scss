@@ -1,0 +1,620 @@
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap; // allow us to do the line break for collapsing content
+  align-items: center;
+  justify-content: space-between; // space out brand from logo
+  padding: $navbar-padding-x;
+  width: $full-width;
+  z-index: 1050;
+  background: $primary;
+
+  &--wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &--fixed-top, &--fixed-bottom {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+  }
+
+  &--fixed-top {
+    top: 0;
+  }
+
+  &--fixed-bottom {
+    bottom: 0;
+  }
+
+  &--collapse {
+    flex-basis: 100%;
+    flex-grow: 1;
+    // For always expanded or extra full navbars, ensure content aligns itself
+    // properly vertically. Can be easily overridden with flex utilities.
+    align-items: center;
+
+    .header {
+      display: none;
+    }
+  }
+
+  &--absolute {
+    position: absolute;
+    z-index: 1050;
+  }
+
+  &--transparent {
+    background: $transparent-bg !important;
+    padding-top: 25px;
+  }
+
+  &--background {
+    &-white {
+      .navbar__navigations { 
+        a.navbar__navigations--links {
+          color: $black !important;
+
+          p {
+            color: $black;
+          }
+        }
+      }
+
+      .navbar__text, .navbar__brand {
+        color: $black;
+      }
+  
+      .input {
+        color: $black !important;
+      }
+  
+      .input::placeholder {
+        color: $dark-gray !important;
+      }
+    }
+
+    &-dark {
+      background: $black !important;
+    }
+  
+    &-primary {
+      background-color: $primary !important;
+    }
+  
+    &-warning {
+      background-color: $warning !important;
+    }
+  
+    &-info {
+      background-color: $info !important;
+    }
+  
+    &-success {
+      background-color: darken($success, 10%) !important;
+    }
+  
+    &-danger {
+      background-color: $danger !important;
+    }
+  }
+
+  // Navbar text
+  //
+  // Primarily for change colour for light against dark and vice versa
+  &__text {
+    color: $white;
+    display: inline-block;
+    padding-top: $nav-link-padding-y;
+    padding-bottom: $nav-link-padding-y;
+  }
+
+  // Generate series of `.navbar-expand-*` responsive classes for configuring
+  // where your navbar collapses.
+  &--expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      $next: breakpoint-next($breakpoint, $grid-breakpoints);
+      $infix: breakpoint-infix($next, $grid-breakpoints);
+
+      &#{$infix} {
+        @include media-breakpoint-down($breakpoint) {
+          > .container,
+          > .container--fluid {
+            padding-right: 0;
+            padding-left: 0;
+          }
+        }
+
+        @include media-breakpoint-up($next) {
+          flex-flow: row nowrap;
+          justify-content: flex-start;
+
+          .navbar__navigations {
+            flex-direction: row;
+
+            &--links-dropdown {
+              position: absolute;
+            }
+
+            &--links {
+              padding-right: $navbar-nav-link-padding-x;
+              padding-left: $navbar-nav-link-padding-x;
+            }
+          }
+
+          // For nesting containers, have to redeclare for alignment purposes
+          > .container,
+          > .container--fluid {
+            flex-wrap: nowrap;
+          }
+
+          .navbar--collapse {
+            display: flex !important;  // stylelint-disable-line declaration-no-important
+
+            // Changes flex-bases to auto because of an IE10 bug
+            flex-basis: auto;
+          }
+
+          .button__navigations--toggler {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &__brand {
+    display: inline-block;
+    padding-top: $navbar-brand-padding-y;
+    padding-bottom: $navbar-brand-padding-y;
+    margin-right: $navbar-padding-x;
+    font-size: $navbar-brand-font-size;
+    line-height: inherit;
+    white-space: nowrap;
+  
+    @include hover-focus {
+      text-decoration: none;
+    }
+
+    position: relative;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    color: $white;
+    text-transform: capitalize;
+    font-size: $font-paragraph;
+    span{
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__navigations {
+    display: flex;
+    flex-direction: column; // cannot use `inherit` to get the `.navbar`s value
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    padding: 0 10px;
+    a {
+      color: $white;
+    }
+
+    i {
+      vertical-align: middle;
+      font-size: 18px;
+      padding-right: 5px;
+    }
+  
+    &--links {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  
+    &--links-dropdown {
+      position: static;
+      float: none;
+    }
+
+    &--item, &--links {
+      position: relative;
+      color: inherit;
+      line-height: 20px;
+      display: inline-flex;
+      &:hover{
+        color: $opacity-8;
+      }
+    }
+  }
+
+  // Navbar themes
+  //
+  // Styles for switching between navbars with light or dark background.
+
+  // Dark links against a light background
+  &--theme-light {
+    .navbar__brand {
+      color: $navbar-light-active-color;
+  
+      @include hover-focus {
+        color: $navbar-light-active-color;
+      }
+    }
+  
+    .navbar__navigations {
+      &--links {
+        color: $navbar-light-color;
+  
+        @include hover-focus {
+          color: $navbar-light-hover-color;
+        }
+  
+        &.disabled {
+          color: $navbar-light-disabled-color;
+        }
+      }
+  
+      .show > .navbar__navigations--links,
+      .active > .navbar__navigations--links,
+      .navbar__navigations--links.show,
+      .navbar__navigations--links.active {
+        color: $navbar-light-active-color;
+      }
+    }
+  
+    .button__navigations--toggler {
+      color: $navbar-light-color;
+      border-color: $navbar-light-toggler-border-color;
+    }
+  
+    .button__navigations--toggler-icon {
+      background-image: $navbar-light-toggler-icon-bg;
+    }
+  
+    .navbar__text {
+      color: $navbar-light-color;
+      a {
+        color: $navbar-light-active-color;
+  
+        @include hover-focus {
+          color: $navbar-light-active-color;
+        }
+      }
+    }
+  }
+
+  // White links against a dark background
+  &--theme-dark {
+    .navbar__brand {
+      color: $navbar-dark-active-color;
+
+      @include hover-focus {
+        color: $navbar-dark-active-color;
+      }
+    }
+
+    .navbar__navigations {
+      &--links {
+        color: $navbar-dark-color;
+
+        @include hover-focus {
+          color: $navbar-dark-hover-color;
+        }
+
+        &.disabled {
+          color: $navbar-dark-disabled-color;
+        }
+      }
+
+      .show > .navbar__navigations--links,
+      .active > .navbar__navigations--links,
+      .navbar__navigations--links.show,
+      .navbar__navigations--links.active {
+        color: $navbar-dark-active-color;
+      }
+    }
+
+    .button__navigations--toggler {
+      color: $navbar-dark-color;
+      border-color: $navbar-dark-toggler-border-color;
+    }
+
+    .button__navigations--toggler-icon {
+      background-image: $navbar-dark-toggler-icon-bg;
+    }
+
+    .navbar__text {
+      color: $navbar-dark-color;
+      a {
+        color: $navbar-dark-active-color;
+
+        @include hover-focus {
+          color: $navbar-dark-active-color;
+        }
+      }
+    }
+  }
+
+  &__photo {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+    overflow: hidden;
+      img{
+        width: $full-width;
+      }
+  }
+
+  .button__navigations--toggle, .button__navigations--toggler {
+    outline: none;
+  }
+
+  &__minimized {
+    &--fixed {
+      position: fixed;
+      margin-left: 40px;
+      margin-top: 14px;
+      transition: 0.3s ease;
+      color: white;
+      z-index: 20;
+      opacity: 0;
+      transition: 0.2s ease;
+      button {
+        i {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+button {
+  .btn{
+    margin: 0 5px 0 10px;
+  }
+
+  p{
+    margin: 0;
+  }
+
+  &__navigations--toggler {
+    padding: $navbar-toggler-padding-y $navbar-toggler-padding-x;
+    font-size: $navbar-toggler-font-size;
+    line-height: 1;
+    background-color: transparent; // remove default button style
+    border: $border-width solid transparent; // remove default button style
+    @include border-radius($navbar-toggler-border-radius);
+  
+    @include hover-focus {
+      text-decoration: none;
+    }
+  
+    // Opinionated: add "hand" cursor to non-disabled .navbar-toggler elements
+    &:not(:disabled):not(.disabled) {
+      cursor: pointer;
+    }
+
+    &-icons {
+      display: inline-block;
+      width: 1.5em;
+      height: 1.5em;
+      vertical-align: middle;
+      content: "";
+      background: no-repeat center center;
+      background-size: 100% 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 991px){
+  .navbar{
+      .container--fluid{
+          padding-right: 15px;
+          padding-left: 15px;
+      }
+
+      .navbar--collapse{
+        .form__group{
+          margin: 0;
+          margin-top: 5px;
+        }
+
+
+        &.collapsing,
+        &.collapse{
+          animation: show_navbar_collapse .2s ease forwards;
+        }
+
+        &.collapsing-out {
+            animation: hide_navbar_collapse .2s ease forwards;
+        }
+
+        .navbar-collapse-header {
+            display: block;
+            padding-bottom: 1rem;
+
+            .collapse-brand{
+              font-size: $font-size-xl;
+              color: $white;
+              a{
+                font-weight: $font-weight-bold;
+              }
+            }
+
+            .collapse-close{
+              .navbar-toggler{
+                color: $white;
+                font-size: $font-size-xl;
+              }
+            }
+        }
+
+        .navbar-nav li{
+          padding: 0px;
+        }
+      }
+
+      .navbar-nav{
+
+        .btn{
+          margin-left: -3px;
+          display: flex;
+
+          i {
+            margin-right: 12px;
+          }
+
+          span {
+            margin: 0;
+            text-transform: uppercase;
+            font-weight: 300;
+
+            &,
+            &:hover,
+            &:focus,
+            &:active,
+            &:active:focus {
+              color: $black !important;
+            }
+          }
+        }
+
+          a.nav-link{
+            i{
+              opacity: 1;
+              margin-right: 5px;
+            }
+            p{
+              display: inline-block;
+              margin-left: 7px;
+              color: $white;
+            }
+          }
+
+          .modal-search .modal-dialog{
+            padding: 0 40px;
+          }
+          .dropdown{
+            margin: 5px 0;
+
+            .dropdown-menu{
+              .dropdown-item{
+                margin-top: 0;
+                padding-left: 24px;
+              }
+            }
+          }
+      }
+
+      .dropdown.show .dropdown-menu{
+          display: block;
+
+      }
+
+      .dropdown .dropdown-menu{
+          display: none;
+          li a{
+            color: $black;
+          }
+      }
+
+      .dropdown.show .dropdown-menu,
+      .dropdown .dropdown-menu{
+          background-color: transparent;
+          border: 0;
+          transition: none;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+          width: auto;
+          margin: 0px 0.7rem;
+          margin-top: 0px;
+
+          &:before{
+              display: none;
+          }
+      }
+
+      .dropdown-menu .dropdown-item:focus,
+      .dropdown-menu .dropdown-item:hover{
+          color: $white;
+      }
+
+      &.bg-white .dropdown-menu .dropdown-item:focus,
+      &.bg-white .dropdown-menu .dropdown-item:hover{
+          color: $default;
+      }
+
+      button.navbar-toggler[data-target="#navigation"]{
+        padding-top: 0;
+      }
+
+      .navbar-toggler-bar{
+          display: block;
+          position: relative;
+          width: 22px;
+          height: 1px;
+          border-radius: 1px;
+          background: $white;
+
+          &.navbar-kebab{
+            height: 4px;
+            width: 4px;
+            margin-bottom: 3px;
+            border-radius: 50%;
+          }
+
+          & + .navbar-toggler-bar{
+              margin-top: 7px;
+          }
+
+          & + .navbar-toggler-bar.navbar-kebab{
+              margin-top: 0px;
+          }
+
+          &.bar2{
+              width: 17px;
+              transition: width .2s linear;
+          }
+      }
+
+      &.bg-white:not(.navbar-transparent) .navbar-toggler-bar{
+          background-color: $default;
+      }
+
+      .navbar-brand{
+        margin-left: 20px;
+        position: relative;
+      }
+  }
+
+  .navbar-nav{
+      .nav-link{
+          i.fa,
+          i.tim-icons{
+              opacity: .5;
+          }
+      }
+  }
+
+  @include topbar-x-rotation();
+  @include topbar-back-rotation();
+  @include bottombar-x-rotation();
+  @include bottombar-back-rotation();
+
+  @-webkit-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  @-moz-keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
+}

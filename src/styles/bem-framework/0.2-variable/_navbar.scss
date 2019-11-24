@@ -1,0 +1,119 @@
+// Navs
+
+$nav-link-padding-y:                .5rem !default;
+$nav-link-padding-x:                1rem !default;
+$nav-link-disabled-color:           $gray-600 !default;
+
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-border-width:             $border-width !default;
+$nav-tabs-border-radius:            $border-radius !default;
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $gray-700 !default;
+$nav-tabs-link-active-bg:           $body-bg !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+
+$nav-pills-border-radius:           $border-radius !default;
+$nav-pills-link-active-color:       $component-active-color !default;
+$nav-pills-link-active-bg:          $component-active-bg !default;
+
+$nav-divider-color:                 $gray-200 !default;
+$nav-divider-margin-y:              ($spacer / 2) !default;
+
+// Navbar
+
+$navbar-padding-y:                  ($spacer / 2) !default;
+$navbar-padding-x:                  $spacer !default;
+
+$navbar-nav-link-padding-x:         .5rem !default;
+
+$navbar-brand-font-size:            $font-size-lg !default;
+// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
+$nav-link-height:                   ($font-size-base * $line-height-base + $nav-link-padding-y * 2) !default;
+$navbar-brand-height:               $navbar-brand-font-size * $line-height-base !default;
+$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2 !default;
+
+$navbar-toggler-padding-y:          .25rem !default;
+$navbar-toggler-padding-x:          .75rem !default;
+$navbar-toggler-font-size:          $font-size-lg !default;
+$navbar-toggler-border-radius:      $btn-border-radius !default;
+
+$navbar-dark-color:                 rgba($white, .5) !default;
+$navbar-dark-hover-color:           rgba($white, .75) !default;
+$navbar-dark-active-color:          $white !default;
+$navbar-dark-disabled-color:        rgba($white, .25) !default;
+$navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-dark-toggler-border-color:  rgba($white, .1) !default;
+
+$navbar-light-color:                rgba($black, .5) !default;
+$navbar-light-hover-color:          rgba($black, .7) !default;
+$navbar-light-active-color:         rgba($black, .9) !default;
+$navbar-light-disabled-color:       rgba($black, .3) !default;
+$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-light-toggler-border-color: rgba($black, .1) !default;
+
+
+
+// ------------------------------------------------------- //
+
+
+// Navs
+
+$nav-link-padding-y:                .5rem !default;
+$nav-link-padding-x:                1rem !default;
+$nav-link-color:                    $gray-700 !default;
+$nav-link-disabled-color:           $gray-600 !default;
+
+$nav-pills-padding-y:               .75rem !default;
+$nav-pills-padding-x:               1rem !default;
+
+$nav-pills-space-x:                 1rem !default;
+
+$nav-pills-bg:                      $white;
+$nav-pills-border-width:            1px !default;
+$nav-pills-border-color:            theme-color("primary") !default;
+$nav-pills-border-radius:           $border-radius !default;
+
+$nav-pills-link-color:              theme-color("primary") !default;
+$nav-pills-link-hover-color:        darken(theme-color("primary"), 5%);
+$nav-pills-link-active-color:       color-yiq(theme-color("primary"));
+$nav-pills-link-active-bg:          theme-color("primary") !default;
+$nav-pills-box-shadow:              $btn-box-shadow !default;
+
+// Navbar
+
+$navbar-transition:                 all .15s linear !default;
+$navbar-padding-y:                  .625rem !default;
+$navbar-padding-x:                  .9375rem !default;
+
+$navbar-nav-link-padding-x:         1rem !default;
+$navbar-nav-link-padding-y:         1rem !default;
+
+$navbar-nav-link-font-family:       $font-family-alt !default;
+$navbar-nav-link-font-size:         .9rem !default;
+$navbar-nav-link-font-weight:       400 !default;
+$navbar-nav-link-text-transform:    normal !default;
+$navbar-nav-link-letter-spacing:    0 !default;
+$navbar-nav-link-border-radius:     $border-radius !default;
+
+/* navbar color */
+$navbar-color:                      #1a1e34 !default;
+$navbar-dark-bg:                    transparent !default;
+$navbar-dark-hover-bg:              rgba(255, 255, 255, .1);
+$navbar-dark-active-bg:             rgba(255, 255, 255, .1);
+$navbar-dark-color:                 rgba($white, .95);
+$navbar-dark-hover-color:           rgba($white, .65);
+$navbar-dark-active-color:          rgba($white, .65);
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-dark-toggler-border-color:  transparent !default;
+
+$navbar-light-bg:                   transparent !default;
+$navbar-light-hover-bg:             rgba(0, 0, 0, .1);
+$navbar-light-active-bg:            rgba(0, 0, 0, .1);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
+$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml !default;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-light-toggler-border-color: transparent !default;
+$full-width:                        100% !default;
+$navbar-padding:                    10px 15px !default;
