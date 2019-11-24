@@ -1,15 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { contextsState } from "../../contexts";
+
+import { loginRequest, loginRefreshData } from "../../sharedModels/loginMdl";
 
 import { LoginViewer } from "./loginViewer";
 
 export const LoginController = props => {
-  const loginState = props.loginState;
-  const dispatchLoginStateAction = props.dispatchLoginStateAction;
+  const useStateValue = contextsState('loginPage')
+  const [loginState, dispatchLoginStateAction] = useStateValue()
+
   const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     setIsloading(false);
   }, []);
+
+  useEffect(() => {
+    const submitLogin = async () => {
+      const response = await loginRequest(loginState.stateSchema);
+      if (response === undefined || response.status.code !== 200) {
+        dispatchLoginStateAction({ type: "LOGIN_FAIL" });
+        console.log(response.status);
+        return;
+      }
+
+      loginRefreshData()
+
+      dispatchLoginStateAction({ type: "LOGIN_SUCCESS" });
+      //eslint-disable-next-line
+      history.push("/dashboard");
+    };
+
+    if (loginState.isSubmit) {
+      submitLogin();
+    }
+  }, [loginState]);
 
   const onSubmitForm = state => {
     dispatchLoginStateAction({

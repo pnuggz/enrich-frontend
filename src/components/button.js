@@ -7,6 +7,10 @@ const Button = props => {
   const hrefProp = props.href || "#";
   const onClickProp = props.onClick || (e => e.preventDefault());
 
+  const tooltipDelay = props.tooltipDelay || 0
+  const tooltipContent = props.tooltipContent || null
+  const tooltipPlacement = props.tooltipPlacement || "bottom"
+
   const reduceClassProp = ["btn", classProp, colorProp, sizeProp].reduce(
     (reduceClass, string) => {
       let delim = "";

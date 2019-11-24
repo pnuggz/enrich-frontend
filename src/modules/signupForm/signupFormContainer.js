@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useForm } from "../useForm/index";
+import FormStateManager from "nuggie-react-formstatemanager";
 
 const SignupForm = props => {
   const stateSchema = props.stateSchema;
@@ -13,7 +13,7 @@ const SignupForm = props => {
     handleOnSubmit,
     handlePasswordShow,
     disable
-  } = useForm(stateSchema, validationStateSchema, onSubmitForm);
+  } = FormStateManager({ stateSchema: stateSchema, validationSchema: validationStateSchema, callback: onSubmitForm });
 
   const errorStyle = {
     color: "red",

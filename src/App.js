@@ -4,7 +4,9 @@ import posed, { PoseGroup } from "react-pose";
 
 import checkAuthorization from "./lib/check-auth";
 import history from "./lib/history";
-import { StateProvider } from "./lib/state";
+
+import { contexts } from "./contexts"
+import StateProviderGenerator from "./lib/stateProviderGenerator"
 
 import { initialState, rootReducer } from "./rootReducer";
 
@@ -29,8 +31,10 @@ const RouteContainer = posed.div({
 });
 
 const App = () => {
+  const GlobalContext = contexts.global
+
   return (
-    <StateProvider initialState={initialState} reducer={rootReducer}>
+    <StateProviderGenerator initialState={initialState} reducer={rootReducer} ContextName={GlobalContext}>
       <Router history={history}>
         <Route
           render={({ location }) => (
@@ -57,8 +61,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <Dashboard />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route
@@ -68,8 +72,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <Institution />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route
@@ -79,8 +83,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <InstitutionAdd />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route
@@ -90,8 +94,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <Account />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
 
@@ -102,8 +106,8 @@ const App = () => {
                         checkAuthorization() ? (
                           <AccountManage router={props} />
                         ) : (
-                          <Redirect to="/login" />
-                        )
+                            <Redirect to="/login" />
+                          )
                       }
                     />
                     <Route
@@ -123,7 +127,7 @@ const App = () => {
           )}
         />
       </Router>
-    </StateProvider>
+    </StateProviderGenerator>
   );
 };
 

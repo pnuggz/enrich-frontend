@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { usePolling } from "../../lib/usePolling"
+import ModelPolling from "nuggie-react-polling"
 
 import { NotificationController } from "./notificationController"
 
@@ -38,7 +38,7 @@ const Notification = () => {
     stopPolling()
   }
 
-  const [isPolling, startPolling, stopPolling] = usePolling({
+  const [isPolling, startPolling, stopPolling] = ModelPolling({
     model: getAllNotifications(),
     interval: 3000, // in milliseconds(ms)
     retryCount: 3, // this is optional

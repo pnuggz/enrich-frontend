@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 
-import { useStateValue } from "../../lib/state";
+import { contexts, contextsState } from "../../contexts";
 
 import { HomeController } from "./homeController"
 
@@ -8,6 +8,7 @@ import { getAllInstitutions } from "../../sharedModels/institutionsMdl"
 import { postUserInstitution } from "../../sharedModels/institutionsMdl"
 
 const Home = () => {
+  const useStateValue = contextsState('global')
   const [{ institutionState }, dispatchInstitutionStateAction] = useStateValue();
   const institutionForm = institutionState.institutionForm
 
@@ -52,7 +53,7 @@ const Home = () => {
     }
   }, [institutionForm])
 
-  return(
+  return (
     <React.Fragment>
       <HomeController
         institutionState={institutionState}

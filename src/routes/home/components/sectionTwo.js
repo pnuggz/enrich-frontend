@@ -1,5 +1,7 @@
 import React from "react";
 
+import NugzTooltip from "nuggie-react-tooltip";
+
 import {
   Container,
   Row,
@@ -10,14 +12,12 @@ import {
   CardFooter,
   Form,
   FormGroup,
-  Input,
-  UncontrolledTooltip,
-  Button
+  Input
 } from "reactstrap";
 
-// import Button from "../../../components/button"
-import ListGroup from "../../../components/listGroup"
-import ListGroupItem from "../../../components/listGroupItem"
+import Button from "../../../components/button";
+import ListGroup from "../../../components/listGroup";
+import ListGroupItem from "../../../components/listGroupItem";
 
 import imgApp from "../../../assets/img/landing/app.png";
 import imgPath2 from "../../../assets/img/landing/path2.png";
@@ -202,22 +202,19 @@ const SectionTwo = () => {
                           </FormGroup>
                         </div>
                       </div>
-                      <Button
-                        className="btn-round float-right"
-                        color="primary"
-                        data-placement="right"
-                        id="tooltip3"
-                        type="button"
+
+                      <NugzTooltip
+                        targetId="tooltip"
+                        tooltipRender={<b>TEST ME</b>}
                       >
-                        Send text
-                      </Button>
-                      <UncontrolledTooltip
-                        delay={0}
-                        placement="right"
-                        target="tooltip3"
-                      >
-                        Can't wait for your message
-                      </UncontrolledTooltip>
+                        <Button
+                          className="btn-round"
+                          color="primary"
+                          type="button"
+                        >
+                          CLICK ME
+                        </Button>
+                      </NugzTooltip>
                     </Form>
                   </div>
                 </div>

@@ -1,43 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { useStateValue } from "../../lib/state";
+import LoginReducerBundle from "./loginReducer"
+import { contexts } from "../../contexts"
+import StateProviderGenerator from "../../lib/stateProviderGenerator"
+
 import history from "../../lib/history";
-
-import { loginRequest, loginRefreshData } from "../../sharedModels/loginMdl";
 
 import { LoginController } from "./loginController";
 
 const Login = () => {
-  const [{ loginState }, dispatchLoginStateAction] = useStateValue();
-
-  useEffect(() => {
-    const submitLogin = async () => {
-      const response = await loginRequest(loginState.stateSchema);
-      if (response === undefined || response.status.code !== 200) {
-        dispatchLoginStateAction({ type: "LOGIN_FAIL" });
-        console.log(response.status);
-        return;
-      }
-
-      loginRefreshData()
-
-      dispatchLoginStateAction({ type: "LOGIN_SUCCESS" });
-      //eslint-disable-next-line
-      history.push("/dashboard");
-    };
-
-    if (loginState.isSubmit) {
-      submitLogin();
-    }
-  }, [loginState]);
+  const { initialState, loginReducer } = LoginReducerBundle
+  const LoginPageContext = contexts.loginPage
 
   return (
-    <React.Fragment>
-      <LoginController
-        loginState={loginState}
-        dispatchLoginStateAction={dispatchLoginStateAction}
-      />
-    </React.Fragment>
+    <StateProviderGenerator reducer={loginReducer} initialState={initialState} ContextName={LoginPageContext}>
+      <LoginController />
+    </StateProviderGenerator >
   );
 };
 

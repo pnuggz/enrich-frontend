@@ -1,7 +1,6 @@
 import React from "react";
 
-import { useForm } from "../useForm/index";
-import BeatLoader from 'react-spinners/BeatLoader';
+import FormStateManager from "nuggie-react-formstatemanager";
 
 const InstitutionForm = props => {
   const institutionForm = props.institutionForm;
@@ -9,7 +8,7 @@ const InstitutionForm = props => {
   const validationStateSchema = props.validationStateSchema;
   const onSubmitForm = props.onSubmitForm;
 
-  const institution = props.institution
+  const institution = props.institution;
 
   const {
     state,
@@ -17,7 +16,7 @@ const InstitutionForm = props => {
     handleOnSubmit,
     handlePasswordShow,
     disable
-  } = useForm(stateSchema, validationStateSchema, onSubmitForm);
+  } = FormStateManager({ stateSchema: stateSchema, validationSchema: validationStateSchema, callback: onSubmitForm });
 
   const errorStyle = {
     color: "red",
@@ -36,9 +35,7 @@ const InstitutionForm = props => {
             onChange={handleOnChange}
           />
 
-          {state.login.error && (
-            <p style={errorStyle}>{state.login.error}</p>
-          )}
+          {state.login.error && <p style={errorStyle}>{state.login.error}</p>}
         </div>
 
         <div className="column is-full">
@@ -58,12 +55,13 @@ const InstitutionForm = props => {
         </div>
 
         <div className="column is-full">
-          <button type="submit" name="submit" className="button is-primary" disabled={disable}>
-            {(institutionForm.isSubmit) ?
-              "SUBMITTING..."
-              :
-              "SUBMIT"
-            }
+          <button
+            type="submit"
+            name="submit"
+            className="button is-primary"
+            disabled={disable}
+          >
+            {institutionForm.isSubmit ? "SUBMITTING..." : "SUBMIT"}
           </button>
         </div>
       </form>

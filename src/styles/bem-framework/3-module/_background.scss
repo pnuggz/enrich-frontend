@@ -1,0 +1,8 @@
+.background {
+  background-size: contain;
+  overflow: hidden;
+
+  &--dots {
+    background-image: url(/static/media/dots.b81dabc0.png);
+  }
+}

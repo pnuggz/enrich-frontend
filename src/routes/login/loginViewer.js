@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import posed from "react-pose";
 
+import Hero from "../../components/hero";
+
 import { PageLayout } from "../../modules/pageLayout/index";
 import { LoginForm } from "../../modules/loginForm/index";
 
@@ -23,15 +25,21 @@ export const LoginViewer = props => {
   return (
     <PageLayout>
       <ParentDiv pose={isLoading ? "preLoad" : "loaded"}>
-        <div className="grid has-centered is-vertical">
-          <div className="column is-three-fifths is-desktop-half is-desktop-x-two-fifths panel has-bg-white has-text-black has-link-inherit">
-            <LoginForm
-              loginState={loginState}
-              onSubmitForm={onSubmitForm}
-              stateSchema={loginState.stateSchema}
-              validationStateSchema={loginState.validationStateSchema}
-            />
-          </div>
+        <div className="background background--dots">
+          <Hero>
+            <div className="container">
+              <div className="row">
+                <div className="offset-lg-0 offset-md-3 col-md-6 col-lg-5">
+                  <LoginForm
+                    loginState={loginState}
+                    onSubmitForm={onSubmitForm}
+                    stateSchema={loginState.stateSchema}
+                    validationStateSchema={loginState.validationStateSchema}
+                  />
+                </div>
+              </div>
+            </div>
+          </Hero>
         </div>
       </ParentDiv>
     </PageLayout>

@@ -29,7 +29,7 @@ export const HomeViewer = props => {
 
   return (
     <React.Fragment>
-      <div className="index-page scrollbar-styling">
+      <div className="background background--dots">
         <Hero>
           <div className="row justify-content-between align-items-center">
             <div className="col-md-6 col-lg-6">

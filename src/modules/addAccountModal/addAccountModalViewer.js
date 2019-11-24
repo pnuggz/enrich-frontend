@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
-import { Modal as ModalModule } from "../modal";
+import ModalModule from "nuggie-react-modal";
+
 import { StepOne } from "./components/stepOne";
 import { StepTwo } from "./components/stepTwo";
 import { Footer } from "./components/footer";
