@@ -35,12 +35,28 @@ export const NavigationBar = props => {
   return (
     <React.Fragment>
       {(location.pathname !== "/") ? 
-        <div className="grid">
+        <React.Fragment>
           <WithRouterProps updateLocation={location => updateLocation(location)} />
-          <div className="column is-full has-no-padding">
-            <nav className="top">
-              <div className="top__brand">
-                <img width="60px" src="logo192.png" />
+          <nav className="fixed-top navbar--transparent navbar navbar--expand-lg" color-on-scroll="100">
+            <div className="container">
+              <div className="navbar--translate">
+                <a 
+                  data-placement="bottom" 
+                  rel="noopener noreferrer" 
+                  title="Designed and Coded by Creative Tim" 
+                  class="navbar__brand" href="#/"
+                >
+                  <span>BLK• </span>
+                  Design System React
+                </a>
+                <button 
+                  aria-expanded="false" 
+                  class="navbar__navigations--toggler"
+                >
+                  <span class="bar bar1" />
+                  <span class="bar bar2" />
+                  <span class="bar bar3" />
+                </button>
               </div>
               <div className="top__links is-end">
                 <ul>
@@ -55,9 +71,9 @@ export const NavigationBar = props => {
                   })}
                 </ul>
               </div>
-            </nav>
-          </div>
-        </div>
+            </div>
+          </nav>
+        </React.Fragment>
         : null
       }
     </React.Fragment>
