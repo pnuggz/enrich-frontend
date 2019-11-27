@@ -22,6 +22,7 @@ const links = [
 
 export const NavigationBar = props => {
   const [location, setLocation] = useState({});
+  const [scrollY, setScrollY] = useState(0);
   const propsLocation = props.location;
 
   const updateLocation = newLocation => {
@@ -32,12 +33,29 @@ export const NavigationBar = props => {
     setLocation(propsLocation);
   }, [propsLocation]);
 
+  useEffect(() => {
+    window.addEventListener('scroll', e => {
+      const scrollPos = window.scrollY
+      const navSize = document.getElementsByTagName('nav')
+
+      if(scrollPos <= navSize && scrollY !== 0) {
+        setScrollY(scrollPos)
+      } else if(scrollPos > navSize && scrollY === 0) {
+        setScrollY(scrollPos)
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    console.log(scrollY)
+  })
+
   return (
     <React.Fragment>
-      {(location.pathname !== "/") ? 
+      {(location.pathname !== "/test") ? 
         <React.Fragment>
           <WithRouterProps updateLocation={location => updateLocation(location)} />
-          <nav className="fixed-top navbar--transparent navbar navbar--expand-lg" color-on-scroll="100">
+          <nav className={`fixed-top navbar navbar--expand-lg ${(scrollY > 0 ? '' : 'navbar--transparent')}`} color-on-scroll="100">
             <div className="container">
               <div className="navbar--translate">
                 <a 
@@ -58,15 +76,31 @@ export const NavigationBar = props => {
                   <span class="bar bar3" />
                 </button>
               </div>
-              <div className="top__links is-end">
-                <ul>
-                  <li><Notification /></li>
+              <div className="justify-content-end undefined collapse navbar--collapse">
+                <div class="navbar--collapse">
+                  <div className="header">
+                    <div class="row">
+                      <div class="collapse-brand col-6">
+                        <a href="#pablo">BLK•React</a>
+                      </div>
+                      <div class="collapse-close text-right col-6">
+                        <button aria-expanded="false" class="navbar--toggler">
+                          <i class="tim-icons icon-simple-remove"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul className="navbar__navigations">
+                  <li className="p-0 navbar__navigations--link"><Notification /></li>
                   {links.map((link, key) => {
                     const linkClass = location.pathname === link.path ? "is-selected" : "";
                     return (
-                      <Link key={key} exact="true" to={link.path}>
-                        <li className={linkClass}>{link.text}</li>
-                      </Link>
+                      <li className={`${linkClass} p-0 navbar__navigations--link`}>
+                        <Link key={key} exact="true" to={link.path}>
+                          {link.text}
+                        </Link>
+                      </li>
                     )
                   })}
                 </ul>

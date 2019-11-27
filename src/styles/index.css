@@ -17540,7 +17540,6 @@ section {
     padding-top: 0; }
 
 .navbar {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
